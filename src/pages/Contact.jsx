@@ -87,7 +87,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-[#FAFAFA] to-white dark:from-[#0B0C10] dark:to-[#101115]">
+    <div className="bg-[#FAFAFA] dark:bg-[#101115]">
       {/* Top Cards */}
       <section className="px-4 py-10 sm:px-6 lg:px-12 pt-28 sm:pt-32">
         <div className="grid max-w-6xl gap-6 mx-auto md:grid-cols-2 lg:grid-cols-3">
@@ -350,3 +350,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
