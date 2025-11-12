@@ -1,0 +1,42 @@
+/* Focus ring feel similar to other fields (no custom colors hardcoded—works with Tailwind ring) */
+
+.react-tel-input .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(21, 145, 155, 0.35);
+    /* mimic focus:ring-[#15919B]/35 */
+    border-color: rgb(21 145 155);
+}
+
+.dark .react-tel-input .form-control {
+    background-color: #14171A;
+    color: #fff;
+    border-color: rgb(55 65 81);
+}
+
+.dark .react-tel-input .form-control:focus {
+    box-shadow: 0 0 0 2px rgba(21, 145, 155, 0.35);
+    border-color: rgb(21 145 155);
+}
+
+
+/* Dropdown theming */
+
+.react-tel-input .country-list {
+    background: #fff;
+    color: #111827;
+    /* gray-900 */
+}
+
+.dark .react-tel-input .country-list {
+    background: #14171A;
+    color: #e5e7eb;
+    /* gray-200 */
+}
+
+
+/* Ensure the dropdown button aligns cleanly */
+
+.react-tel-input .selected-flag {
+    padding-left: 12px;
+    padding-right: 12px;
+}

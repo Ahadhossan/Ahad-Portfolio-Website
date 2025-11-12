@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply Font Inter globally */
+
+body {
+    @apply font-inter;
+}
+
+
+/* @layer components {
+    
+} */
+
+@layer utilities {
+    .flex-center {
+        @apply flex items-center;
+    }
+    .flex-center-between {
+        @apply flex items-center justify-between;
+    }
+}
+
+
+/* contact */
+
+
+/* Left flag dropdown matches Tailwind borders/radius */
+
+.react-tel-input .flag-dropdown {
+    border: 1px solid rgb(209 213 219);
+    /* gray-300 */
+    border-right: 0;
+    border-radius: 0.75rem 0 0 0.75rem;
+    /* rounded-l-xl */
+}
+
+.dark .react-tel-input .flag-dropdown {
+    border-color: rgb(55 65 81);
+    /* gray-700 */
+    background-color: #14171A;
+}
+
+
+/* Let Tailwind padding/height take control */
+
+.react-tel-input .form-control {
+    height: auto;
+    line-height: 1.5;
+    border: 1px solid rgb(209 213 219);
+    /* keeps the right side border when flag has border-right:0 */
+    border-left: 0;
+    /* avoid double border between flag + input */
+    border-radius: 0 0.75rem 0.75rem 0;
+    /* rounded-r-xl */
+    box-shadow: none;
+}
