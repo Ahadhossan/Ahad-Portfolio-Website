@@ -57,14 +57,14 @@ const Navbar = () => {
             <ThemeSwitcher />
           </div>
           {/* Contact */}
-          <div className="hidden lg:inline-block">
+          {/* <div className="hidden lg:inline-block">
             <a
               href="/contact"
               className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-white bg-gradient-to-r from-[#15919B] to-[#2CC295] hover:opacity-95 active:scale-[0.99] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#15919B]/40 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300"
             >
               Contact
             </a>
-          </div>
+          </div> */}
         </div>
       </nav>
     </header>
@@ -72,3 +72,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
