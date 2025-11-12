@@ -68,7 +68,7 @@ const HeroSection = () => {
           variants={imageVariant}
         >
           <img
-            src="/src/assets/Ahad 1.webp" // place under /public/assets/
+            src="https://i.ibb.co.com/3y9KRFLX/Ahad-1.webp" // place under /public/assets/
             alt="Portrait of Ahad Hossain"
             className="w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px] rounded-xl hover:scale-105 transition-transform duration-300 ease-in-out"
             loading="lazy"
@@ -133,3 +133,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
