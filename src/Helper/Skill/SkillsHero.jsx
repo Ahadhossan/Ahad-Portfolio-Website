@@ -69,7 +69,7 @@ export default function SkillsHero() {
           variants={prefersReducedMotion ? undefined : item}
         >
           <motion.img
-            src="/src/assets/skills.jpg"
+            src="https://i.ibb.co.com/t6dZqX1/skills.jpg"
             alt="Illustration representing technical skills and development"
             className="w-[250px] sm:w-[300px] md:w-[400px] lg:w-[450px] rounded-lg hover:scale-105 transition-transform duration-300 ease-in-out"
             loading="lazy"
@@ -81,3 +81,4 @@ export default function SkillsHero() {
     </section>
   );
 }
+
