@@ -25,4 +25,9 @@ export const Menus = [
   //   name: "Reading Journey",
   //   path: "/reading",
   // },
+  {
+    name: "Contact",
+    path: "/contact",
+  },
 ];
+
