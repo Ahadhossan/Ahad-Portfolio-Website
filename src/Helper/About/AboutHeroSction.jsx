@@ -68,7 +68,7 @@ export default function AboutHeroSection() {
           variants={prefersReducedMotion ? undefined : item}
         >
           <motion.img
-            src="/src/assets/about.png"
+            src="https://i.ibb.co.com/QjFB13nR/about.png"
             alt="Md. Ahad Hossain — Web Developer and Frontend Designer"
             className="w-[400px] sm:w-[450px] md:w-[500px] lg:w-[600px] rounded-lg hover:scale-105 transition-transform duration-300 ease-in-out"
             loading="lazy"
@@ -80,3 +80,4 @@ export default function AboutHeroSection() {
     </section>
   );
 }
+
