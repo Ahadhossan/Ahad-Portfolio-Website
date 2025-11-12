@@ -61,7 +61,7 @@ const ProjectsHero = () => {
           data-aos-delay="200"
         >
           <img
-            src="/src/assets/3062524-removebg-preview.png"
+            src="https://i.ibb.co.com/60KCT4mW/3062524-removebg-preview.png"
             alt="projects"
             className="w-[300px] sm:w-[400px] md:w-[500px] lg:w-[550px] rounded-lg hover:scale-105 transition-transform duration-300 ease-in-out"
           />
@@ -72,3 +72,4 @@ const ProjectsHero = () => {
 };
 
 export default ProjectsHero;
+
