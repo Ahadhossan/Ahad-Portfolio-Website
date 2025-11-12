@@ -6,7 +6,7 @@ import ProjectsHero from "../Helper/Projects/ProjectsHero";
 
 const Projects = () => {
   return (
-    <div>
+    <div className="bg-[#FAFAFA] dark:bg-[#101115]">
       {/* hero Section */}
       <ProjectsHero />
 
@@ -32,3 +32,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
