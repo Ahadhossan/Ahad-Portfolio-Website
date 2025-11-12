@@ -14,7 +14,7 @@ const projects = [
     description:
       "A modern food-ordering SPA with cart, checkout, and order tracking. Built with React + Tailwind.",
     // Prefer avoiding spaces in asset filenames, e.g. Food_ordering_app.png
-    imgSrc: "/src/assets/Food ordering app.png",
+    imgSrc: "https://i.ibb.co.com/60YQfp8b/Food-ordering-app.png",
     view: "View Project",
     viewlink: "https://food-delivery-app-web.vercel.app/", // internal route example
     github: "Source Code",
@@ -26,7 +26,7 @@ const projects = [
     tech: "React, Tailwind CSS, JavaScript, TheMealDB API",
     description:
       "Discover a wide variety of delicious meal recipes tailored just for you. Browse the listings, save your favorites, and dive into easy-to-follow instructions—all in one sleek app.",
-    imgSrc: "/src/assets/Meal-khuj.png",
+    imgSrc: "https://i.ibb.co.com/MDQypnz0/Meal-khuj.png",
     view: "View Project",
     viewlink: "https://recipe-app-mocha-omega.vercel.app/", // internal route example
     github: "Source Code",
@@ -152,3 +152,4 @@ const FinishedProject = memo(function FinishedProject() {
 });
 
 export default FinishedProject;
+
