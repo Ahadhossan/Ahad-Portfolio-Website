@@ -22,12 +22,12 @@ const Navbar: React.FC = () => {
             to="/home"
             className="flex items-center text-xl font-extrabold tracking-wide text-[#1E5470] hover:text-[#031A09] transition-colors"
           >
-            <img
+            {/* <img
               src="https://i.ibb.co/xSnVq4zQ/softtechlogo.png"
               alt="SoftTech Logo"
               className="w-8 h-8 object-contain rounded-md mr-3"
-            />
-            SoftTech
+            /> */}
+            Ahad.Dev
           </Link>
         </div>
 
