@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import DesktopMenu from "./DesktopMenu";
 import { Menus } from "../../Data/utils";
 import { Link } from "react-router-dom";
+import HireModal from "../../common/HireModal";
 
 // ✅ Optional: define Menu type (recommended if not already typed)
 type MenuType = {
@@ -13,6 +14,8 @@ type MenuType = {
 };
 
 const Navbar: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="h-16 text-[15px] fixed top-0 left-0 right-0 flex items-center bg-white/95 border-b border-gray-200 z-50 shadow-lg">
       <nav className="px-16 flex items-center justify-between w-full max-w-9xl mx-auto">
@@ -40,13 +43,31 @@ const Navbar: React.FC = () => {
 
         {/* Right Section */}
         <div className="flex items-center gap-x-4">
-          {/* Contact Button */}
-          <Link
-            to="/contact"
+          {/* hire Button */}
+          {/* <Link
+            to="/Hire Me"
             className="bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white hover:scale-105 flex items-center gap-2 px-7 py-3 font-semibold rounded-full shadow-lg transition-all duration-300"
           >
-            Contact Us
-          </Link>
+            Hire Me
+          </Link> */}
+          {/* <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=your@email.com&su=Hire%20Request&body=Hi%20Ahad"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white flex items-center gap-2 px-7 py-3 font-semibold rounded-full shadow-lg hover:scale-105 transition-all duration-300"
+          >
+            Hire Me
+            <span className="group-hover:translate-x-1 transition">→</span>
+          </a> */}
+
+          {/* ✅ Hire Me Button */}
+          <button
+            onClick={() => setOpen(true)}
+            className="group bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white flex items-center gap-2 px-7 py-3 font-semibold rounded-full shadow-lg hover:scale-105 transition-all duration-300"
+          >
+            Hire Me
+            <span className="group-hover:translate-x-1 transition">→</span>
+          </button>
 
           {/* Mobile Menu */}
           {/* <div className="lg:hidden">
@@ -54,6 +75,9 @@ const Navbar: React.FC = () => {
           </div> */}
         </div>
       </nav>
+
+      {/* ✅ Modal */}
+      {open && <HireModal onClose={() => setOpen(false)} />}
     </header>
   );
 };
