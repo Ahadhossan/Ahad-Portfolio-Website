@@ -3,6 +3,7 @@ import DesktopMenu from "./DesktopMenu";
 import { Menus } from "../../Data/utils";
 import { Link } from "react-router-dom";
 import HireModal from "../../common/HireModal";
+import { AnimatePresence } from "framer-motion";
 
 // ✅ Optional: define Menu type (recommended if not already typed)
 type MenuType = {
@@ -76,8 +77,10 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* ✅ Modal */}
-      {open && <HireModal onClose={() => setOpen(false)} />}
+      {/* Animated Modal */}
+      <AnimatePresence mode="wait">
+        {open && <HireModal onClose={() => setOpen(false)} />}
+      </AnimatePresence>
     </header>
   );
 };

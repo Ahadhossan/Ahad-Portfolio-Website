@@ -1,7 +1,8 @@
 import emailjs from "emailjs-com";
-import { Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import { X } from "lucide-react";
 
 type Props = {
   onClose: () => void;
@@ -47,15 +48,27 @@ export default function HireModal({ onClose }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      {/* Modal Box */}
-      <div className="w-full max-w-lg bg-white/70 backdrop-blur-xl border border-white/30 shadow-2xl rounded-3xl p-8 relative animate-in fade-in zoom-in-95 duration-300">
-        {/* Close Button */}
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 40 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="w-full max-w-lg bg-white/70 backdrop-blur-xl border border-white/30 shadow-2xl rounded-3xl p-8 relative"
+      >
+        {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-black text-lg"
+          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center 
+             rounded-full bg-white/60 backdrop-blur hover:bg-white/90 
+             text-gray-600 hover:text-black shadow-sm transition"
         >
-          ✕
+          <X size={18} strokeWidth={2} />
         </button>
 
         {/* Title */}
@@ -77,33 +90,34 @@ export default function HireModal({ onClose }: Props) {
 
           <input
             {...register("email", { required: true })}
-            placeholder="Your Email"
             type="email"
+            placeholder="Your Email"
             className="w-full px-4 py-3 rounded-xl bg-white/80 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2a7fa3]"
           />
+
           <input
             {...register("phone", { required: true })}
-            placeholder="Your Phone Number"
             type="tel"
+            placeholder="Your Phone Number"
             className="w-full px-4 py-3 rounded-xl bg-white/80 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2a7fa3]"
           />
 
           <textarea
             {...register("message", { required: true })}
-            placeholder="Tell me about your project..."
             rows={4}
+            placeholder="Tell me about your project..."
             className="w-full px-4 py-3 rounded-xl bg-white/80 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#2a7fa3]"
           />
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white py-3 rounded-xl font-semibold hover:scale-[1.02] transition-all duration-300 shadow-md"
+            className="w-50 bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white py-3 rounded-xl font-semibold hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 shadow-md"
           >
-            {isSubmitting ? "Sending..." : "Send Message ✉️"}
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </form>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
