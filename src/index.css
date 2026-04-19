@@ -13,3 +13,11 @@
 .animate-gradient-x {
     animation: gradient-x 4s ease infinite;
 }
+
+
+/* .hero-bg {
+    background: url('../src/assets/hero.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+} */

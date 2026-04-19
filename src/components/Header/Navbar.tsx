@@ -36,6 +36,14 @@ const Navbar: React.FC = () => {
               className="w-8 h-8 object-contain rounded-md mr-3"
             /> */}
             Ahad.Dev
+            {/* <video
+              src="/src/assets/doodle-motif-270-arrow-right-hover-pointing.mp4"
+              className="w-8 h-8 object-contain rounded-md mr-3"
+              autoPlay
+              loop
+              muted
+              playsInline
+            /> */}
           </Link>
         </div>
 
@@ -48,30 +56,18 @@ const Navbar: React.FC = () => {
 
         {/* Right Section */}
         <div className="flex items-center gap-x-4">
-          {/* hire Button */}
-          {/* <Link
-            to="/Hire Me"
-            className="bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white hover:scale-105 flex items-center gap-2 px-7 py-3 font-semibold rounded-full shadow-lg transition-all duration-300"
-          >
-            Hire Me
-          </Link> */}
-          {/* <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=your@email.com&su=Hire%20Request&body=Hi%20Ahad"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white flex items-center gap-2 px-7 py-3 font-semibold rounded-full shadow-lg hover:scale-105 transition-all duration-300"
-          >
-            Hire Me
-            <span className="group-hover:translate-x-1 transition">→</span>
-          </a> */}
-
           {/* ✅ Hire Me Button */}
           <button
             onClick={() => setOpen(true)}
-            className="group bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white flex items-center gap-2 px-7 py-3 font-semibold rounded-full shadow-lg hover:scale-105 transition-all duration-300"
+            className="group w-full sm:w-auto bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white flex items-center justify-center gap-2 
+  px-5 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3
+  text-sm sm:text-base font-semibold rounded-full shadow-lg 
+  hover:scale-105 active:scale-95 transition-all duration-300"
           >
             Hire Me
-            <span className="group-hover:translate-x-1 transition">→</span>
+            <span className="group-hover:translate-x-1 transition-transform duration-300">
+              →
+            </span>
           </button>
 
           {/* Mobile Menu */}
