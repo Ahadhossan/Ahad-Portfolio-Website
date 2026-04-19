@@ -4,6 +4,7 @@ import { Menus } from "../../Data/utils";
 import { Link } from "react-router-dom";
 import HireModal from "../../common/HireModal";
 import { AnimatePresence } from "framer-motion";
+import MobMenu from "./MobMenu";
 
 // ✅ Optional: define Menu type (recommended if not already typed)
 type MenuType = {
@@ -24,7 +25,10 @@ const Navbar: React.FC = () => {
         <div className="flex items-center gap-x-3">
           <Link
             to="/home"
-            className="flex items-center text-xl font-extrabold tracking-wide text-[#1E5470] hover:text-[#031A09] transition-colors"
+            className="flex items-center text-xl font-extrabold tracking-wide 
+    bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
+    bg-clip-text text-transparent 
+    animate-gradient-x"
           >
             {/* <img
               src="https://i.ibb.co/xSnVq4zQ/softtechlogo.png"
@@ -71,9 +75,9 @@ const Navbar: React.FC = () => {
           </button>
 
           {/* Mobile Menu */}
-          {/* <div className="lg:hidden">
+          <div className="lg:hidden">
             <MobMenu Menus={Menus} />
-          </div> */}
+          </div>
         </div>
       </nav>
 
