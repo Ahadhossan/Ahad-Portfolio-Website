@@ -27,7 +27,7 @@ export const Menus: MenuType[] = [
   // ABOUT
   {
     name: "About Me",
-    path: "/",
+    path: "/about",
     gridCols: 1,
     subMenu: [
       [

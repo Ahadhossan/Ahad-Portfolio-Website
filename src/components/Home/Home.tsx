@@ -135,7 +135,7 @@ const Home: React.FC = () => {
 
               {/* PDF */}
               <iframe
-                src="/src/assets/Ahad hossain Resume.pdf"
+                src="../Ahad hossain Resume.pdf"
                 className="w-full h-full"
                 title="Resume PDF"
               />
