@@ -80,8 +80,8 @@ const Home: React.FC = () => {
           <button
             onClick={() => {
               const link = document.createElement("a");
-              link.href = "/resume.pdf";
-              link.download = "Ahad-Resume.pdf";
+              link.href = "/public/resume.pdf";
+              link.download = "Ahad Resume.pdf";
               link.click();
             }}
             className="group flex items-center justify-center gap-2 px-6 py-3 
@@ -135,7 +135,7 @@ const Home: React.FC = () => {
 
               {/* PDF */}
               <iframe
-                src="../Ahad hossain Resume.pdf"
+                src="/public/resume.pdf"
                 className="w-full h-full"
                 title="Resume PDF"
               />
