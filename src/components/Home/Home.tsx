@@ -63,7 +63,7 @@ const Home: React.FC = () => {
         {/* Description */}
         <p className="mt-4 text-sm sm:text-base text-gray-300 max-w-md">
           I build modern, scalable and beautiful web applications with clean UI,
-          smooth UX, and performance-focused architecture.
+          smooth UX, and performance-focused architectures.
         </p>
 
         {/* Buttons */}
