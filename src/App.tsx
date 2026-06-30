@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Header/Navbar";
 import { Toaster } from "react-hot-toast";
-import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import { Skills } from "./Skills/Skills";
+import Home from "./components/Home/Home";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/skills" element={<Skills />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
