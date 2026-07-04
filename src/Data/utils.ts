@@ -35,10 +35,10 @@ export const Menus: MenuType[] = [
           label: "About Me",
           href: "/about",
         },
-        {
-          label: "Success Stories",
-          href: "/success",
-        },
+        // {
+        //   label: "Success Stories",
+        //   href: "/success",
+        // },
         {
           label: "Experience",
           href: "/experience",
@@ -48,27 +48,27 @@ export const Menus: MenuType[] = [
   },
 
   // SERVICES
-  {
-    name: "Services",
-    path: "/services",
-    gridCols: 1,
-    subMenu: [
-      [
-        {
-          label: "UX/UI Design",
-          href: "/ui",
-        },
-        {
-          label: "Web Design",
-          href: "/webapp",
-        },
-        {
-          label: "Frontend Developer",
-          href: "/frontend",
-        },
-      ],
-    ],
-  },
+  // {
+  //   name: "Services",
+  //   path: "/services",
+  //   gridCols: 1,
+  //   subMenu: [
+  //     [
+  //       {
+  //         label: "UX/UI Design",
+  //         href: "/ui",
+  //       },
+  //       {
+  //         label: "Web Design",
+  //         href: "/webapp",
+  //       },
+  //       {
+  //         label: "Frontend Developer",
+  //         href: "/frontend",
+  //       },
+  //     ],
+  //   ],
+  // },
 
   // SKILLS
   {
