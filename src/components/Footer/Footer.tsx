@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Mail, ArrowUpRight, Check, Copy } from "lucide-react";
-import { CiLinkedin } from "react-icons/ci";
-import { FiGithub } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
+import { Check, Copy } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa6";
+import { FaGithubSquare } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
@@ -13,7 +13,7 @@ const socials = [
   {
     href: "https://www.linkedin.com/in/mdahadhossain/",
     label: "LinkedIn",
-    icon: CiLinkedin,
+    icon: FaLinkedin,
     bg: "bg-[#0A66C2]/10",
     hoverBg: "hover:bg-[#0A66C2]",
     color: "text-[#0A66C2]",
@@ -22,16 +22,16 @@ const socials = [
   {
     href: "https://github.com/Ahadhossan",
     label: "GitHub",
-    icon: FiGithub,
+    icon: FaGithubSquare,
     bg: "bg-gray-900/5",
     hoverBg: "hover:bg-gray-900",
     color: "text-gray-700",
     hoverColor: "group-hover:text-white",
   },
   {
-    href: "https://wa.me/8801XXXXXXXXX",
+    href: "https://wa.me/8801322959861",
     label: "WhatsApp",
-    icon: FaWhatsapp,
+    icon: IoLogoWhatsapp,
     bg: "bg-[#25D366]/10",
     hoverBg: "hover:bg-[#25D366]",
     color: "text-[#25D366]",

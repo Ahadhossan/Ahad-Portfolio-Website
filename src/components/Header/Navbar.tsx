@@ -30,12 +30,12 @@ const Navbar: React.FC = () => {
     bg-clip-text text-transparent 
     animate-gradient-x"
           >
-            {/* <img
-              src="https://i.ibb.co/xSnVq4zQ/softtechlogo.png"
+            <img
+              src="/src/assets/Black_Modern_A_letter_Logo-removebg-preview.png"
               alt="SoftTech Logo"
-              className="w-8 h-8 object-contain rounded-md mr-3"
-            /> */}
-            Ahad.Dev
+              className="w-32 h-32 object-contain rounded-md mr-3"
+            />
+            {/* Ahad.Dev */}
             {/* <video
               src="/src/assets/doodle-motif-270-arrow-right-hover-pointing.mp4"
               className="w-8 h-8 object-contain rounded-md mr-3"
