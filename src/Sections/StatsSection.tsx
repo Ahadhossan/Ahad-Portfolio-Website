@@ -12,7 +12,7 @@ interface StatItem {
 const stats: StatItem[] = [
   {
     title: "Projects Completed",
-    value: 400,
+    value: 90,
     suffix: "+",
     icon: FolderKanban,
   },

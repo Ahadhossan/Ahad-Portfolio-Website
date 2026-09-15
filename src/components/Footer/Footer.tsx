@@ -127,8 +127,7 @@ const Footer = () => {
         {/* Bottom: built-with line */}
         <div className="mt-10 pt-6 border-t border-gray-200 text-center">
           <p className="text-xs text-gray-400">
-            Built with <span className="text-red-500">♥</span> using React &
-            Tailwind CSS
+            Built with <span className="text-red-500">♥</span> Md Ahad Hossain.
           </p>
         </div>
       </div>
