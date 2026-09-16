@@ -1,5 +1,16 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
+import emailjs from "@emailjs/browser";
+
+// 1. Create a free account at https://www.emailjs.com
+// 2. Add an Email Service (e.g. Gmail) -> copy the Service ID
+// 3. Create an Email Template -> copy the Template ID
+//    Reference these variables in your template body:
+//    {{from_name}}  {{from_email}}  {{project_type}}  {{message}}
+// 4. Account -> General -> copy your Public Key
+const EMAILJS_SERVICE_ID = "service_7hc6uli";
+const EMAILJS_TEMPLATE_ID = "template_fni6mgr";
+const EMAILJS_PUBLIC_KEY = "a8W05Bi3SM5Z8J3au";
 
 const PROJECT_TYPES = [
   "Product design",
@@ -16,6 +27,8 @@ interface ContactFormState {
   type: ProjectType;
   message: string;
 }
+
+type SubmitStatus = "idle" | "sending" | "sent" | "error";
 
 interface ContactRowProps {
   icon: string;
@@ -52,7 +65,7 @@ function ContactRow({ icon: Icon, label, value, href }: ContactRowProps) {
 
 const fieldClasses =
   "w-full bg-transparent border-0 border-b border-slate-700 text-slate-50 text-base py-2.5 " +
-  "placeholder-slate-600 outline-none focus:border-amber-500 motion-safe:transition-colors";
+  "placeholder-slate-600 outline-none focus:border-amber-500 motion-safe:transition-colors disabled:opacity-50";
 
 const Contact = () => {
   const [form, setForm] = useState<ContactFormState>({
@@ -61,18 +74,38 @@ const Contact = () => {
     type: "",
     message: "",
   });
-  const [sent, setSent] = useState<boolean>(false);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
 
   const handleChange =
     (field: keyof ContactFormState) =>
     (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((f) => ({ ...f, [field]: e.target.value }));
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
-    setSent(true);
+
+    setStatus("sending");
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          project_type: form.type || "Not specified",
+          message: form.message,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      setStatus("sent");
+    } catch (err) {
+      console.error("EmailJS send failed:", err);
+      setStatus("error");
+    }
   };
+
+  const sending = status === "sending";
 
   return (
     <div className="h-full mt-16 bg-slate-950 font-sans antialiased">
@@ -85,9 +118,6 @@ const Contact = () => {
         {/* Left panel: intro + contact details */}
         <div className="flex flex-col justify-between border-b border-slate-800 p-8 md:col-span-2 md:border-b-0 md:border-r md:p-14">
           <div>
-            {/* <h2 className="mb-6 text-sm text-slate-400 md:mb-8">
-              Md Ahad Hossain
-            </h2> */}
             <h1
               style={{ fontFamily: "'Fraunces', Georgia, serif" }}
               className="max-w-md text-4xl font-normal leading-tight tracking-tight text-slate-50 sm:text-5xl md:text-6xl"
@@ -119,23 +149,12 @@ const Contact = () => {
               value="+880 1322959861"
               href="tel:+8801322959861"
             />
-            {/* <div className="mt-7 flex gap-6">
-              {["LinkedIn", "GitHub", "Dribbble"].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="border-b border-transparent pb-0.5 text-sm text-slate-400 hover:border-amber-500 hover:text-slate-50 motion-safe:transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
-                >
-                  {s}
-                </a>
-              ))}
-            </div> */}
           </div>
         </div>
 
         {/* Right panel: form */}
         <div className="flex items-center bg-slate-900 p-8 md:col-span-3 md:p-14">
-          {!sent ? (
+          {status !== "sent" ? (
             <form onSubmit={handleSubmit} className="w-full max-w-md">
               <div>
                 <label
@@ -148,6 +167,7 @@ const Contact = () => {
                   id="name"
                   type="text"
                   required
+                  disabled={sending}
                   value={form.name}
                   onChange={handleChange("name")}
                   placeholder="Jordan Lee"
@@ -166,6 +186,7 @@ const Contact = () => {
                   id="email"
                   type="email"
                   required
+                  disabled={sending}
                   value={form.email}
                   onChange={handleChange("email")}
                   placeholder="jordan@studio.com"
@@ -184,11 +205,12 @@ const Contact = () => {
                       <button
                         type="button"
                         key={t}
+                        disabled={sending}
                         onClick={() =>
                           setForm((f) => ({ ...f, type: t as ProjectType }))
                         }
                         className={
-                          "rounded-full border px-3.5 py-2 text-sm motion-safe:transition-colors " +
+                          "rounded-full border px-3.5 py-2 text-sm motion-safe:transition-colors disabled:opacity-50 " +
                           (active
                             ? "border-amber-500 bg-amber-500/10 text-amber-500"
                             : "border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-50")
@@ -212,6 +234,7 @@ const Contact = () => {
                   id="message"
                   rows={4}
                   required
+                  disabled={sending}
                   value={form.message}
                   onChange={handleChange("message")}
                   placeholder="What are you working on?"
@@ -221,10 +244,18 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="mt-10 rounded px-7 py-3.5 text-sm font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 motion-safe:transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+                disabled={sending}
+                className="mt-10 rounded px-7 py-3.5 text-sm font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 motion-safe:transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Send message
+                {sending ? "Sending..." : "Send message"}
               </button>
+
+              {status === "error" && (
+                <p className="mt-4 text-sm text-red-400">
+                  Something went wrong sending that. Please try again, or email
+                  me directly at ahadm3016@gmail.com.
+                </p>
+              )}
             </form>
           ) : (
             <div className="max-w-sm">
