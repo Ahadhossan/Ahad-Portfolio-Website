@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
@@ -31,7 +31,7 @@ interface ContactFormState {
 type SubmitStatus = "idle" | "sending" | "sent" | "error";
 
 interface ContactRowProps {
-  icon: string;
+  icon: React.ElementType;
   label: string;
   value: string;
   href?: string;
@@ -39,12 +39,12 @@ interface ContactRowProps {
 
 function ContactRow({ icon: Icon, label, value, href }: ContactRowProps) {
   return (
-    <div className="flex items-center justify-between gap-4 border-t border-slate-800 py-2 text-sm">
-      <span className="flex items-center gap-2.5 text-slate-400">
+    <div className="flex items-center justify-between gap-4 border-b border-[#15919B] py-2 text-bold">
+      <span className="flex items-center gap-2.5 text-black">
         <Icon
-          size={16}
+          size={18}
           strokeWidth={1.75}
-          className="text-slate-500"
+          className="text-[#094c51]"
           aria-hidden="true"
         />
         {label}
@@ -52,20 +52,23 @@ function ContactRow({ icon: Icon, label, value, href }: ContactRowProps) {
       {href ? (
         <a
           href={href}
-          className="text-slate-50 hover:text-amber-500 motion-safe:transition-colors"
+          className="text-black hover:text-[#15919B] motion-safe:transition-colors text-bold"
         >
           {value}
         </a>
       ) : (
-        <span className="text-slate-50">{value}</span>
+        <span className="text-black">{value}</span>
       )}
     </div>
   );
 }
 
 const fieldClasses =
-  "w-full bg-transparent border-0 border-b border-slate-700 text-slate-50 text-base py-2.5 " +
-  "placeholder-slate-600 outline-none focus:border-amber-500 motion-safe:transition-colors disabled:opacity-50";
+  "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 " +
+  "placeholder:text-slate-400 outline-none motion-safe:transition-all " +
+  "shadow-[0_1px_0_rgba(255,255,255,0.9),inset_0_2px_4px_rgba(15,23,42,0.06)] " +
+  "focus:border-[#15919B] focus:shadow-[0_1px_0_rgba(255,255,255,0.9),inset_0_2px_4px_rgba(15,23,42,0.06),0_0_0_3px_rgba(21,145,155,0.15)] " +
+  "disabled:opacity-50";
 
 const Contact = () => {
   const [form, setForm] = useState<ContactFormState>({
@@ -107,24 +110,33 @@ const Contact = () => {
 
   const sending = status === "sending";
 
+  useEffect(() => {
+    if (status !== "sent") return;
+    const timer = setTimeout(() => {
+      setForm({ name: "", email: "", type: "", message: "" });
+      setStatus("idle");
+    }, 30000);
+    return () => clearTimeout(timer);
+  }, [status]);
+
   return (
-    <div className="h-full mt-16 bg-slate-950 font-sans antialiased">
-      <link
+    <div className="h-full mt-16 bg-[#FAFAFA] font-sans antialiased">
+      {/* <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet"
-      />
+      /> */}
 
       <div className="grid grid-cols-1 md:grid-cols-5">
         {/* Left panel: intro + contact details */}
-        <div className="flex flex-col justify-between border-b border-slate-800 p-8 md:col-span-2 md:border-b-0 md:border-r md:p-14">
+        <div className="flex flex-col justify-between border-b border-slate-200 p-8 md:col-span-2 md:border-b-0 md:border-r md:p-14">
           <div>
             <h1
               style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              className="max-w-md text-4xl font-normal leading-tight tracking-tight text-slate-50 sm:text-5xl md:text-6xl"
+              className="max-w-md text-4xl font-normal leading-tight tracking-tight text-black sm:text-5xl md:text-6xl"
             >
-              Say hello.
+              Say <span className="text-[#15919B]">hello</span>.
             </h1>
-            <p className="mt-6 max-w-sm text-base leading-relaxed text-slate-400">
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-[#565151e3]">
               I take on a handful of design and development projects each
               quarter. Tell me what you're building and I'll get back to you
               within two days.
@@ -153,13 +165,13 @@ const Contact = () => {
         </div>
 
         {/* Right panel: form */}
-        <div className="flex items-center bg-slate-900 p-8 md:col-span-3 md:p-14">
+        <div className="flex items-center bg-[#FAFAFA] p-8 md:col-span-3 md:p-14">
           {status !== "sent" ? (
             <form onSubmit={handleSubmit} className="w-full max-w-md">
               <div>
                 <label
                   htmlFor="name"
-                  className="mb-2 block text-sm text-slate-400"
+                  className="mb-2 block text-sm text-slate-500"
                 >
                   Your name
                 </label>
@@ -178,7 +190,7 @@ const Contact = () => {
               <div className="mt-6">
                 <label
                   htmlFor="email"
-                  className="mb-2 block text-sm text-slate-400"
+                  className="mb-2 block text-sm text-slate-500"
                 >
                   Email
                 </label>
@@ -195,7 +207,7 @@ const Contact = () => {
               </div>
 
               <div className="mt-8">
-                <span className="mb-3 block text-sm text-slate-400">
+                <span className="mb-3 block text-sm text-slate-500">
                   What are you looking for
                 </span>
                 <div className="flex flex-wrap gap-2">
@@ -210,10 +222,10 @@ const Contact = () => {
                           setForm((f) => ({ ...f, type: t as ProjectType }))
                         }
                         className={
-                          "rounded-full border px-3.5 py-2 text-sm motion-safe:transition-colors disabled:opacity-50 " +
+                          "rounded-full border px-3.5 py-2 text-sm motion-safe:transition-all disabled:opacity-50 " +
                           (active
-                            ? "border-amber-500 bg-amber-500/10 text-amber-500"
-                            : "border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-50")
+                            ? "border-[#15919B] bg-[#15919B]/10 text-[#0f6b72] shadow-[0_2px_6px_rgba(21,145,155,0.25)]"
+                            : "border-slate-200 bg-white text-slate-500 shadow-[0_1px_2px_rgba(15,23,42,0.06)] hover:border-slate-400 hover:text-slate-900")
                         }
                       >
                         {t}
@@ -226,7 +238,7 @@ const Contact = () => {
               <div className="mt-8">
                 <label
                   htmlFor="message"
-                  className="mb-2 block text-sm text-slate-400"
+                  className="mb-2 block text-sm text-slate-500"
                 >
                   Message
                 </label>
@@ -245,13 +257,25 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={sending}
-                className="mt-10 rounded px-7 py-3.5 text-sm font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 motion-safe:transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 disabled:cursor-not-allowed disabled:opacity-60"
+                className="group relative mt-10 flex items-center justify-center gap-2 px-6 py-3
+    rounded-full bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] text-white
+    font-semibold shadow-lg shadow-[#2a7fa3]/20 overflow-hidden
+    hover:shadow-xl hover:shadow-[#2a7fa3]/40 hover:-translate-y-0.5
+    active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:translate-y-0
+    transition-all duration-300"
               >
-                {sending ? "Sending..." : "Send message"}
+                <span
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full
+      bg-gradient-to-r from-transparent via-white/25 to-transparent
+      transition-transform duration-700 ease-out skew-x-12"
+                />
+                <span className="relative">
+                  {sending ? "Sending..." : "Submit"}
+                </span>
               </button>
 
               {status === "error" && (
-                <p className="mt-4 text-sm text-red-400">
+                <p className="mt-4 text-sm text-red-600">
                   Something went wrong sending that. Please try again, or email
                   me directly at ahadm3016@gmail.com.
                 </p>
@@ -261,11 +285,11 @@ const Contact = () => {
             <div className="max-w-sm">
               <h2
                 style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                className="mb-3 text-3xl font-normal text-slate-50"
+                className="mb-3 text-3xl font-normal text-slate-900"
               >
                 Message sent.
               </h2>
-              <p className="text-base leading-relaxed text-slate-400">
+              <p className="text-base leading-relaxed text-slate-500">
                 Thanks, {form.name.split(" ")[0]}. I'll reply to {form.email}{" "}
                 within two business days.
               </p>
