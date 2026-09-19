@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Loader2 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 // 1. Create a free account at https://www.emailjs.com
@@ -28,7 +28,7 @@ interface ContactFormState {
   message: string;
 }
 
-type SubmitStatus = "idle" | "sending" | "sent" | "error";
+type SubmitStatus = "idle" | "sending" | "sent" | "resetting" | "error";
 
 interface ContactRowProps {
   icon: React.ElementType;
@@ -112,11 +112,17 @@ const Contact = () => {
 
   useEffect(() => {
     if (status !== "sent") return;
-    const timer = setTimeout(() => {
+    const toResetting = setTimeout(() => setStatus("resetting"), 10000);
+    return () => clearTimeout(toResetting);
+  }, [status]);
+
+  useEffect(() => {
+    if (status !== "resetting") return;
+    const toIdle = setTimeout(() => {
       setForm({ name: "", email: "", type: "", message: "" });
       setStatus("idle");
-    }, 30000);
-    return () => clearTimeout(timer);
+    }, 700);
+    return () => clearTimeout(toIdle);
   }, [status]);
 
   return (
@@ -166,7 +172,17 @@ const Contact = () => {
 
         {/* Right panel: form */}
         <div className="flex items-center bg-[#FAFAFA] p-8 md:col-span-3 md:p-14">
-          {status !== "sent" ? (
+          {status === "resetting" ? (
+            <div className="flex w-full max-w-md flex-col items-center gap-3 py-16 text-slate-400">
+              <Loader2
+                size={28}
+                strokeWidth={2}
+                className="animate-spin text-[#15919B]"
+                aria-hidden="true"
+              />
+              <span className="text-sm">Loading form...</span>
+            </div>
+          ) : status !== "sent" ? (
             <form onSubmit={handleSubmit} className="w-full max-w-md">
               <div>
                 <label
