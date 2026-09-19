@@ -12,6 +12,35 @@ const EMAILJS_SERVICE_ID = "service_7hc6uli";
 const EMAILJS_TEMPLATE_ID = "template_fni6mgr";
 const EMAILJS_PUBLIC_KEY = "a8W05Bi3SM5Z8J3au";
 
+const CONTACT_EMAIL = "ahadm3016@gmail.com";
+
+// Opens Gmail's web compose window directly (in a new tab) instead of
+// falling back to the device's default mail client via mailto:.
+const buildGmailComposeUrl = ({
+  to,
+  subject,
+  body,
+}: {
+  to: string;
+  subject?: string;
+  body?: string;
+}) => {
+  const params = new URLSearchParams({
+    view: "cm",
+    fs: "1",
+    to,
+    ...(subject ? { su: subject } : {}),
+    ...(body ? { body } : {}),
+  });
+  return `https://mail.google.com/mail/?${params.toString()}`;
+};
+
+const GMAIL_COMPOSE_URL = buildGmailComposeUrl({
+  to: CONTACT_EMAIL,
+  subject: "Let's work together",
+  body: "Hi Ahad,\n\nI'd like to connect about...",
+});
+
 const PROJECT_TYPES = [
   "Product design",
   "Front-end build",
@@ -35,9 +64,18 @@ interface ContactRowProps {
   label: string;
   value: string;
   href?: string;
+  target?: string;
+  rel?: string;
 }
 
-function ContactRow({ icon: Icon, label, value, href }: ContactRowProps) {
+function ContactRow({
+  icon: Icon,
+  label,
+  value,
+  href,
+  target,
+  rel,
+}: ContactRowProps) {
   return (
     <div className="flex items-center justify-between gap-4 border-b border-[#15919B] py-2 text-bold">
       <span className="flex items-center gap-2.5 text-black">
@@ -52,6 +90,8 @@ function ContactRow({ icon: Icon, label, value, href }: ContactRowProps) {
       {href ? (
         <a
           href={href}
+          target={target}
+          rel={rel}
           className="text-black hover:text-[#15919B] motion-safe:transition-colors text-bold"
         >
           {value}
@@ -148,8 +188,10 @@ const Contact = () => {
             <ContactRow
               icon={Mail}
               label="Email"
-              value="ahadm3016@gmail.com"
-              href="mailto:ahadm3016@gmail.com"
+              value={CONTACT_EMAIL}
+              href={GMAIL_COMPOSE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
             />
             <ContactRow
               icon={MapPin}
@@ -288,7 +330,7 @@ const Contact = () => {
               {status === "error" && (
                 <p className="mt-4 text-sm text-red-600">
                   Something went wrong sending that. Please try again, or email
-                  me directly at ahadm3016@gmail.com.
+                  me directly at {CONTACT_EMAIL}.
                 </p>
               )}
             </form>
