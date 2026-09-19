@@ -65,7 +65,7 @@ const Footer = () => {
         <ArrowUp size={16} />
       </button>
 
-      <div className="mx-auto max-w-7xl px-4 pt-12 pb-8 sm:px-6 sm:pt-16 sm:pb-10 md:px-12 lg:px-[3vw]">
+      <div className="mx-auto max-w-7xl px-4 pt-12 pb-8 sm:px-6 sm:pt-16 sm:pb-10 md:px-12 lg:px-[2vw]">
         {/* Top: availability + heading + mascot */}
         <div className="flex flex-col gap-8 border-b border-gray-200 pb-8 sm:pb-10 md:flex-row md:items-end md:justify-between">
           <div className="max-w-lg">
@@ -91,8 +91,8 @@ const Footer = () => {
           {/* Decorative 3D mascot */}
           <div className="flex shrink-0 items-center justify-center gap-4 self-center md:self-auto">
             <svg
-              width="76"
-              height="76"
+              width="90"
+              height="90"
               viewBox="0 0 160 160"
               className="motion-safe:animate-[float_4s_ease-in-out_infinite] sm:h-[90px] sm:w-[90px]"
               aria-hidden="true"
@@ -284,7 +284,7 @@ const Footer = () => {
             src={logo}
             alt="Ahad Hossain logo"
             loading="lazy"
-            className="h-10 w-10 object-contain sm:h-24 sm:w-24"
+            className="h-16 w-16 object-contain sm:h-24 sm:w-24"
           />
 
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
