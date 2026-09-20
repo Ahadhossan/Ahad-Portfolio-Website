@@ -6,6 +6,7 @@ import { Skills } from "./Skills/Skills";
 import Home from "./Pages/Home/Home";
 import Footer from "./components/Footer/Footer";
 import Contact from "./Pages/Contact/contact";
+import AboutHero from "./Sections/About/AboutHero";
 
 function App() {
   return (
