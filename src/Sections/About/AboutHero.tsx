@@ -1,60 +1,3 @@
-// import React from "react";
-// import AboutImage from "../../assets/About.jpeg";
-
-// const About = () => {
-//   return (
-//     <section
-//       id="about"
-//       className="mx-auto max-w-6xl border-t border-white/10 px-6 py-20 md:px-10 md:py-28"
-//     >
-//       <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
-//         <div className="order-2 md:order-1">
-//           <h2 className="font-space text-2xl text-[#EDEDED] md:text-3xl">
-//             Passion fuels purpose.
-//           </h2>
-//           <p className="mt-6 max-w-md text-base leading-relaxed text-[#8C93A0]">
-//             Hi, I'm Md. Ahad Hossain — a web developer and frontend designer
-//             based in Dhaka, Bangladesh. With over 2 years of hands-on experience
-//             in web development and digital marketing, I specialize in building
-//             functional, user-centered digital experiences.
-//           </p>
-//           <p className="mt-4 max-w-md text-base leading-relaxed text-[#8C93A0]">
-//             Great design is more than aesthetics — it's about solving real
-//             problems and making things feel obvious to use. I've worked with
-//             remote teams and forward-thinking companies to ship software, run
-//             digital marketing campaigns, and collaborate across disciplines.
-//           </p>
-
-//           <ul className="mt-8 flex flex-wrap gap-2">
-//             {["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js"].map(
-//               (tag) => (
-//                 <li
-//                   key={tag}
-//                   className="rounded-full border border-white/10 px-3 py-1 text-xs text-[#8C93A0]"
-//                 >
-//                   {tag}
-//                 </li>
-//               ),
-//             )}
-//           </ul>
-//         </div>
-
-//         <div className="order-1 md:order-2">
-//           <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#151B27]">
-//             <img
-//               src={AboutImage}
-//               alt="Md. Ahad Hossain"
-//               className="h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default About;
-
 import React from "react";
 import AboutImage from "../../assets/About.jpeg";
 
@@ -95,17 +38,45 @@ const About = () => {
           </p>
 
           {/* CTA */}
-          <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
+          <div className="mt-8 flex flex-wrap gap-3 sm:mt-10 items-center md:items-baseline">
             <a
               href="#contact"
-              className="rounded-full bg-[#EDEDED] px-5 py-2.5 text-sm font-medium text-[#0B0F17] transition-transform duration-300 hover:scale-[1.03]"
+              className="group relative inline-flex items-center justify-center gap-2
+      rounded-full bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] px-5 py-2.5
+      text-sm font-semibold text-white shadow-lg shadow-[#2a7fa3]/20 overflow-hidden
+      transition-all duration-300
+      hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#2a7fa3]/40
+      active:translate-y-0 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
             >
+              <span
+                className="absolute inset-0 -translate-x-full skew-x-12
+        bg-gradient-to-r from-transparent via-white/25 to-transparent
+        transition-transform duration-700 ease-out group-hover:translate-x-full"
+              />
               Let's Connect
+              <svg
+                className="h-3.5 w-3.5 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  d="M7 17L17 7M17 7H7M17 7V17"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </a>
 
             <a
               href="#projects"
-              className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-[#EDEDED] transition-colors duration-300 hover:border-white/30"
+              className="inline-flex items-center justify-center gap-2 rounded-full
+      border-2 border-[#272728] px-5 py-2.5 text-sm font-medium text-[#194356]
+      shadow-[0_1px_0_0_rgba(255,255,255,0.1)_inset]
+      transition-all duration-300
+      hover:border-[#194356] hover:bg-[#194356] hover:text-[#f4f7f8]
+      active:scale-[0.97]"
             >
               View Work
             </a>
