@@ -62,25 +62,25 @@ const About = () => {
   return (
     <section
       id="about"
-      className="mx-auto max-w-7xl border-t border-white/10 px-5 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20"
+      className="mx-auto max-w-7xl border-t border-white/10 px-5 py-20 sm:px-6 sm:py-24 md:px-10 md:py-32"
     >
       {/* Eyebrow */}
       <div className="mb-6 flex items-center gap-3 md:mb-8">
-        <span className="h-px w-8 bg-white/20" />
-        <span className="font-space text-xs uppercase tracking-[0.25em] text-[#8C93A0]">
+        <span className="h-[3px] w-8 bg-[#2a7fa3]" />
+        <span className="font-space text-xs uppercase tracking-[0.25em] text-[#42464e]">
           About Me
         </span>
       </div>
 
-      <div className="grid grid-cols-1 items- gap-10 md:grid-cols-2 md:gap-16">
+      <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
         {/* Text content */}
         <div className="order-2 md:order-1">
-          <h2 className="font-space text-2xl leading-snug text-[#EDEDED] sm:text-3xl md:text-4xl">
+          <h2 className="font-space text-2xl leading-snug text-[#584e4e] sm:text-3xl md:text-4xl">
             Passion fuels purpose.
           </h2>
 
           <p className="mt-5 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:mt-6 sm:text-base">
-            Hi, I'm <span className="text-[#EDEDED]">Md. Ahad Hossain</span> — a
+            Hi, I'm <span className="text-[#194356]">Md. Ahad Hossain</span> — a
             web developer and frontend designer based in Dhaka, Bangladesh. With
             over 2 years of hands-on experience in web development and digital
             marketing, I specialize in building functional, user-centered
@@ -114,7 +114,7 @@ const About = () => {
 
         {/* Image */}
         <div className="order-1 md:order-2">
-          <div className="relative mx-auto max-w-xs md:max-w-none">
+          <div className="relative mx-auto max-w-xs md:max-w-sm">
             {/* soft glow behind image */}
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-tr from-white/5 via-transparent to-white/5 blur-2xl" />
 
