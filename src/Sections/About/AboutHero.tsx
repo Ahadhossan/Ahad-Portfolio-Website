@@ -23,18 +23,30 @@ const About = () => {
           </h2>
 
           <p className="mt-5 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:mt-6 sm:text-base">
-            Hi, I'm <span className="text-[#194356]">Md. Ahad Hossain</span> — a
-            web developer and frontend designer based in Dhaka, Bangladesh. With
-            over 2 years of hands-on experience in web development and digital
-            marketing, I specialize in building functional, user-centered
-            digital experiences.
+            Hi, I'm <span className="text-[#194356]">Md. Ahad Hossain</span> —
+            Results-driven Web Developer with 2+ years of professional
+            experience building modern, responsive, and scalable web
+            applications using React.js, Next.js, TypeScript, JavaScript, and
+            Tailwind CSS. Experienced in frontend development, responsive UI
+            implementation, state management, software troubleshooting, product
+            support, and cross-functional collaboration.
+          </p>
+
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:mt-6 sm:text-base">
+            Currently working as a{" "}
+            <span className="text-[#194356]">Product Excellence Engineer</span>{" "}
+            at Cubix Technology Ltd., supporting HMS/PMS products, analyzing
+            software queries, collaborating with development teams, conducting
+            client training, and contributing to product quality and user
+            experience improvements. digital experiences.
           </p>
 
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:text-base">
-            Great design is more than aesthetics — it's about solving real
-            problems and making things feel obvious to use. I've worked with
-            remote teams and forward-thinking companies to ship software, run
-            digital marketing campaigns, and collaborate across disciplines.
+            Previously worked as a Junior Web Developer at Imranslab, developing
+            responsive web applications and collaborating with remote teams
+            using modern development and project-management tools. Strong
+            understanding of the software development lifecycle, Agile
+            practices, Git-based workflows, and production deployment.
           </p>
 
           {/* CTA */}
@@ -85,7 +97,7 @@ const About = () => {
 
         {/* Image */}
         <div className="order-1 md:order-2">
-          <div className="relative mx-auto max-w-xs md:max-w-sm">
+          <div className="relative mx-auto max-w-xs md:max-w-lg">
             {/* soft glow behind image */}
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-tr from-white/5 via-transparent to-white/5 blur-2xl" />
 
