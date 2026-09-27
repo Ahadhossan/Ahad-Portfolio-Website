@@ -1,9 +1,9 @@
 import React from "react";
-import Hero from "../../Sections/Hero";
-import StatsSection from "../../Sections/StatsSection";
-import Philosophy from "../../Sections/Philosophy";
-import Test from "../../Sections/Test";
-import Strengths from "../../Sections/STRENGTHS";
+import Hero from "../../Sections/Home/Hero";
+import StatsSection from "../../Sections/Home/StatsSection";
+import Philosophy from "../../Sections/Home/Philosophy";
+import Test from "../../Sections/Home/Test";
+import Strengths from "../../Sections/Home/Strengths";
 
 const Home = () => {
   return (

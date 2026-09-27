@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Eye, X } from "lucide-react";
 import { Typewriter } from "react-simple-typewriter";
-import heroBg from "../assets/hero.png";
+import heroBg from "../../assets/hero.png";
 
 const Hero: React.FC = () => {
   const [openPdf, setOpenPdf] = useState(false);
