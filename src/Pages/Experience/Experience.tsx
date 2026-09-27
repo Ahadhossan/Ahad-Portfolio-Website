@@ -1,10 +1,10 @@
 import React from "react";
-import Hero from "../../Sections/Experience/Header";
+import Work from "../../Sections/Experience/Work";
 
 const Experience = () => {
   return (
     <div>
-      <Hero />
+      <Work />
     </div>
   );
 };
