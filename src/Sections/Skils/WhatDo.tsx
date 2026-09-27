@@ -7,13 +7,13 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-interface WhatDoItem {
+interface PhilosophyItem {
   title: string;
   description: string;
   icon: LucideIcon;
 }
 
-const WhatDos: WhatDoItem[] = [
+const philosophies: PhilosophyItem[] = [
   {
     title: "Keep it simple",
     description:
@@ -71,7 +71,7 @@ const WhatDo = () => {
 
           {/* Right: philosophy items */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {WhatDos.map((item) => {
+            {philosophies.map((item) => {
               const Icon = item.icon;
               return (
                 <div

@@ -190,6 +190,7 @@
 // export default Work;
 
 import React, { useEffect, useRef, useState } from "react";
+import SectionEyebrow from "../../common/SectionEyebrow";
 
 interface Job {
   role: string;
@@ -357,10 +358,7 @@ const Work = () => {
     >
       {/* Eyebrow */}
       <div className="mb-10 flex items-center gap-3 md:mb-14">
-        <span className="h-[3px] w-8 bg-[#2a7fa3]" />
-        <span className="font-space text-xs uppercase tracking-[0.25em] text-[#42464e]">
-          Work Experience
-        </span>
+        <SectionEyebrow label="My Career Journy" />
       </div>
 
       {/* Timeline */}

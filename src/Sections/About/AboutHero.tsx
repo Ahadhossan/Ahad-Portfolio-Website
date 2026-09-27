@@ -1,5 +1,6 @@
 import React from "react";
 import AboutImage from "../../assets/About.jpeg";
+import SectionEyebrow from "../../common/SectionEyebrow";
 
 const About = () => {
   return (
@@ -9,10 +10,7 @@ const About = () => {
     >
       {/* Eyebrow */}
       <div className="mb-6 flex items-center gap-3 md:mb-8">
-        <span className="h-[3px] w-8 bg-[#2a7fa3]" />
-        <span className="font-space text-xs uppercase tracking-[0.25em] text-[#42464e]">
-          About Me
-        </span>
+        <SectionEyebrow label="About Me" />
       </div>
 
       <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">

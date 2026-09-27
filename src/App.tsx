@@ -3,10 +3,10 @@ import Navbar from "./common/Header/Navbar";
 import { Toaster } from "react-hot-toast";
 import About from "./components/AboutComponents/About";
 import { Skills } from "./Pages/Skills/Skills";
-import Home from "./Pages/Home/Home";
+import Home from "./components/HomeComponents/Home";
 import Footer from "./common/Footer/Footer";
-import Contact from "./Pages/Contact/contact";
-import Experience from "./Pages/Experience/Experience";
+import Contact from "./components/ContactComponents/contact";
+import Experience from "./components/ExperienceComponents/Experience";
 
 function App() {
   return (

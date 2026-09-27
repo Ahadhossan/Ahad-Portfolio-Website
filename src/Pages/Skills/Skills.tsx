@@ -1,10 +1,10 @@
 import React from "react";
-import Strengths from "../../Sections/Home/Strengths";
+import WhatDo from "../../Sections/Skils/WhatDo";
 
 export const Skills: React.FC = () => {
   return (
     <div>
-      <Strengths />
+      <WhatDo />
     </div>
   );
 };
