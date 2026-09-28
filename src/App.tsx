@@ -7,11 +7,14 @@ import Home from "./components/HomeComponents/Home";
 import Footer from "./common/Footer/Footer";
 import Contact from "./components/ContactComponents/contact";
 import Experience from "./components/ExperienceComponents/Experience";
+import WorkWithMeButton from "./common/WorkWithMeButton";
 // import LetsTalk from "./Sections/LetsTalk";
 
 function App() {
   return (
     <div>
+      {/* Shows on every page */}
+      <WorkWithMeButton />
       <Toaster position="top-right" reverseOrder={false} />
       <Navbar />
       <Routes>
