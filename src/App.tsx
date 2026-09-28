@@ -7,6 +7,7 @@ import Home from "./components/HomeComponents/Home";
 import Footer from "./common/Footer/Footer";
 import Contact from "./components/ContactComponents/contact";
 import Experience from "./components/ExperienceComponents/Experience";
+// import LetsTalk from "./Sections/LetsTalk";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      {/* <LetsTalk /> */}
       <Footer />
     </div>
   );
