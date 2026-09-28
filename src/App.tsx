@@ -8,6 +8,7 @@ import Footer from "./common/Footer/Footer";
 import Contact from "./components/ContactComponents/contact";
 import Experience from "./components/ExperienceComponents/Experience";
 import WorkWithMeButton from "./common/WorkWithMeButton";
+import HireMe from "./components/HireMeComponents/HireMe";
 // import LetsTalk from "./Sections/LetsTalk";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       {/* <LetsTalk /> */}
+      <HireMe />
       <Footer />
     </div>
   );
