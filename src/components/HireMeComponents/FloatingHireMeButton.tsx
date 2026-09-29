@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { BriefcaseBusiness } from "lucide-react";
 
 interface FloatingHireMeButtonProps {
   onClick: () => void;
@@ -106,18 +105,6 @@ const FloatingHireMeButton = ({ onClick }: FloatingHireMeButtonProps) => {
           justify-center
         "
       >
-        <BriefcaseBusiness
-          size={20}
-          strokeWidth={1.8}
-          className="
-            mb-1
-            text-cyan-400
-            transition-transform
-            duration-300
-            group-hover:-translate-y-0.5
-          "
-        />
-
         <span
           className="
             text-[11px]

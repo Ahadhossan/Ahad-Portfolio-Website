@@ -39,7 +39,7 @@ const WhatDos: WhatDoItem[] = [
   },
 ];
 
-const WhatDo = () => {
+const Philosophy = () => {
   return (
     <section className="relative px-4 py-16 sm:px-6 md:px-12 lg:px-[3vw] lg:py-24">
       <div className="mx-auto max-w-6xl">
@@ -102,4 +102,4 @@ const WhatDo = () => {
   );
 };
 
-export default WhatDo;
+export default Philosophy;

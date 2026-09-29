@@ -1,106 +1,421 @@
-import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import type { ReactNode } from "react";
+import { ArrowLeft, ArrowUpRight, Briefcase } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
-const WorkWithMeButton = () => {
+type FloatingPillProps = {
+  to: string;
+  label: string;
+  icon: ReactNode;
+  labelIcon?: ReactNode;
+  showDot?: boolean;
+};
+
+/* =========================================================
+   SHARED FLOATING PILL
+========================================================= */
+
+const FloatingPill = ({
+  to,
+  label,
+  icon,
+  labelIcon,
+  showDot = false,
+}: FloatingPillProps) => {
   return (
-    <Link
-      to="/work-with-me"
-      aria-label="Work With Me"
+    <div
       className="
-        group fixed right-6 top-72 z-[9999]
-        flex h-16 w-16 items-center justify-end
-        overflow-visible
+        fixed
+        bottom-80
+        right-5
+        z-[9999]
+
+        animate-[wwm-enter_0.5s_cubic-bezier(0.22,1,0.36,1)_both]
+
+        motion-reduce:animate-none
       "
     >
-      {/* Expanded text */}
-      <div
+      <Link
+        to={to}
+        aria-label={label}
         className="
-          absolute right-8
-          flex h-12 w-0 items-center
-          overflow-hidden rounded-full
-          border border-blue-500/70
-          bg-[#07111f]/95
-          opacity-0
-          backdrop-blur-xl
-          transition-all duration-500
-          ease-out
-          group-hover:w-32
-          group-hover:opacity-100
+          group
+          block
+
+          animate-[wwm-float_4s_ease-in-out_infinite]
+          hover:[animation-play-state:paused]
+
+          focus-visible:outline-none
+
+          motion-reduce:animate-none
         "
       >
+        {/* =====================================================
+            KEYFRAMES
+        ===================================================== */}
+
+        <style>{`
+          @keyframes wwm-enter {
+            from {
+              opacity: 0;
+              transform: translateX(24px) scale(0.85);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateX(0) scale(1);
+            }
+          }
+
+          @keyframes wwm-float {
+            0%,
+            100% {
+              transform: translateY(0);
+            }
+
+            50% {
+              transform: translateY(-6px);
+            }
+          }
+
+          @keyframes wwm-wiggle {
+            0%,
+            100% {
+              transform: rotate(0deg);
+            }
+
+            25% {
+              transform: rotate(-14deg);
+            }
+
+            75% {
+              transform: rotate(14deg);
+            }
+          }
+
+          @keyframes wwm-shine {
+            from {
+              transform: translateX(0) skewX(-20deg);
+            }
+
+            to {
+              transform: translateX(450%) skewX(-20deg);
+            }
+          }
+        `}</style>
+
+        {/* =====================================================
+            OUTER SHELL
+        ===================================================== */}
+
         <span
           className="
-            whitespace-nowrap pl-5 pr-14
-            text-sm font-medium text-white
-          "
-        >
-          Click Me
-        </span>
-      </div>
-
-      {/* Outer animated rings */}
-      <span
-        className="
-          absolute inset-0
-          rounded-full
-          border border-blue-500/30
-          animate-[spin_8s_linear_infinite]
-        "
-      />
-
-      <span
-        className="
-          absolute -inset-2
-          rounded-full
-          border border-purple-500/20
-          animate-pulse
-        "
-      />
-
-      {/* Main circular button */}
-      <div
-        className="
-          relative z-10
-          flex h-16 w-16 shrink-0
-          items-center justify-center
-          rounded-full
-          border-4 border-blue-500
-          bg-gradient-to-br
-          from-blue-500
-          via-indigo-500
-          to-purple-600
-          shadow-[0_0_25px_rgba(59,130,246,0.35)]
-          transition-all duration-500
-          group-hover:scale-105
-          group-hover:border-purple-400
-          group-hover:shadow-[0_0_40px_rgba(99,102,241,0.55)]
-        "
-      >
-        {/* Inner circle */}
-        <div
-          className="
-            flex h-[54px] w-[54px]
-            items-center justify-center
+            relative
+            flex
+            h-14
+            items-center
+            overflow-hidden
             rounded-full
-            bg-[#07111f]
+            p-[1.5px]
+
+            bg-white/80
+
+            shadow-[0_8px_30px_rgba(15,23,42,0.12)]
+
+            transition-all
+            duration-500
+
+            group-hover:shadow-[0_10px_40px_rgba(59,130,246,0.20)]
+
+            group-focus-visible:ring-2
+            group-focus-visible:ring-blue-400/60
+            group-focus-visible:ring-offset-2
+            group-focus-visible:ring-offset-white
           "
         >
-          <div className="flex flex-col items-center leading-none">
-            <span className="text-[12px] font-semibold text-white">Work</span>
+          {/* ===================================================
+              SPINNING GRADIENT BORDER
+          =================================================== */}
 
-            <span className="text-[12px] font-semibold text-white">
-              With Me
+          <span
+            aria-hidden
+            className="
+              absolute
+              inset-0
+              flex
+              items-center
+              justify-center
+            "
+          >
+            <span
+              className="
+                aspect-square
+                w-[300%]
+
+                animate-[spin_3.5s_linear_infinite]
+
+                bg-[conic-gradient(from_0deg,transparent_0_55%,#60a5fa_78%,#a78bfa_92%,transparent_100%)]
+
+                motion-reduce:animate-none
+              "
+            />
+          </span>
+
+          {/* ===================================================
+              INNER LIGHT SURFACE
+          =================================================== */}
+
+          <span
+            className="
+              relative
+              flex
+              h-full
+              items-center
+              overflow-hidden
+              rounded-full
+
+              border
+              border-slate-200/80
+
+              bg-white/95
+
+              p-1.5
+
+              shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]
+
+              backdrop-blur-xl
+            "
+          >
+            {/* =================================================
+                SHINE EFFECT
+            ================================================= */}
+
+            <span
+              aria-hidden
+              className="
+                pointer-events-none
+                absolute
+                inset-y-0
+                -left-1/3
+                w-1/3
+
+                bg-gradient-to-r
+                from-transparent
+                via-blue-500/10
+                to-transparent
+
+                opacity-0
+
+                group-hover:animate-[wwm-shine_0.9s_ease-out]
+
+                motion-reduce:hidden
+              "
+            />
+
+            {/* =================================================
+                LABEL
+            ================================================= */}
+
+            <span
+              className="
+                flex
+                max-w-0
+                items-center
+                gap-1.5
+                overflow-hidden
+                whitespace-nowrap
+
+                pl-0
+                pr-0
+
+                text-sm
+                font-semibold
+                tracking-tight
+                text-slate-800
+
+                opacity-0
+
+                transition-all
+                duration-500
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+
+                group-hover:max-w-[170px]
+                group-hover:pl-4
+                group-hover:pr-3
+                group-hover:opacity-100
+
+                group-focus-visible:max-w-[170px]
+                group-focus-visible:pl-4
+                group-focus-visible:pr-3
+                group-focus-visible:opacity-100
+
+                motion-reduce:transition-none
+              "
+            >
+              {label}
+
+              {labelIcon}
             </span>
 
-            <ArrowUpRight
-              size={15}
-              strokeWidth={2}
-              className="mt-1 text-white"
-            />
-          </div>
-        </div>
-      </div>
-    </Link>
+            {/* =================================================
+                ICON BUBBLE
+            ================================================= */}
+
+            <span
+              className="
+                relative
+                flex
+                h-11
+                w-11
+                shrink-0
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-gradient-to-br
+                from-blue-500
+                via-indigo-500
+                to-violet-600
+
+                text-white
+
+                shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_5px_15px_rgba(79,70,229,0.18)]
+
+                transition-all
+                duration-500
+
+                group-hover:scale-95
+                group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_6px_20px_rgba(79,70,229,0.28)]
+
+                motion-reduce:transition-none
+              "
+            >
+              {icon}
+
+              {/* =================================================
+                  AVAILABILITY DOT
+              ================================================= */}
+
+              {showDot && (
+                <span
+                  className="
+                    absolute
+                    -right-0.5
+                    -top-0.5
+                    flex
+                    h-3
+                    w-3
+                  "
+                >
+                  <span
+                    className="
+                      absolute
+                      inline-flex
+                      h-full
+                      w-full
+                      animate-ping
+                      rounded-full
+                      bg-emerald-400
+                      opacity-60
+
+                      motion-reduce:animate-none
+                    "
+                  />
+
+                  <span
+                    className="
+                      relative
+                      inline-flex
+                      h-3
+                      w-3
+                      rounded-full
+                      border-2
+                      border-white
+                      bg-emerald-400
+
+                      shadow-[0_0_8px_rgba(16,185,129,0.45)]
+                    "
+                  />
+                </span>
+              )}
+            </span>
+          </span>
+        </span>
+      </Link>
+    </div>
+  );
+};
+
+/* =========================================================
+   MAIN BUTTON
+========================================================= */
+
+const WorkWithMeButton = () => {
+  const { pathname } = useLocation();
+
+  const isOnWorkWithMe = pathname.startsWith("/workwithme");
+
+  /* =======================================================
+     BACK TO HOME
+  ======================================================= */
+
+  if (isOnWorkWithMe) {
+    return (
+      <FloatingPill
+        key="back-home"
+        to="/"
+        label="Back to home"
+        icon={
+          <ArrowLeft
+            size={20}
+            strokeWidth={2.25}
+            className="
+              transition-transform
+              duration-300
+              group-hover:-translate-x-0.5
+            "
+          />
+        }
+      />
+    );
+  }
+
+  /* =======================================================
+     WORK WITH ME
+  ======================================================= */
+
+  return (
+    <FloatingPill
+      key="work-with-me"
+      to="/workwithme"
+      label="Work with me"
+      showDot
+      icon={
+        <Briefcase
+          size={20}
+          strokeWidth={2.25}
+          className="
+            group-hover:animate-[wwm-wiggle_0.6s_ease-in-out]
+            motion-reduce:animate-none
+          "
+        />
+      }
+      labelIcon={
+        <ArrowUpRight
+          size={14}
+          strokeWidth={2.5}
+          className="
+            text-blue-600
+
+            transition-transform
+            duration-300
+
+            group-hover:translate-x-0.5
+            group-hover:-translate-y-0.5
+          "
+        />
+      }
+    />
   );
 };
 

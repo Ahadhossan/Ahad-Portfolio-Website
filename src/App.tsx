@@ -9,6 +9,7 @@ import Contact from "./components/ContactComponents/contact";
 import Experience from "./components/ExperienceComponents/Experience";
 import WorkWithMeButton from "./common/WorkWithMeButton";
 import HireMe from "./components/HireMeComponents/HireMe";
+import WorkWithMe from "./Sections/WorkWithMe";
 // import LetsTalk from "./Sections/LetsTalk";
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         <Route path="/experience" element={<Experience />} />
         <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<Contact />} />
+
+        {/* Other */}
+        <Route path="/workwithme" element={<WorkWithMe />} />
       </Routes>
       {/* <LetsTalk /> */}
       <HireMe />
