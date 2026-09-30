@@ -2,14 +2,14 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./common/Header/Navbar";
 import { Toaster } from "react-hot-toast";
 import About from "./components/AboutComponents/About";
-import { Skills } from "./Pages/Skills/Skills";
 import Home from "./components/HomeComponents/Home";
 import Footer from "./common/Footer/Footer";
 import Contact from "./components/ContactComponents/contact";
 import Experience from "./components/ExperienceComponents/Experience";
-import WorkWithMeButton from "./common/WorkWithMeButton";
+import WorkWithMeButton from "./components/WorkWithMeComponents/WorkWithMeButton";
 import HireMe from "./components/HireMeComponents/HireMe";
-import WorkWithMe from "./Sections/WorkWithMe";
+import WorkWithMe from "./components/WorkWithMeComponents/WorkWithMe";
+import Skills from "./components/SkillsComponents/Skills";
 // import LetsTalk from "./Sections/LetsTalk";
 
 function App() {

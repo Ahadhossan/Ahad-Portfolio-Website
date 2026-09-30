@@ -1,17 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import DesktopMenu from "./DesktopMenu";
 import { Menus } from "../../Data/utils";
 import { Link } from "react-router-dom";
 import MobMenu from "./MobMenu";
-
-// ✅ Optional: define Menu type (recommended if not already typed)
-type MenuType = {
-  name: string;
-  path: string;
-  gridCols?: 1 | 2 | 3 | 4;
-  subMenuHeading?: any[];
-  subMenu?: any[][];
-};
 
 const Navbar: React.FC = () => {
   return (
@@ -45,7 +36,7 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex gap-x-4 items-center">
-          {Menus.map((menu: MenuType, index: number) => (
+          {Menus.map((menu, index) => (
             <DesktopMenu menu={menu} key={index} />
           ))}
         </ul>

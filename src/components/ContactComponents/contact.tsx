@@ -1,5 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import React, { useState, type ChangeEvent, type FormEvent } from "react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 // ============================================================

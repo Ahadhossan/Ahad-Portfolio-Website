@@ -27,7 +27,7 @@ const FloatingPill = ({
         fixed
         bottom-80
         right-5
-        z-[9999]
+        z-9999
 
         animate-[wwm-enter_0.5s_cubic-bezier(0.22,1,0.36,1)_both]
 
@@ -198,7 +198,7 @@ const FloatingPill = ({
                 -left-1/3
                 w-1/3
 
-                bg-gradient-to-r
+                bg-linear-to-r
                 from-transparent
                 via-blue-500/10
                 to-transparent
