@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Briefcase, MapPin, CalendarDays } from "lucide-react";
-import SectionEyebrow from "../../common/SectionEyebrow";
+import { MapPin, CalendarDays } from "lucide-react";
 
 interface Job {
   role: string;
@@ -13,41 +12,15 @@ interface Job {
 
 const jobs: Job[] = [
   {
-    role: "Product Excellence Engineer",
-    company: "Cubix Technology Ltd.",
+    role: "Industrial Attachment – Professional Web Development Specialist (PWDS)",
+    company: "People N Tech Limited",
     location: "Dhaka, Bangladesh · On-site",
-    duration: "Dec 2025 – Present",
-    current: true,
+    duration: "Oct 2022 – Jan 2023",
     points: [
-      "Provide software technical support for HMS & PMS (Hospitality/Property Management Systems), supporting day-to-day hotel operations.",
-      "Analyze client queries, reproduce software behavior, identify potential system-related causes, and coordinate solutions with development and product teams.",
-      "Collaborate with developers to identify bugs, validate fixes, and improve product performance, usability, and reliability.",
-      "Contribute to continuous product improvement by communicating client feedback, operational requirements, and real-world usage scenarios to internal teams.",
-      "Assist with implementation, configuration, testing, handover, and ongoing support for hotel management software solutions.",
-    ],
-  },
-  {
-    role: "Junior Web Developer",
-    company: "Imranslab",
-    location: "Montreal, Canada · Remote",
-    duration: "Feb 2025 – Nov 2025",
-    points: [
-      "Developed and maintained modern, responsive web applications using React.js, JavaScript, Tailwind CSS, and related frontend technologies.",
-      "Built reusable UI components and responsive interfaces for mobile, tablet, and desktop environments.",
-      "Improved application performance and cross-device compatibility through frontend optimization and responsive development practices.",
-      "Collaborated with remote developers and project teams using Git, GitHub, Jira, and Confluence.",
-      "Participated in development workflows including requirement understanding, implementation, testing, debugging, code review, and deployment.",
-    ],
-  },
-  {
-    role: "Digital Marketer",
-    company: "National IT Limited",
-    location: "Savar, Dhaka, Bangladesh",
-    duration: "Dec 2020 – Oct 2021",
-    points: [
-      "Managed digital marketing activities including SEO, content marketing, and social media campaigns.",
-      "Analyzed user behavior, market trends, and campaign performance to support data-driven improvements.",
-      "Improved online visibility and brand engagement through multi-channel digital marketing activities.",
+      "Gained practical experience in frontend and backend web development.",
+      "Worked with HTML, CSS, JavaScript, PHP, and MySQL on real-world development projects.",
+      "Practiced responsive web development and database-driven application development.",
+      "Collaborated with team members using Agile development practices and Git-based version control.",
     ],
   },
 ];
@@ -172,37 +145,38 @@ const TimelineItem: React.FC<{ job: Job; index: number; isLast: boolean }> = ({
   );
 };
 
-const Work = () => {
-  const { ref } = useInView<HTMLDivElement>();
+const Internship = () => {
+  const { ref, isVisible } = useInView<HTMLDivElement>();
 
   return (
     <section
-      id="work"
-      aria-labelledby="work-heading"
-      className="mx-auto max-w-7xl border-t border-[#42464e]/10 px-5 py-20 sm:px-6 sm:py-24 md:px-10 md:py-32"
+      id="internship"
+      aria-labelledby="internship-heading"
+      className="mx-auto max-w-7xl border-t border-[#42464e]/10 px-2 py-8 sm:px-4 sm:py-12 md:px-8 md:py-16"
     >
-      {/* Eyebrow */}
-      <div className="mb-4 flex items-center gap-3 md:mb-6">
-        <SectionEyebrow label="My Career Journey" />
-      </div>
-
       {/* Header */}
       <div
         ref={ref}
         className="mx-auto flex max-w-3xl flex-col items-center text-center"
       >
-        <h2 className="flex items-center gap-3 font-space text-2xl font-semibold tracking-tight text-[#524c4c] sm:text-3xl md:text-4xl">
-          <span className="flex items-center justify-center text-[#2a7fa3]">
-            <Briefcase size={30} />
-          </span>
-          Work
+        <h2
+          id="internship-heading"
+          style={revealStyle(isVisible, 0)}
+          className={`${revealClass(
+            isVisible,
+          )} font-space text-2xl font-semibold tracking-tight text-[#524c4c] sm:text-3xl md:text-4xl`}
+        >
+          Internship
         </h2>
-
         <span className="mt-4 block h-0.5 w-20 rounded-full bg-[#2a7fa3]/70"></span>
-
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#7c7d7d] sm:text-base">
-          I have worked in software development, digital marketing, and product
-          support across different industries and technologies.
+        <p
+          style={revealStyle(isVisible, 100)}
+          className={`${revealClass(
+            isVisible,
+          )} mt-4 max-w-xl text-sm leading-relaxed text-[#7c7d7d] sm:text-base`}
+        >
+          Hands-on industrial attachment where I built real-world web projects
+          using frontend and backend technologies in an Agile team.
         </p>
       </div>
 
@@ -221,4 +195,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Internship;

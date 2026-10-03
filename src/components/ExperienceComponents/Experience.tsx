@@ -1,10 +1,12 @@
+import Internship from "../../Sections/Experience/Internship";
 import Work from "../../Sections/Experience/Work";
 
 const Experience = () => {
   return (
-    <div>
+    <section>
       <Work />
-    </div>
+      <Internship />
+    </section>
   );
 };
 
