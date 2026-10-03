@@ -11,7 +11,7 @@ import {
  * Fonts: "Bricolage Grotesque" (display) + "Hanken Grotesk" (body)
  * tailwind.config → theme.extend.fontFamily:
  *   display: ["Bricolage Grotesque", "sans-serif"], sans: ["Hanken Grotesk", "sans-serif"]
- *   space: [...]  ← your heading uses `font-space`, so keep that key defined too
+ *   space: [...]  ← keep this key defined, the heading uses `font-space`
  */
 
 interface Step {
@@ -21,7 +21,7 @@ interface Step {
   institute: string;
   tag: string;
   icon: LucideIcon;
-  height: string; // only applies from lg → staircase
+  height: string; // applies from lg → staircase
   featured?: boolean;
 }
 
@@ -33,7 +33,7 @@ const STEPS: Step[] = [
     institute: "Hajigonj Amin Memorial High School",
     tag: "Secondary education",
     icon: School,
-    height: "lg:min-h-[320px] xl:min-h-[340px]",
+    height: "lg:min-h-[280px]",
   },
   {
     year: "2019",
@@ -42,7 +42,7 @@ const STEPS: Step[] = [
     institute: "Hajigonj Model Govt. College",
     tag: "Higher secondary",
     icon: BookOpen,
-    height: "lg:min-h-[400px] xl:min-h-[430px]",
+    height: "lg:min-h-[340px]",
   },
   {
     year: "2022",
@@ -51,31 +51,27 @@ const STEPS: Step[] = [
     institute: "Chandpur Polytechnic Institute",
     tag: "Where tech began",
     icon: GraduationCap,
-    height: "lg:min-h-[480px] xl:min-h-[520px]",
+    height: "lg:min-h-[400px]",
     featured: true,
   },
 ];
 
-/** Right-side illustration: graduation cap + handwritten note (inline SVG).
- *  Handwriting font (optional): "Caveat" — falls back to cursive. */
 function CapIllustration({ reduce }: { reduce: boolean }) {
   return (
     <motion.div
       aria-hidden
-      className="mx-auto w-full max-w-[220px] sm:max-w-[300px] lg:mx-0 lg:ml-auto lg:max-w-[380px]"
-      initial={reduce ? false : { opacity: 0, x: 40 }}
+      className="mx-auto w-full max-w-[200px] sm:max-w-[260px] lg:ml-auto lg:mr-0 lg:max-w-[340px]"
+      initial={reduce ? false : { opacity: 0, x: 32 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
       <motion.svg
-        /* cropped to the drawing so there is no empty space around it */
         viewBox="0 8 340 206"
         className="block h-auto w-full overflow-visible"
-        animate={reduce ? undefined : { y: [0, -8, 0] }}
+        animate={reduce ? undefined : { y: [0, -6, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       >
-        {/* graduation cap */}
         <path
           d="M138 128v28c0 14 28 24 62 24s62-10 62-24v-28l-62 20z"
           fill="#1b2740"
@@ -97,7 +93,6 @@ function CapIllustration({ reduce }: { reduce: boolean }) {
         />
         <path d="M291 170h14l4 30h-22z" fill="#F2B544" />
 
-        {/* handwritten note + arrow */}
         <g
           fill="#2a7fa3"
           fontFamily="Caveat, 'Comic Sans MS', cursive"
@@ -136,16 +131,16 @@ export default function Education() {
   return (
     <section
       id="education"
-      className="relative isolate overflow-hidden bg-white px-4 py-12 font-sans text-[#0E1525] sm:px-8 sm:py-16 lg:px-36 lg:py-32"
+      className="relative isolate overflow-hidden bg-white font-sans text-[#0E1525] py-16 sm:py-20 md:px-8 md:py-28 *:px-4 sm:px-6 lg:px-8"
     >
-      <div className="mx-auto w-full max-w-7xl border-t border-[#42464e]/10">
-        {/* Heading + illustration (right) */}
-        <div className="mb-8 grid items-center gap-6 sm:mb-16 lg:mb-32 lg:grid-cols-2 lg:gap-10 mt-8 sm:mt-16 lg:mt-26">
-          <div className="space-y-3 sm:space-y-4">
-            <h2 className="font-space text-2xl leading-snug text-[#584e4e] sm:text-3xl md:text-4xl">
+      <div className="mx-auto max-w-7xl border-t border-[#0E1525]/10 pt-8 sm:pt-12 lg:pt-16">
+        {/* Heading + illustration */}
+        <div className="mb-8 grid items-center gap-5 sm:mb-12 lg:mb-14 lg:grid-cols-2 lg:gap-10">
+          <div className="space-y-3">
+            <h2 className="font-space text-2xl leading-tight text-[#584e4e] sm:text-3xl md:text-4xl">
               My Education
             </h2>
-            <p className="max-w-[46ch] text-sm leading-relaxed text-[#0E1525]/70 sm:text-base lg:text-lg">
+            <p className="max-w-xl text-sm leading-relaxed text-[#0E1525]/70 sm:text-base lg:text-lg">
               Three steps, each built on the last: from school science to a
               diploma in computer technology, the base of my career in tech.
             </p>
@@ -153,63 +148,90 @@ export default function Education() {
           <CapIllustration reduce={!!reduce} />
         </div>
 
-        {/* 1 col (mobile) → 2 col (tablet) → staircase (desktop) */}
-        <ol className="grid items-end gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-5 xl:gap-6">
+        {/* 1 col → 2 col → staircase */}
+        <ol className="grid items-end gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {STEPS.map((s, i) => {
             const Icon = s.icon;
+            const f = !!s.featured;
             return (
               <motion.li
                 key={s.year}
-                initial={reduce ? false : { opacity: 0, y: 56 }}
+                initial={reduce ? false : { opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
+                viewport={{ once: true, margin: "-40px" }}
                 transition={{
-                  duration: 0.8,
-                  delay: i * 0.18,
+                  duration: 0.7,
+                  delay: i * 0.14,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className={`group relative flex min-w-0 flex-col justify-between gap-8 overflow-hidden rounded-2xl border p-5 backdrop-blur-xl backdrop-saturate-150 transition-colors duration-300 sm:gap-10 sm:rounded-3xl sm:p-7 lg:gap-12 lg:p-6 xl:p-9
-                  shadow-[0_12px_40px_rgba(42,127,163,0.16),inset_0_1px_0_rgba(255,255,255,0.9)]
-                  ${s.height}
+                className={`group relative flex min-w-0 flex-col justify-between gap-6 overflow-hidden rounded-2xl p-5 sm:p-6 lg:gap-8 ${s.height}
                   ${i === 2 ? "sm:col-span-2 lg:col-span-1" : ""}
                   ${
-                    s.featured
-                      ? "border-[#2a7fa3]/30 bg-gradient-to-br from-[#2a7fa3]/20 via-white/50 to-white/30 hover:border-[#2a7fa3]/50"
-                      : "border-white/80 bg-gradient-to-br from-white/80 to-white/40 hover:border-[#2a7fa3]/30"
+                    f
+                      ? "bg-[#0E1525] text-white shadow-[0_16px_40px_-12px_rgba(14,21,37,0.5)]"
+                      : "border border-[#0E1525]/10 bg-white shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] transition-colors duration-300 hover:border-[#2a7fa3]/40"
                   }`}
               >
-                {/* soft light streak */}
+                {/* accent glow */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-[#2a7fa3]/15 blur-3xl transition-opacity duration-300 group-hover:opacity-80"
+                  className={`pointer-events-none absolute -right-14 -top-14 size-44 rounded-full blur-3xl ${
+                    f ? "bg-[#2a7fa3]/40" : "bg-[#2a7fa3]/10"
+                  }`}
                 />
 
                 <div className="relative flex items-start justify-between gap-3">
-                  <span className="font-display text-[2.75rem] font-extrabold leading-none tracking-[-0.05em] sm:text-[3.5rem] lg:text-[3.75rem] xl:text-[5.25rem]">
+                  <span
+                    className={`font-display text-5xl font-extrabold leading-none tracking-[-0.05em] sm:text-6xl ${
+                      f ? "text-white" : "text-[#0E1525]"
+                    }`}
+                  >
                     {s.year}
                   </span>
-                  <span className="grid size-10 flex-none place-items-center rounded-xl bg-[#2a7fa3] text-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:-rotate-6 sm:size-12 sm:rounded-2xl">
+                  <span
+                    className={`grid size-10 flex-none place-items-center rounded-xl transition-transform duration-300 group-hover:-rotate-6 sm:size-11 ${
+                      f
+                        ? "bg-[#F2B544] text-[#0E1525]"
+                        : "bg-[#2a7fa3] text-white"
+                    }`}
+                  >
                     <Icon
-                      className="size-5 sm:size-6"
+                      className="size-5 sm:size-[22px]"
                       strokeWidth={1.8}
                       aria-hidden
                     />
                   </span>
                 </div>
 
-                <div className="relative space-y-2 sm:space-y-3">
-                  <p className="inline-block rounded-full border border-[#2a7fa3]/20 bg-[#2a7fa3]/10 px-3 py-1 text-xs font-semibold text-[#2a7fa3] sm:text-sm">
+                <div className="relative space-y-2">
+                  <p
+                    className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${
+                      f
+                        ? "bg-white/10 text-[#F2B544]"
+                        : "bg-[#2a7fa3]/10 text-[#2a7fa3]"
+                    }`}
+                  >
                     {s.tag}
                   </p>
-                  <h3 className="font-display text-lg font-bold leading-[1.15] tracking-[-0.02em] sm:text-xl xl:text-2xl">
+                  <h3 className="font-display text-lg font-bold leading-tight tracking-[-0.02em] sm:text-xl">
                     {s.degree}
                   </h3>
-                  <p className="text-sm text-[#0E1525]/70 sm:text-base">
+                  <p
+                    className={`text-sm sm:text-base ${
+                      f ? "text-white/70" : "text-[#0E1525]/70"
+                    }`}
+                  >
                     {s.field}
                   </p>
-                  <p className="flex items-start gap-2 pt-1 text-sm font-medium text-[#0E1525] sm:text-base">
+                  <p
+                    className={`flex items-start gap-2 border-t pt-3 text-sm font-medium ${
+                      f ? "border-white/15" : "border-[#0E1525]/10"
+                    }`}
+                  >
                     <MapPin
-                      className="mt-0.5 size-4 flex-none sm:size-5"
+                      className={`mt-0.5 size-4 flex-none ${
+                        f ? "text-[#F2B544]" : "text-[#2a7fa3]"
+                      }`}
                       strokeWidth={1.8}
                       aria-hidden
                     />
