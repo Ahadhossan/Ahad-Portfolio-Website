@@ -134,7 +134,12 @@ const TimelineItem: React.FC<{ job: Job; index: number; isLast: boolean }> = ({
       </div>
 
       {/* Content */}
-      <div className="rounded-xl border border-[#42464e]/10 bg-white/70 px-4 py-4 shadow-sm shadow-black/[0.03] backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-[#2a7fa3]/30 group-hover:bg-[#2a7fa3]/[0.06] group-hover:shadow-md sm:px-6 sm:py-5">
+      <div
+        className="rounded-xl border border-[#42464e]/10 bg-white/70 px-4 py-4 shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] backdrop-blur-sm
+  transition-all duration-300
+  group-hover:-translate-y-0.5 group-hover:border-[#2a7fa3]/30 group-hover:bg-[#2a7fa3]/[0.06] group-hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)]
+  sm:px-6 sm:py-5 cursor-pointer"
+      >
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <span className="flex items-center gap-1.5 font-space text-xs font-medium tracking-wide text-[#42464e]">
             <CalendarDays size={14} className="text-[#2a7fa3]" />

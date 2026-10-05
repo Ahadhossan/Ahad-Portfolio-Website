@@ -87,10 +87,4 @@ export const Menus: MenuType[] = [
     name: "My Articles",
     path: "/articles",
   },
-
-  // CONTACT
-  {
-    name: "Contact",
-    path: "/contact",
-  },
 ];

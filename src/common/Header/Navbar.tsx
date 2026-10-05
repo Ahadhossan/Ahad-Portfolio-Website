@@ -50,6 +50,11 @@ const Navbar: React.FC = () => {
   text-sm sm:text-base font-semibold rounded-full shadow-lg 
   hover:scale-105 active:scale-95 transition-all duration-300"
           >
+            <span
+              className="absolute inset-0 -translate-x-full group-hover:translate-x-full
+      bg-gradient-to-r from-transparent via-white/25 to-transparent
+      transition-transform duration-700 ease-out skew-x-12"
+            />
             <a href="/contact">Contact</a>
           </button>
 

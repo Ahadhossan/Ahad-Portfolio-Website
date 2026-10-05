@@ -137,10 +137,10 @@ export default function Education() {
         {/* Heading + illustration */}
         <div className="mb-8 grid items-center gap-5 sm:mb-12 lg:mb-14 lg:grid-cols-2 lg:gap-10">
           <div className="space-y-3">
-            <h2 className="font-space text-2xl leading-tight text-[#584e4e] sm:text-3xl md:text-4xl">
+            <h2 className="font-space text-2xl leading-snug text-[#584e4e] sm:text-3xl md:text-4xl">
               My Education
             </h2>
-            <p className="max-w-xl text-sm leading-relaxed text-[#0E1525]/70 sm:text-base lg:text-lg">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:text-base">
               Three steps, each built on the last: from school science to a
               diploma in computer technology, the base of my career in tech.
             </p>
@@ -164,12 +164,19 @@ export default function Education() {
                   delay: i * 0.14,
                   ease: [0.22, 1, 0.36, 1],
                 }}
+                // className={`group relative flex min-w-0 flex-col justify-between gap-6 overflow-hidden rounded-2xl p-5 sm:p-6 lg:gap-8 ${s.height}
+                //   ${i === 2 ? "sm:col-span-2 lg:col-span-1" : ""}
+                //   ${
+                //     f
+                //       ? "bg-[#0E1525] text-white shadow-[0_16px_40px_-12px_rgba(14,21,37,0.5)]"
+                //       : "border border-[#0E1525]/10 bg-white shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] transition-colors duration-300 hover:border-[#2a7fa3]/70 hover:shadow-"
+                //   }`}
                 className={`group relative flex min-w-0 flex-col justify-between gap-6 overflow-hidden rounded-2xl p-5 sm:p-6 lg:gap-8 ${s.height}
                   ${i === 2 ? "sm:col-span-2 lg:col-span-1" : ""}
                   ${
                     f
                       ? "bg-[#0E1525] text-white shadow-[0_16px_40px_-12px_rgba(14,21,37,0.5)]"
-                      : "border border-[#0E1525]/10 bg-white shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] transition-colors duration-300 hover:border-[#2a7fa3]/40"
+                      : "border border-[#0E1525]/10 bg-white shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-[#2a7fa3]/70 hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)]"
                   }`}
               >
                 {/* accent glow */}
@@ -182,19 +189,13 @@ export default function Education() {
 
                 <div className="relative flex items-start justify-between gap-3">
                   <span
-                    className={`font-display text-5xl font-extrabold leading-none tracking-[-0.05em] sm:text-6xl ${
+                    className={`font-display text-5xl font-extrabold leading-none tracking-[-0.05em] sm:text-6xl group-hover:text-[#2a7fa3] ${
                       f ? "text-white" : "text-[#0E1525]"
                     }`}
                   >
                     {s.year}
                   </span>
-                  <span
-                    className={`grid size-10 flex-none place-items-center rounded-xl transition-transform duration-300 group-hover:-rotate-6 sm:size-11 ${
-                      f
-                        ? "bg-[#F2B544] text-[#0E1525]"
-                        : "bg-[#2a7fa3] text-white"
-                    }`}
-                  >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#15919B]/10 text-[#15919B] transition-colors duration-300 group-hover:bg-[#15919B] group-hover:text-white">
                     <Icon
                       className="size-5 sm:size-[22px]"
                       strokeWidth={1.8}
