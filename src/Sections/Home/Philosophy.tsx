@@ -41,8 +41,8 @@ const WhatDos: WhatDoItem[] = [
 
 const Philosophy = () => {
   return (
-    <section className="relative px-4 py-16 sm:px-6 md:px-12 lg:px-[3vw] lg:py-24">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative">
+      <div className="mx-auto max-w-7xl border-[#0E1525]/10 border-t px-5 py-20 sm:px-6 sm:py-24 md:px-10 md:py-32">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
           {/* Left: heading + intro, sticky on large screens */}
           <div className="lg:sticky lg:top-24 lg:self-start">
@@ -79,7 +79,7 @@ const Philosophy = () => {
               return (
                 <div
                   key={item.title}
-                  className="group rounded-2xl border border-[#15919B]/20 bg-white p-6 duration-300 hover:border-[#15919B] hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)] transition-all cursor-pointer"
+                  className="group rounded-2xl border border-[#42464e]/40 bg-white p-6 duration-300 hover:border-[#15919B] hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)] transition-all cursor-pointer"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#15919B]/10 text-[#15919B] transition-colors duration-300 group-hover:bg-[#15919B] group-hover:text-white">
                     <Icon

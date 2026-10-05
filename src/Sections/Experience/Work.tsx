@@ -121,11 +121,11 @@ const TimelineItem: React.FC<{ job: Job; index: number; isLast: boolean }> = ({
           className={`relative z-10 flex h-3 w-3 items-center justify-center rounded-full ${
             job.current
               ? "bg-[#2a7fa3]"
-              : "border-2 border-[#2a7fa3]/40 bg-white"
+              : "border-2 border-[#2a7fa3]/60 bg-white"
           }`}
         >
           {job.current && (
-            <span className="absolute h-3 w-3 animate-ping rounded-full bg-[#2a7fa3]/60" />
+            <span className="absolute h-3 w-3 animate-ping rounded-full bg-[#2a7fa3]/80" />
           )}
         </span>
         {!isLast && (
@@ -135,7 +135,7 @@ const TimelineItem: React.FC<{ job: Job; index: number; isLast: boolean }> = ({
 
       {/* Content */}
       <div
-        className="rounded-xl border border-[#42464e]/10 bg-white/70 px-4 py-4 shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] backdrop-blur-sm
+        className="rounded-xl border border-[#42464e]/40 bg-white/70 px-4 py-4 shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] backdrop-blur-sm
   transition-all duration-300
   group-hover:-translate-y-0.5 group-hover:border-[#2a7fa3]/30 group-hover:bg-[#2a7fa3]/[0.06] group-hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)]
   sm:px-6 sm:py-5 cursor-pointer"

@@ -180,7 +180,7 @@ export default function Education() {
                   ${
                     f
                       ? "bg-[#0E1525] text-white shadow-[0_16px_40px_-12px_rgba(14,21,37,0.5)]"
-                      : "border border-[#0E1525]/10 bg-white shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-[#2a7fa3]/70 hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)] cursor-pointer"
+                      : "border border-[#42464e]/40 bg-white shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-[#2a7fa3]/70 hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)] cursor-pointer"
                   }`}
               >
                 {/* accent glow */}
