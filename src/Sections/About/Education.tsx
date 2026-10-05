@@ -137,9 +137,13 @@ export default function Education() {
         {/* Heading + illustration */}
         <div className="mb-8 grid items-center gap-5 sm:mb-12 lg:mb-14 lg:grid-cols-2 lg:gap-10">
           <div className="space-y-3">
-            <h2 className="font-space text-2xl leading-snug text-[#584e4e] sm:text-3xl md:text-4xl">
+            <h2 className="font-space text-2xl leading-snug text-[#0F2E33] sm:text-3xl md:text-4xl">
               My Education
             </h2>
+            <div className="mt-4 mb-0 flex items-start justify-start gap-1.5">
+              <i className="block h-[3px] w-[160px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081]" />
+              <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
+            </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:text-base">
               Three steps, each built on the last: from school science to a
               diploma in computer technology, the base of my career in tech.
@@ -176,7 +180,7 @@ export default function Education() {
                   ${
                     f
                       ? "bg-[#0E1525] text-white shadow-[0_16px_40px_-12px_rgba(14,21,37,0.5)]"
-                      : "border border-[#0E1525]/10 bg-white shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-[#2a7fa3]/70 hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)]"
+                      : "border border-[#0E1525]/10 bg-white shadow-[0_8px_24px_-12px_rgba(14,21,37,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-[#2a7fa3]/70 hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)] cursor-pointer"
                   }`}
               >
                 {/* accent glow */}

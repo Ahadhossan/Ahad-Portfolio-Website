@@ -169,16 +169,19 @@ const Internship = () => {
           style={revealStyle(isVisible, 0)}
           className={`${revealClass(
             isVisible,
-          )} font-space text-2xl font-semibold tracking-tight text-[#524c4c] sm:text-3xl md:text-4xl`}
+          )} font-space text-2xl font-semibold tracking-tight text-[#0F2E33] sm:text-3xl md:text-4xl`}
         >
           Internship
         </h2>
-        <span className="mt-4 block h-0.5 w-20 rounded-full bg-[#2a7fa3]/70"></span>
+        <div className="mt-2 mb-0 flex items-center justify-center gap-1.5">
+          <i className="block h-[3px] w-[90px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081]" />
+          <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
+        </div>
         <p
           style={revealStyle(isVisible, 100)}
           className={`${revealClass(
             isVisible,
-          )} mt-4 max-w-xl text-sm leading-relaxed text-[#7c7d7d] sm:text-base`}
+          )} mt-4 max-w-xl text-sm leading-relaxed text-[#8C93A0] sm:text-base`}
         >
           Hands-on industrial attachment where I built real-world web projects
           using frontend and backend technologies in an Agile team.

@@ -209,9 +209,14 @@ const About = () => {
       <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
         {/* Text content */}
         <div className="order-2 md:order-1">
-          <h2 className="font-space text-2xl leading-snug text-[#584e4e] sm:text-3xl md:text-4xl">
+          <h2 className="font-space text-2xl leading-snug text-[#0F2E33] sm:text-3xl md:text-4xl">
             Passion fuels purpose.
           </h2>
+
+          <div className="mt-4 mb-0 flex items-start justify-start gap-1.5">
+            <i className="block h-[3px] w-[220px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081]" />
+            <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
+          </div>
 
           <p className="mt-5 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:mt-6 sm:text-base">
             Hi, I'm <span className="text-[#194356]">Md. Ahad Hossain</span> —

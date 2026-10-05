@@ -157,13 +157,15 @@ const Strengths: React.FC = () => {
     >
       {/* Eyebrow */}
       <div className="mb-5 flex items-center gap-3 sm:mb-6 md:mb-8">
-        <span className="h-[3px] w-6 bg-black sm:w-8" />
-        <span className="font-space text-[10px] uppercase tracking-[0.2em] text-black/40 sm:text-xs sm:tracking-[0.25em]">
+        <div className="flex items-center justify-center gap-1.5">
+          <i className="block h-[3px] w-[70px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081]" />
+        </div>
+        <span className="font-space text-[10px] uppercase tracking-[0.2em] text-black sm:text-xs sm:tracking-[0.25em]">
           What I Bring
         </span>
       </div>
 
-      <h2 className="font-space text-xl leading-snug text-black sm:text-3xl md:text-4xl">
+      <h2 className="mt-5 text-[28px] font-bold leading-tight text-[#0F2E33] sm:text-[34px] lg:text-[40px]">
         Professional Strengths
       </h2>
 

@@ -54,7 +54,10 @@ const Philosophy = () => {
               My philosophy
             </h2>
 
-            <div className="mt-4 h-1 w-14 rounded-full bg-[#15919B]" />
+            <div className="mt-4 mb-0 flex items-start justify-start gap-1.5">
+              <i className="block h-[3px] w-[120px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081]" />
+              <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
+            </div>
 
             <p className="mt-6 max-w-md text-[16px] leading-relaxed text-gray-600 sm:text-[17px]">
               Great code is more than functionality — it reflects clarity,
@@ -76,7 +79,7 @@ const Philosophy = () => {
               return (
                 <div
                   key={item.title}
-                  className="group rounded-2xl border border-[#15919B]/20 bg-white p-6 transition-colors duration-300 hover:border-[#15919B]"
+                  className="group rounded-2xl border border-[#15919B]/20 bg-white p-6 duration-300 hover:border-[#15919B] hover:shadow-[0_16px_40px_-12px_rgba(42,127,163,0.35)] transition-all cursor-pointer"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#15919B]/10 text-[#15919B] transition-colors duration-300 group-hover:bg-[#15919B] group-hover:text-white">
                     <Icon

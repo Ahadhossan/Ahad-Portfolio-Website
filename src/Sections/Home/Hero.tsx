@@ -109,11 +109,26 @@ const Hero: React.FC = () => {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            className="group relative flex items-center justify-center gap-2 px-6 py-3
-    rounded-full border border-white/30 font-medium overflow-hidden
-    hover:border-white/60 transition-colors duration-300"
+            className="group relative inline-flex items-center justify-center gap-2 overflow-hidden
+                rounded-full border border-[#2a7fa3] bg-white px-7 py-4 text-sm font-semibold text-black
+                transition-all duration-300
+                hover:-translate-y-0.5 hover:text-white
+                active:translate-y-0
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2a7fa3] focus-visible:ring-offset-2"
           >
-            <span className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
+            {/* Fill layer (fades in on hover) */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 bg-[#2a7fa3] opacity-0
+                  transition-opacity duration-300 group-hover:opacity-100"
+            />
+            {/* Shine sweep */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -translate-x-full skew-x-12
+                  bg-gradient-to-r from-transparent via-white/25 to-transparent
+                  transition-transform duration-700 ease-out group-hover:translate-x-full"
+            />
             <Eye
               size={16}
               className="relative z-10 transition-transform duration-300 group-hover:scale-110"
