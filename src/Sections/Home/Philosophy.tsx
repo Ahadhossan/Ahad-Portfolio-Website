@@ -88,7 +88,7 @@ const Philosophy = () => {
                     />
                   </div>
 
-                  <h3 className="mt-4 text-[17px] font-semibold text-[#0F2E33] sm:text-[18px]">
+                  <h3 className="mt-4 text-[17px] font-semibold text-[#584e4e] sm:text-[18px]">
                     {item.title}
                   </h3>
 

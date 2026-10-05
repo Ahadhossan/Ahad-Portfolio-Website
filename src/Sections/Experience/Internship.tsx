@@ -138,9 +138,9 @@ const TimelineItem: React.FC<{ job: Job; index: number; isLast: boolean }> = ({
           {job.points.map((point, i) => (
             <li
               key={i}
-              className="flex gap-3 text-sm leading-relaxed text-[#8C93A0] sm:text-base"
+              className="flex gap-3 text-sm leading-relaxed text-gray-600 sm:text-base"
             >
-              <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-[#2a7fa3]/50" />
+              <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-[#2a7fa3]/80" />
               <span>{point}</span>
             </li>
           ))}

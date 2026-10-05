@@ -129,11 +129,11 @@ const StrengthCard: React.FC<CardProps> = ({
           <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.75} />
         </div>
 
-        <h3 className="relative mt-4 text-base font-semibold text-black sm:text-lg">
+        <h3 className="relative mt-4 text-base font-semibold text-[#584e4e] sm:text-lg">
           {item.title}
         </h3>
 
-        <p className="relative mt-2 text-sm leading-relaxed text-black/50">
+        <p className="relative mt-2 text-[17px] sm:text-[18px] leading-relaxed text-gray-600">
           {item.description}
         </p>
 

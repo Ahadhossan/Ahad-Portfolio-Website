@@ -218,7 +218,7 @@ const About = () => {
             <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
           </div>
 
-          <p className="mt-5 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:mt-6 sm:text-base">
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-gray-600 sm:mt-6 sm:text-base">
             Hi, I'm <span className="text-[#194356]">Md. Ahad Hossain</span> —
             Results-driven Web Developer with 2+ years of professional
             experience building modern, responsive, and scalable web
@@ -228,7 +228,7 @@ const About = () => {
             support, and cross-functional collaboration.
           </p>
 
-          <p className="mt-5 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:mt-6 sm:text-base">
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-gray-600 sm:mt-6 sm:text-base">
             Currently working as a{" "}
             <span className="text-[#194356]">Product Excellence Engineer</span>{" "}
             at Cubix Technology Ltd., supporting HMS/PMS products, analyzing
@@ -237,7 +237,7 @@ const About = () => {
             experience improvements.
           </p>
 
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-[#8C93A0] sm:text-base">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-600 sm:text-base">
             Previously worked as a Junior Web Developer at Imranslab, developing
             responsive web applications and collaborating with remote teams
             using modern development and project-management tools. Strong

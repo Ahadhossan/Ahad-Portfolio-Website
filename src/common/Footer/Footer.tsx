@@ -429,14 +429,18 @@ const Footer = () => {
               </span>
             </a>
 
-            <p className="mt-5 max-w-md text-sm leading-7 text-slate-300 sm:text-[15px]">
+            <p className="mt-5 max-w-md text-sm leading-7 text-gray-400 sm:text-[15px]">
               Frontend Developer <span className="mx-2 text-teal-400">•</span>{" "}
               Product Excellence Engineer
               <br className="hidden sm:block" /> HMS/PMS Specialist
             </p>
-            <span className="mt-5 block h-0.5 w-11 rounded bg-teal-400" />
 
-            <p className="mt-5 max-w-sm text-sm leading-7 text-slate-300 sm:text-[15px]">
+            <div className="mt-4 mb-0 flex items-start justify-start gap-1.5">
+              <i className="block h-[3px] w-[170px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081]" />
+              <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
+            </div>
+
+            <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400 sm:text-[15px]">
               Building modern web experiences with clean code, creative design
               and a focus on real user needs.
             </p>
@@ -469,7 +473,10 @@ const Footer = () => {
                 <br />
                 <span className="text-teal-400">Bigger</span> impact.
               </h3>
-              <span className="mt-5 block h-0.5 w-11 rounded bg-teal-400 sm:mt-6" />
+              <div className="mt-4 mb-0 flex items-start justify-start gap-1.5">
+                <i className="block h-[3px] w-[170px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081]" />
+                <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
+              </div>
               <p
                 className="mt-5 text-2xl italic text-slate-300 sm:mt-6 sm:text-3xl"
                 style={{
@@ -487,7 +494,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center text-xs text-slate-300 sm:mt-14 sm:flex-row sm:text-left sm:text-sm">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center text-xs text-gray-400 sm:mt-14 sm:flex-row sm:text-left sm:text-sm">
           <p className="flex items-center gap-3">
             <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-teal-400" />
             &copy; 2026 Md. Ahad Hossain. All rights reserved.

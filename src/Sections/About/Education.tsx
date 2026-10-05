@@ -218,7 +218,15 @@ export default function Education() {
                   >
                     {s.tag}
                   </p>
-                  <h3 className="font-display text-lg font-bold leading-tight tracking-[-0.02em] sm:text-xl">
+                  {/* <h3 className="font-display text-lg font-bold leading-tight tracking-[-0.02em] sm:text-xl text-[#584e4e]">
+                    {s.degree}
+                  </h3> */}
+
+                  <h3
+                    className={`font-display text-lg font-bold leading-tight tracking-[-0.02em] sm:text-xl ${
+                      f ? "text-white" : "text-[#584e4e]"
+                    }`}
+                  >
                     {s.degree}
                   </h3>
                   <p
