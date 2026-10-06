@@ -230,16 +230,16 @@ const StatCard: React.FC<{ item: StatItem; index: number }> = ({
         className="pointer-events-none absolute -inset-px -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(320px circle at var(--x, 50%) var(--y, 50%), rgba(21,145,155,0.12), transparent 70%)",
+            "radial-gradient(320px circle at var(--x, 50%) var(--y, 50%), rgba(21,145,155,0.19), transparent 70%)",
         }}
       />
 
       {/* top highlight line */}
-      <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#15919B]/30 to-transparent" />
+      {/* <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#15919B]/30 to-transparent" /> */}
 
       <div className="flex items-start justify-between">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#15919B] to-[#0d6e76] shadow-lg shadow-[#15919B]/30">
-          <Icon size={22} className="text-white" strokeWidth={2} />
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#15919B]/10 text-[#15919B] transition-colors duration-300 group-hover:bg-[#15919B] group-hover:text-white">
+          <Icon size={22} strokeWidth={2} />
         </div>
       </div>
 
@@ -257,10 +257,10 @@ const StatCard: React.FC<{ item: StatItem; index: number }> = ({
 
 const StatsSection: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-white px-4 py-24">
+    <section className="relative overflow-hidden bg-white px-4 py-24 cursor-pointer">
       {/* soft ambient tint */}
-      <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full bg-[#15919B]/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-indigo-400/10 blur-3xl" />
+      {/* <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full bg-[#15919B]/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-indigo-400/20 blur-3xl" /> */}
 
       <div className="relative mx-auto max-w-6xl">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">

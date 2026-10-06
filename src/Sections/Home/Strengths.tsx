@@ -125,8 +125,8 @@ const StrengthCard: React.FC<CardProps> = ({
           {String(number).padStart(2, "0")}
         </span>
 
-        <div className="relative flex h-11 w-11 items-center justify-center rounded-xl border border-black/10 bg-black text-white transition-all duration-300 group-hover:scale-105 sm:h-12 sm:w-12">
-          <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.75} />
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#15919B]/10 text-[#15919B] transition-colors duration-300 group-hover:bg-[#15919B] group-hover:text-white">
+          <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.75} />
         </div>
 
         <h3 className="relative mt-4 text-base font-semibold text-[#584e4e] sm:text-lg">

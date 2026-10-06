@@ -248,7 +248,7 @@ const About = () => {
           {/* CTA */}
           <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10 md:items-baseline">
             <a
-              href="#contact"
+              href="contact"
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden
                 rounded-full bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] px-7 py-4
                 text-sm font-semibold text-white shadow-lg shadow-[#2a7fa3]/20
