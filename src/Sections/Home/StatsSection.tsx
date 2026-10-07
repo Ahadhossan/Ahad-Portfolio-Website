@@ -223,7 +223,7 @@ const StatCard: React.FC<{ item: StatItem; index: number }> = ({
       className="group relative isolate overflow-hidden rounded-3xl border border-slate-200 bg-white p-8
       shadow-[0_1px_2px_rgba(15,23,42,0.04),0_16px_40px_-20px_rgba(15,23,42,0.15)]
       transition-all duration-300 hover:-translate-y-1 hover:border-[#15919B]/40
-      hover:shadow-[0_1px_2px_rgba(15,23,42,0.04),0_24px_48px_-20px_rgba(21,145,155,0.3)]"
+      hover:shadow-[0_1px_2px_rgba(15,23,42,0.04),0_24px_48px_-20px_rgba(21,145,155,0.3)] cursor-pointer"
     >
       {/* spotlight that follows the cursor */}
       <div
@@ -248,8 +248,8 @@ const StatCard: React.FC<{ item: StatItem; index: number }> = ({
       </div>
 
       <div className="mt-4">
-        <p className="text-base font-medium text-slate-900">{item.title}</p>
-        <p className="mt-1 text-sm text-slate-500">{item.hint}</p>
+        <p className="text-base font-medium text-[#0F2E33]">{item.title}</p>
+        <p className="mt-1 text-sm text-gray-600">{item.hint}</p>
       </div>
     </motion.div>
   );
@@ -257,12 +257,12 @@ const StatCard: React.FC<{ item: StatItem; index: number }> = ({
 
 const StatsSection: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-white px-4 py-24 cursor-pointer">
+    <section className="relative overflow-hidden bg-white px-4">
       {/* soft ambient tint */}
       {/* <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full bg-[#15919B]/20 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-indigo-400/20 blur-3xl" /> */}
 
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto max-w-7xl px-2 py-8 sm:px-4 sm:py-12 md:px-8 md:py-16">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {stats.map((item, index) => (
             <StatCard key={item.title} item={item} index={index} />
