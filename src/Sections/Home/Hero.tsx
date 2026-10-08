@@ -458,67 +458,49 @@ const Hero: React.FC = () => {
         ================================================= */}
         <motion.div
           variants={item}
-          className="mt-7 mb-8 flex w-full max-w-sm flex-col gap-3 sm:mt-8 sm:mb-16 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4"
+          className=" mt-7 flex w-full max-w-sm flex-col gap-3 sm:mt-8 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4 "
         >
-          {/* View Resume */}
+          {" "}
+          {/* View Resume */}{" "}
           <motion.button
             type="button"
             onClick={() => setOpenPdf(true)}
-            whileHover={{
-              scale: 1.03,
-            }}
-            whileTap={{
-              scale: 0.97,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 17,
-            }}
-            className={`${btnBase} w-full cursor-pointer border border-[#2a7fa3] bg-white text-black hover:text-white sm:w-auto`}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className={` ${btnBase} w-full cursor-pointer border border-[#2a7fa3] bg-white text-black hover:text-white sm:w-auto `}
           >
+            {" "}
             <span
               aria-hidden="true"
-              className="absolute inset-0 bg-[#2a7fa3] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            />
-
+              className=" absolute inset-0 bg-[#2a7fa3] opacity-0 transition-opacity duration-300 group-hover:opacity-100 "
+            />{" "}
             <Eye
               size={16}
-              className="relative z-10 transition-transform duration-300 group-hover:scale-110"
-            />
-
-            <span className="relative z-10">View Resume</span>
-          </motion.button>
-
-          {/* Download */}
+              className=" relative z-10 transition-transform duration-300 group-hover:scale-110 "
+            />{" "}
+            <span className="relative z-10">View Resume</span>{" "}
+          </motion.button>{" "}
+          {/* Download */}{" "}
           <motion.a
             href="/resume.pdf"
             download="Ahad Resume.pdf"
-            whileHover={{
-              scale: 1.03,
-            }}
-            whileTap={{
-              scale: 0.97,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 17,
-            }}
-            className={`${btnBase} w-full cursor-pointer bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] shadow-lg shadow-[#2a7fa3]/20 hover:shadow-xl hover:shadow-[#2a7fa3]/40sm:w-auto`}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className={` ${btnBase} w-full cursor-pointer bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] shadow-lg shadow-[#2a7fa3]/20 hover:shadow-xl hover:shadow-[#2a7fa3]/40 sm:w-auto `}
           >
+            {" "}
             <span
               aria-hidden="true"
-              className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
-            />
-
-            <span className="relative z-10">Download</span>
-
+              className=" absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full "
+            />{" "}
+            <span className="relative z-10">Download</span>{" "}
             <Download
               size={16}
-              className="relative z-10 transition-transform duration-300 group-hover:translate-y-0.5 group-hover:scale-110"
-            />
-          </motion.a>
+              className=" relative z-10 transition-transform duration-300 group-hover:translate-y-0.5 group-hover:scale-110 "
+            />{" "}
+          </motion.a>{" "}
         </motion.div>
       </motion.div>
 
