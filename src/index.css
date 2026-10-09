@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @keyframes gradient-x {
     0%,
     100% {
@@ -86,5 +87,26 @@
         50% {
             transform: rotate(10deg);
         }
+    }
+}
+
+
+/* ==== dark mode styles ==== */
+
+html {
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        transition: none;
     }
 }

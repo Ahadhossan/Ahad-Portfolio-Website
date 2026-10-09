@@ -328,7 +328,7 @@ const Hero: React.FC = () => {
       ref={sectionRef}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className={`relative flex min-h-[720px] w-full items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat px-4 py-20 text-white sm:min-h-[760px] sm:px-6 sm:py-24 lg:min-h-[100dvh] lg:px-10 lg:py-16
+      className={`relative flex min-h-[720px] w-full items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat px-4 py-20 text-white sm:min-h-[820px] sm:px-6 sm:py-24 lg:min-h-[100dvh] lg:px-10 lg:py-16
       ${openPdf ? "" : "cursor-none"}
       `}
       style={

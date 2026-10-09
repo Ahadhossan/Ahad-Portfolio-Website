@@ -209,7 +209,7 @@ const About = () => {
       <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
         {/* Text content */}
         <div className="order-2 md:order-1">
-          <h2 className="font-space text-2xl leading-snug text-[#0F2E33] sm:text-3xl md:text-4xl">
+          <h2 className="font-space text-2xl leading-snug text-[#0F2E33] sm:text-3xl md:text-4xl dark:text-white">
             Passion fuels purpose.
           </h2>
 
