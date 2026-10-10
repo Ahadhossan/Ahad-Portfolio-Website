@@ -1,5 +1,5 @@
-import Internship from "../../Sections/Experience/Internship";
-import Work from "../../Sections/Experience/Work";
+import Internship from "../../section/Experience/Internship";
+import Work from "../../section/Experience/Work";
 
 const Experience = () => {
   return (

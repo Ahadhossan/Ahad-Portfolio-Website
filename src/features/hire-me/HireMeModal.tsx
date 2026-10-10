@@ -4,19 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { ArrowLeft, X } from "lucide-react";
 
-import HireTypeSelection, {
-  type HireType,
-} from "../../Sections/HireMe/HireTypeSelection";
+import HireTypeSelection, { type HireType } from "./HireTypeSelection";
 
-import CompanyForm, {
-  type CompanyFormData,
-} from "../../Sections/HireMe/CompanyForm";
+import CompanyForm, { type CompanyFormData } from "./CompanyForm";
 
-import ProjectForm, {
-  type ProjectFormData,
-} from "../../Sections/HireMe/ProjectForm";
+import ProjectForm, { type ProjectFormData } from "./ProjectForm";
 
-import HireSuccess from "../../Sections/HireMe/HireSuccess";
+import HireSuccess from "./HireSuccess";
 
 /* =========================================================
    TYPES

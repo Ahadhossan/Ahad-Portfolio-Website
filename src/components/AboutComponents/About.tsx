@@ -1,6 +1,6 @@
 import React from "react";
-import AboutHero from "../../Sections/About/AboutHero";
-import Education from "../../Sections/About/Education";
+import AboutHero from "../../section/About/AboutHero";
+import Education from "../../section/About/Education";
 
 const About: React.FC = () => {
   return (

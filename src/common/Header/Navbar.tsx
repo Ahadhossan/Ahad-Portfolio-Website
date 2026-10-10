@@ -78,7 +78,7 @@ import DesktopMenu from "./DesktopMenu";
 import { Menus } from "../../Data/utils";
 import { Link } from "react-router-dom";
 import MobMenu from "./MobMenu";
-import ThemeToggle from "../../TestFile/ThemeToggle";
+import ThemeToggle from "../ThemeToggle";
 
 const Navbar: React.FC = () => {
   return (

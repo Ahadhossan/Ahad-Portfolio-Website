@@ -6,9 +6,9 @@ import Home from "./components/HomeComponents/Home";
 import Footer from "./common/Footer/Footer";
 import Contact from "./components/ContactComponents/contact";
 import Experience from "./components/ExperienceComponents/Experience";
-import WorkWithMeButton from "./components/WorkWithMeComponents/WorkWithMeButton";
-import HireMe from "./components/HireMeComponents/HireMe";
-import WorkWithMe from "./components/WorkWithMeComponents/WorkWithMe";
+import WorkWithMeButton from "./features/work-with-me/WorkWithMeButton";
+import HireMe from "./features/hire-me/HireMe";
+import WorkWithMe from "./features/work-with-me/WorkWithMe";
 import Skills from "./components/SkillsComponents/Skills";
 // import LetsTalk from "./Sections/LetsTalk";
 

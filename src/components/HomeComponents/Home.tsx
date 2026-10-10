@@ -1,15 +1,15 @@
 import React from "react";
-import Hero from "../../Sections/Home/Hero";
-import StatsSection from "../../Sections/Home/StatsSection";
-import Philosophy from "../../Sections/Home/Philosophy";
-import Test from "../../Sections/Home/Test";
-import Strengths from "../../Sections/Home/Strengths";
+import Hero from "../../section/Home/Hero";
+import StatsSection from "../../section/Home/StatsSection";
+import Philosophy from "../../section/Home/Philosophy";
+import Strengths from "../../section/Home/Strengths";
+import Herobottom from "../../section/Home/Herobottom";
 
 const Home = () => {
   return (
     <div>
       <Hero />
-      <Test />
+      <Herobottom />
       <StatsSection />
       <Strengths />
       <Philosophy />

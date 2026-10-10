@@ -1,7 +1,7 @@
 import React from "react";
 
-import Competencies from "../../Sections/Skils/Competencies";
-import SkillsTec from "../../Sections/Skils/SkillsTec";
+import Competencies from "../../section/Skils/Competencies";
+import SkillsTec from "../../section/Skils/SkillsTec";
 
 const Skills = () => {
   return (

@@ -36,7 +36,7 @@ const rowA = skills;
 const rowB = [...skills.slice(6), ...skills.slice(0, 6)];
 
 const Chip: React.FC<{ skill: Skill }> = ({ skill }) => (
-  <div className="group flex shrink-0 items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] py-2 pl-2 pr-5 backdrop-blur transition-colors hover:border-white/25 hover:bg-white/[0.08]">
+  <div className="group flex shrink-0 items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] py-2 pl-2 pr-5 backdrop-blur transition-colors hover:border-white/25 hover:bg-white/[0.08] cursor-pointer">
     <span
       className="flex h-10 w-10 items-center justify-center rounded-full"
       style={{ backgroundColor: `${skill.color}22` }}
@@ -78,7 +78,7 @@ const Row: React.FC<{
   </div>
 );
 
-const Test: React.FC = () => {
+const Herobottom = () => {
   return (
     <section className="relative w-full overflow-hidden bg-slate-950 py-8">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-48 w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full" />
@@ -102,4 +102,4 @@ const Test: React.FC = () => {
   );
 };
 
-export default Test;
+export default Herobottom;
