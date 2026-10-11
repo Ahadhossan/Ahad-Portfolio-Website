@@ -129,8 +129,8 @@ const Navbar: React.FC = () => {
           <ThemeToggle />
 
           {/* Contact Button */}
-          <Link
-            to="/contact"
+          <a
+            href="contact"
             className="
               group relative flex items-center justify-center
               overflow-hidden rounded-full
@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
               "
             />
             <span className="relative z-10">Contact</span>
-          </Link>
+          </a>
 
           {/* Mobile Menu */}
           <div className="lg:hidden">

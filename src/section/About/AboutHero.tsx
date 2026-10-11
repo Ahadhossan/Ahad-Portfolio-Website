@@ -150,7 +150,7 @@ const About = () => {
             </a>
 
             <a
-              href="#projects"
+              href="projects"
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden
                 rounded-full border border-[#2a7fa3] bg-white px-7 py-4 text-sm font-semibold text-black
                 transition-all duration-300

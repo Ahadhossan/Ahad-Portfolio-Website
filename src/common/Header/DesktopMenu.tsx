@@ -215,15 +215,42 @@ export default function DesktopMenu({ menu }: Props) {
   };
 
   const gridClass = `grid-cols-1 ${gridColsMap[gridCols]}`;
-  const isTopActive = location.pathname === path;
+
+  // Normalize paths to handle trailing slashes.
+  const normalizePath = (value: string) => value.replace(/\/+$/, "") || "/";
+
+  const currentPath = normalizePath(location.pathname);
+
+  // Match Home on both "/" and "/home".
+  const isPathActive = (href: string) => {
+    const normalizedHref = normalizePath(href);
+
+    return (
+      currentPath === normalizedHref ||
+      (normalizedHref === "/home" && currentPath === "/")
+    );
+  };
+
+  // Active state for the top-level menu.
+  const isTopActive =
+    isPathActive(path) ||
+    (hasSubMenu && subMenu.flat().some((link) => isPathActive(link.href)));
 
   const handleEnter = () => {
-    if (timeoutId) clearTimeout(timeoutId);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      setTimeoutId(null);
+    }
+
     setIsHover(true);
   };
 
   const handleLeave = () => {
-    const id = setTimeout(() => setIsHover(false), 150);
+    const id = setTimeout(() => {
+      setIsHover(false);
+      setTimeoutId(null);
+    }, 150);
+
     setTimeoutId(id);
   };
 
@@ -233,25 +260,31 @@ export default function DesktopMenu({ menu }: Props) {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
       tabIndex={0}
-      aria-expanded={isHover}
-      aria-haspopup={hasSubMenu}
-      onKeyDown={(e: React.KeyboardEvent<HTMLLIElement>) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
+      aria-expanded={hasSubMenu ? isHover : undefined}
+      aria-haspopup={hasSubMenu ? true : undefined}
+      onKeyDown={(event: React.KeyboardEvent<HTMLLIElement>) => {
+        if (hasSubMenu && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
           setIsHover((prev) => !prev);
+        }
+
+        if (event.key === "Escape") {
+          setIsHover(false);
         }
       }}
     >
       {/* Main Menu */}
       <Link
         to={path}
+        aria-current={isTopActive ? "page" : undefined}
+        onClick={() => setIsHover(false)}
         className={`
           relative flex items-center gap-1 rounded-xl px-3 py-2
           text-sm font-semibold tracking-wide lg:text-base
           transition-all duration-200
           ${
             isTopActive
-              ? "bg-green-100 text-green-700 dark:bg-green-400/15 dark:text-green-300"
+              ? "bg-green-400/15 text-green-700 dark:bg-green-400/15 dark:text-green-300"
               : "text-[#1E5470] hover:bg-white/80 dark:text-slate-200 dark:hover:bg-white/[0.08]"
           }
           after:absolute after:bottom-0 after:left-1/2
@@ -301,22 +334,23 @@ export default function DesktopMenu({ menu }: Props) {
               {subMenu.map((column, i) => (
                 <ul key={i} className="space-y-2 text-[15px]">
                   {column.map((link, j) => {
-                    const isSubActive = location.pathname === link.href;
-
+                    const isSubActive = isPathActive(link.href);
                     const IconComponent = link.icon;
 
                     return (
-                      <li key={j}>
+                      <li key={link.href || j}>
                         <Link
                           to={link.href}
                           role="menuitem"
+                          aria-current={isSubActive ? "page" : undefined}
+                          onClick={() => setIsHover(false)}
                           className={`
                             group flex items-center gap-3
                             rounded-xl px-3 py-2.5
                             transition-all duration-200
                             ${
                               isSubActive
-                                ? "bg-green-100 text-green-700 dark:bg-green-400/15 dark:text-green-300"
+                                ? "bg-green-400 text-green-700 dark:bg-green-400/15 dark:text-green-300"
                                 : "text-[#1E5470] hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/[0.08] dark:hover:text-white"
                             }
                           `}
@@ -325,8 +359,9 @@ export default function DesktopMenu({ menu }: Props) {
                             (typeof IconComponent === "string" ? (
                               <img
                                 src={IconComponent}
-                                alt={link.label}
-                                className="h-5 w-5 object-contain"
+                                alt=""
+                                aria-hidden="true"
+                                className="h-5 w-5 shrink-0 object-contain"
                               />
                             ) : (
                               <IconComponent
