@@ -165,10 +165,11 @@ import UnderDevelopment from "./TestFile/UnderDevelopment";
 
 const MainLayout = () => (
   <>
+    <WorkWithMeButton />
     <Navbar />
 
     <Outlet />
-
+    <HireMe />
     <Footer />
   </>
 );
