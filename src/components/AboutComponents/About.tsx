@@ -1,7 +1,7 @@
 import React from "react";
 import AboutHero from "../../section/About/AboutHero";
 import Education from "../../section/About/Education";
-import LetsTalk from "../../TestFile/LetsTalk";
+import LetsTalk from "../../common/LetsTalk";
 
 const About: React.FC = () => {
   return (

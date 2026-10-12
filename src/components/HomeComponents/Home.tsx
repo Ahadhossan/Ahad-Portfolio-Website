@@ -4,7 +4,7 @@ import StatsSection from "../../section/Home/StatsSection";
 import Philosophy from "../../section/Home/Philosophy";
 import Strengths from "../../section/Home/Strengths";
 import Herobottom from "../../section/Home/Herobottom";
-import LetsTalk from "../../TestFile/LetsTalk";
+import LetsTalk from "../../common/LetsTalk";
 
 const Home = () => {
   return (
