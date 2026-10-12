@@ -236,9 +236,7 @@ const FloatingPill = ({
 
                 transition-all
                 duration-500
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-
-                group-hover:max-w-[170px]
+                ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:max-w-[170px]
                 group-hover:pl-4
                 group-hover:pr-3
                 group-hover:opacity-100
