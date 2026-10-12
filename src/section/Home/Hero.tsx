@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   Download,
@@ -508,7 +508,7 @@ const Hero: React.FC = () => {
           IMPROVED SCROLL CUE
       =================================================== */}
       <motion.div className="mt-7 ">
-        <button
+        <motion.button
           type="button"
           aria-label="Scroll down"
           onClick={() => {
@@ -567,7 +567,7 @@ const Hero: React.FC = () => {
           >
             <ChevronDown size={13} strokeWidth={1.8} />
           </motion.span>
-        </button>
+        </motion.button>
       </motion.div>
 
       {/* ===================================================

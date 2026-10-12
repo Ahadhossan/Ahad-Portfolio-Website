@@ -2,12 +2,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
-  ArrowUpRight,
   ChevronsRight,
   CircleHelp,
   FileCode2,
   Home,
-  Sparkles,
 } from "lucide-react";
 import type { CSSProperties } from "react";
 import officeImg from "../assets/beautiful-office-space-cartoon-style.jpg";
@@ -359,10 +357,9 @@ const Zero = () => (
 type ContentProps = {
   path: string;
   homeTo: string;
-  projectsTo: string;
 };
 
-const Content = ({ path, homeTo, projectsTo }: ContentProps) => {
+const Content = ({ path, homeTo }: ContentProps) => {
   const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -579,14 +576,12 @@ type NotFoundProps = {
   introOnce?: boolean;
   respectReducedMotion?: boolean;
   homeTo?: string;
-  projectsTo?: string;
 };
 
 const NotFound = ({
   introOnce = false,
   respectReducedMotion = false,
   homeTo = "/",
-  projectsTo = "/",
 }: NotFoundProps) => {
   const { pathname } = useLocation();
 
@@ -619,12 +614,7 @@ const NotFound = ({
       {phase === "search" ? (
         <SearchIntro path={pathname} onDone={finishSearch} />
       ) : (
-        <Content
-          key={pathname}
-          path={pathname}
-          homeTo={homeTo}
-          projectsTo={projectsTo}
-        />
+        <Content key={pathname} path={pathname} homeTo={homeTo} />
       )}
     </main>
   );

@@ -2476,7 +2476,7 @@
 
 // =======================================
 
-import React, { useState } from "react";
+import { useState } from "react";
 import FloatingHireMeButton from "./FloatingHireMeButton";
 import HireMeModal from "./HireMeModal";
 
