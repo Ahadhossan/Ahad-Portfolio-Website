@@ -225,9 +225,7 @@ const FloatingPill = ({
                 whitespace-nowrap
 
                 pl-0
-                pr-0
-
-                text-sm
+                pr-0 text-sm
                 font-semibold
                 tracking-tight
                 text-slate-800
