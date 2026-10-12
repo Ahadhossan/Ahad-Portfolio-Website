@@ -4,6 +4,7 @@ import StatsSection from "../../section/Home/StatsSection";
 import Philosophy from "../../section/Home/Philosophy";
 import Strengths from "../../section/Home/Strengths";
 import Herobottom from "../../section/Home/Herobottom";
+import LetsTalk from "../../TestFile/LetsTalk";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <StatsSection />
       <Strengths />
       <Philosophy />
+      <LetsTalk />
     </div>
   );
 };

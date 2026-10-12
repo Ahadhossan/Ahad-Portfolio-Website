@@ -411,7 +411,7 @@ export default function ThemeToggle() {
             group-hover/theme:translate-y-0
             group-hover/theme:scale-100
             group-hover/theme:opacity-100
-            dark:border-slate-700 dark:bg-slate-900
+            dark:border-slate-700 dark:bg-[#050505]
           "
         >
           {/* Current Theme Information */}

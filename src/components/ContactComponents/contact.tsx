@@ -1,5 +1,13 @@
-import React, { useState, type ChangeEvent, type FormEvent } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+"use client";
+
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type FormEvent,
+} from "react";
+import { Check, Copy, Mail, MapPin, Phone, X } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 // ============================================================
@@ -11,7 +19,8 @@ const EMAILJS_TEMPLATE_ID = "template_fni6mgr";
 const EMAILJS_PUBLIC_KEY = "a8W05Bi3SM5Z8J3au";
 
 const CONTACT_EMAIL = "ahadm3016@gmail.com";
-const CONTACT_PHONE = "+880 1322959861";
+const CONTACT_PHONE = "+880 1322959861"; // shown on screen
+const CONTACT_PHONE_RAW = "+8801322959861"; // used for tel: link and copy
 
 // ============================================================
 // GMAIL COMPOSE URL
@@ -81,6 +90,11 @@ interface ContactRowProps {
   href?: string;
   target?: string;
   rel?: string;
+  /** When set, shows a small "copy" button that copies this text. */
+  copyValue?: string;
+  /** Called after a copy attempt so the page can show a message. */
+  onCopy?: (ok: boolean, label: string) => void;
+  className?: string;
 }
 
 function ContactRow({
@@ -91,54 +105,110 @@ function ContactRow({
   href,
   target,
   rel,
+  copyValue,
+  onCopy,
+  className = "",
 }: ContactRowProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    const text = copyValue ?? value;
+    let ok = false;
+
+    try {
+      // Modern API (needs https or localhost)
+      await navigator.clipboard.writeText(text);
+      ok = true;
+    } catch {
+      // Fallback for older mobile browsers / non-secure pages
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+      } catch {
+        ok = false;
+      }
+    }
+
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+
+    onCopy?.(ok, label);
+  };
+
+  const valueClasses =
+    "block max-w-full break-words [overflow-wrap:anywhere] text-[15px] font-medium leading-snug tracking-[-0.015em] text-[#10243f] sm:text-base lg:text-[17px]";
+
   return (
-    <div className=" group relative w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_8px_25px_rgba(15,23,42,0.05)] transition-all duration-500 hover:-translate-y-1 hover:border-[#15919B]/30 hover:shadow-[0_18px_40px_rgba(15,23,42,0.09)] sm:rounded-[22px] sm:p-5 md:flex md:items-center md:gap-5 md:rounded-[26px] md:px-5 md:py-5 lg:gap-7 lg:rounded-[28px] lg:px-6 lg:py-6">
-      {" "}
-      {/* ICON */}{" "}
-      <div className=" flex shrink-0 items-center justify-center h-11 w-11 rounded-xl bg-gradient-to-br from-[#eefafa] to-[#e8f8f8] transition-all group-hover:shadow-[0_10px_30px_rgba(13,148,136,0.10)] sm:h-6 sm:w-6 sm:rounded-[14px] md:h-8 md:w-8 md:rounded-[11px] lg:h-10 lg:w-10 lg:rounded-[12px] ">
-        {" "}
+    <div
+      className={`group relative flex w-full items-start gap-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_8px_25px_rgba(15,23,42,0.05)] transition-all duration-500 hover:-translate-y-1 hover:border-[#15919B]/30 hover:shadow-[0_18px_40px_rgba(15,23,42,0.09)] sm:items-center sm:gap-5 sm:p-5 lg:rounded-[26px] lg:p-6 ${className}`}
+    >
+      {/* ICON */}
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#eefafa] to-[#e8f8f8] sm:h-12 sm:w-12">
         <Icon
-          className=" h-4 w-4 text-[#078b8c] transition-transform duration-500 group-hover:scale-110 sm:h-5 sm:w-5 md:h-7 md:w-7 lg:h-8 lg:w-8"
+          className="h-5 w-5 text-[#078b8c] transition-transform duration-500 group-hover:scale-110 sm:h-6 sm:w-6"
           strokeWidth={1.6}
           aria-hidden="true"
         />
       </div>
+
       {/* DESKTOP ACCENT LINE */}
-      <div className=" hidden shrink-0 h-8 w-[3px] rounded-full bg-gradient-to-b from-cyan-400 via-teal-400 to-cyan-500 md:block lg:h-12 xl:h-[80px] " />
-      {/* CONTENT */}{" "}
-      <div className=" min-w-0 flex-1 pt-4 md:pt-0 ">
-        {" "}
-        {/* LABEL */}{" "}
-        <p className=" mb-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500 sm:text-xs sm:tracking-[0.22em] lg:text-sm lg:tracking-[0.26em] ">
-          {" "}
-          {label}{" "}
-        </p>{" "}
-        {/* VALUE */}{" "}
+      <div
+        aria-hidden="true"
+        className="hidden w-[3px] shrink-0 self-stretch rounded-full bg-gradient-to-b from-cyan-400 via-teal-400 to-cyan-500 xl:block"
+      />
+
+      {/* CONTENT */}
+      <div className="min-w-0 flex-1">
+        <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500 sm:text-xs sm:tracking-[0.22em]">
+          {label}
+        </p>
+
         {href ? (
           <a
             href={href}
             target={target}
             rel={rel}
-            className=" block max-w-full break-words [overflow-wrap:anywhere] whitespace-normal text-base font-medium leading-snug tracking-[-0.015em] text-[#10243f] transition-colors duration-300 hover:text-[#078b8c] sm:text-lg md:text-xl lg:text-[18px] lg:leading-tight xl:text-[20px] "
+            className={`${valueClasses} transition-colors duration-300 hover:text-[#078b8c]`}
           >
-            {" "}
-            {value}{" "}
+            {value}
           </a>
         ) : (
-          <span className=" block max-w-full break-words [overflow-wrap:anywhere] whitespace-normal text-base font-medium leading-snug tracking-[-0.015em] text-[#10243f] sm:text-lg md:text-xl lg:text-[18px] lg:leading-tight xl:text-[20px] ">
-            {" "}
-            {value}{" "}
-          </span>
-        )}{" "}
-        {/* DESCRIPTION */}{" "}
+          <span className={valueClasses}>{value}</span>
+        )}
+
         {description && (
-          <p className=" mt-2 max-w-2xl break-words text-xs leading-relaxed text-slate-400 sm:text-sm md:text-sm lg:mt-3 lg:text-base xl:text-[14px] ">
-            {" "}
-            {description}{" "}
+          <p className="mt-1.5 max-w-2xl break-words text-xs leading-relaxed text-slate-400 sm:text-sm">
+            {description}
           </p>
-        )}{" "}
-      </div>{" "}
+        )}
+      </div>
+
+      {/* COPY BUTTON (optional) */}
+      {copyValue && (
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={copied ? "Copied to clipboard" : `Copy ${label}`}
+          title={copied ? "Copied!" : "Copy"}
+          className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-colors duration-300 hover:border-[#15919B]/50 hover:text-[#078b8c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#15919B]"
+        >
+          {copied ? (
+            <Check className="h-4 w-4 text-emerald-500" strokeWidth={2.2} />
+          ) : (
+            <Copy className="h-4 w-4" strokeWidth={1.8} />
+          )}
+        </button>
+      )}
     </div>
   );
 }
@@ -178,6 +248,13 @@ const fieldClasses = `
   sm:text-base
 `;
 
+const chipBase =
+  "cursor-pointer rounded-full border px-3.5 py-2 text-xs font-medium transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm";
+const chipActive =
+  "border-[#15919B] bg-[#15919B]/10 text-[#0f6b72] shadow-[0_2px_6px_rgba(21,145,155,0.25)]";
+const chipIdle =
+  "border-slate-200 bg-white text-slate-500 hover:border-slate-400 hover:text-slate-900";
+
 // ============================================================
 // CONTACT PAGE
 // ============================================================
@@ -195,11 +272,8 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
   });
 
   const [status, setStatus] = useState<SubmitStatus>("idle");
-
   const [showOther, setShowOther] = useState(false);
-
   const [otherText, setOtherText] = useState("");
-
   const [errorMsg, setErrorMsg] = useState("");
 
   // ==========================================================
@@ -224,17 +298,13 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
 
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setErrorMsg("Please complete all required fields.");
-
       setStatus("error");
-
       return;
     }
 
     if (showOther && !otherText.trim()) {
       setErrorMsg("Please tell me what you need in the Others field.");
-
       setStatus("error");
-
       return;
     }
 
@@ -270,17 +340,8 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
       console.error("EmailJS send failed:", error);
 
       const detail =
-        (
-          error as {
-            text?: string;
-            message?: string;
-          }
-        )?.text ||
-        (
-          error as {
-            message?: string;
-          }
-        )?.message ||
+        (error as { text?: string; message?: string })?.text ||
+        (error as { text?: string; message?: string })?.message ||
         "";
 
       setErrorMsg(
@@ -294,26 +355,16 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
   };
 
   // ==========================================================
-  // RESET
+  // RESET / HOME
   // ==========================================================
 
   const resetForm = () => {
-    setForm({
-      name: "",
-      email: "",
-      type: "",
-      message: "",
-    });
-
+    setForm({ name: "", email: "", type: "", message: "" });
     setShowOther(false);
     setOtherText("");
     setErrorMsg("");
     setStatus("idle");
   };
-
-  // ==========================================================
-  // HOME
-  // ==========================================================
 
   const goHome = () => {
     if (onBack) {
@@ -326,121 +377,69 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
   const sending = status === "sending";
 
   // ==========================================================
+  // COPY TOAST
+  // ==========================================================
+
+  const [toast, setToast] = useState({ text: "", ok: true, visible: false });
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showToast = (ok: boolean, label: string) => {
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+
+    setToast({
+      text: ok
+        ? `${label} copied to clipboard`
+        : `Couldn't copy ${label.toLowerCase()}. Please copy it manually.`,
+      ok,
+      visible: true,
+    });
+
+    toastTimer.current = setTimeout(
+      () => setToast((t) => ({ ...t, visible: false })),
+      2500,
+    );
+  };
+
+  useEffect(
+    () => () => {
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+    },
+    [],
+  );
+
+  // ==========================================================
   // PAGE
   // ==========================================================
 
   return (
-    <main
-      className="
-        mt-16
-        min-h-[calc(100vh-4rem)]
-        w-full
-        bg-[#FAFAFA]
-        font-sans
-        antialiased
-      "
-    >
-      <div
-        className="
-          mx-auto
-          grid
-          min-h-[inherit]
-          w-full
-          max-w-7xl
-          grid-cols-1
-
-          md:grid-cols-5
-        "
-      >
+    <main className="mt-16 min-h-[calc(100vh-4rem)] w-full bg-[#FAFAFA] font-sans antialiased">
+      {/* Mobile + tablet: stacked. Desktop (lg): 2 / 3 split. */}
+      <div className="mx-auto grid min-h-[inherit] w-full max-w-7xl grid-cols-1 lg:grid-cols-5">
         {/* ====================================================
             LEFT SIDE
         ==================================================== */}
-
-        <section
-          className="
-            flex
-            flex-col
-            justify-between
-            gap-10
-
-            border-b
-            border-slate-200
-
-            px-4
-            py-10
-
-            sm:px-6
-            sm:py-12
-
-            md:col-span-2
-            md:gap-12
-            md:border-b-0
-            md:border-r
-            md:px-8
-            md:py-14
-
-            lg:px-10
-          "
-        >
+        <section className="flex min-w-0 flex-col justify-between gap-10 border-b border-slate-200 px-4 py-10 sm:px-6 sm:py-12 lg:col-span-2 lg:gap-12 lg:border-b-0 lg:border-r lg:px-8 lg:py-14 xl:px-10">
           {/* INTRO */}
           <div>
             <h1
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-              }}
-              className="max-w-md text-[28px]
-                font-normal
-                leading-tight
-                tracking-tight
-                text-black
-
-                sm:text-[40px]
-
-                lg:text-[55px]
-              "
+              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              className="max-w-md text-[34px] font-normal leading-tight tracking-tight text-black sm:text-[44px] lg:text-[52px] xl:text-[55px]"
             >
               Say <span className="text-[#15919B]">hello</span>.
             </h1>
 
-            <p
-              className="
-                mt-4
-                max-w-sm
-                text-sm
-                leading-relaxed
-                text-[#565151e3]
-
-                sm:mt-5
-                sm:text-base
-
-                lg:mt-6
-                lg:text-lg
-
-                xl:max-w-md
-              "
-            >
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-[#565151e3] sm:mt-5 sm:text-base lg:mt-6 lg:text-lg">
               I take on a handful of design and development projects each
-              quarter. Tell me what you're building and I'll get back to you
-              within two days.
+              quarter. Tell me what you&apos;re building and I&apos;ll get back
+              to you within two days.
             </p>
           </div>
 
-          {/* ==================================================
-              CONTACT CARDS
-          ================================================== */}
-
-          <div
-            className="
-              flex
-              w-full
-              flex-col
-              gap-4
-
-              sm:gap-5
-
-              lg:gap-7
-            "
-          >
+          {/* CONTACT CARDS
+              mobile: 1 column
+              tablet (md): email full width, location + phone side by side
+              desktop (lg): 1 column inside the left panel */}
+          <div className="grid w-full grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-1 lg:gap-6">
             <ContactRow
               icon={Mail}
               label="Email"
@@ -449,6 +448,9 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
               href={GMAIL_COMPOSE_URL}
               target="_blank"
               rel="noopener noreferrer"
+              copyValue={CONTACT_EMAIL}
+              onCopy={showToast}
+              className="md:col-span-2 lg:col-span-1"
             />
 
             <ContactRow
@@ -463,7 +465,9 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
               label="Phone"
               value={CONTACT_PHONE}
               description="Call or WhatsApp me anytime."
-              href="tel:+8801322959861"
+              href={`tel:${CONTACT_PHONE_RAW}`}
+              copyValue={CONTACT_PHONE_RAW}
+              onCopy={showToast}
             />
           </div>
         </section>
@@ -471,63 +475,18 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
         {/* ====================================================
             RIGHT SIDE
         ==================================================== */}
-
-        <section
-          className="
-            flex
-            min-w-0
-            items-center
-
-            px-4
-            py-10
-
-            sm:px-6
-            sm:py-12
-
-            md:col-span-3
-            md:px-8
-            md:py-14
-
-            lg:px-12
-          "
-        >
+        <section className="flex min-w-0 items-center px-4 py-10 sm:px-6 sm:py-12 lg:col-span-3 lg:px-10 lg:py-14 xl:px-12">
           {status !== "sent" ? (
-            <form
-              onSubmit={handleSubmit}
-              className="
-                w-full
-                max-w-2xl
-              "
-            >
-              {/* ==================================================
-                  NAME + EMAIL
-              ================================================== */}
-
-              <div
-                className="
-                  grid
-                  grid-cols-1
-                  gap-5
-
-                  sm:grid-cols-2
-                  sm:gap-6
-                "
-              >
-                {/* NAME */}
+            <form onSubmit={handleSubmit} className="w-full max-w-2xl">
+              {/* NAME + EMAIL */}
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
                 <div className="min-w-0">
                   <label
                     htmlFor="name"
-                    className="
-                      mb-2
-                      block
-                      text-sm
-                      font-medium
-                      text-slate-500
-                    "
+                    className="mb-2 block text-sm font-medium text-slate-500"
                   >
                     Your name
                   </label>
-
                   <input
                     id="name"
                     type="text"
@@ -540,21 +499,13 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                   />
                 </div>
 
-                {/* EMAIL */}
                 <div className="min-w-0">
                   <label
                     htmlFor="email"
-                    className="
-                      mb-2
-                      block
-                      text-sm
-                      font-medium
-                      text-slate-500
-                    "
+                    className="mb-2 block text-sm font-medium text-slate-500"
                   >
                     Email
                   </label>
-
                   <input
                     id="email"
                     type="email"
@@ -568,30 +519,13 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                 </div>
               </div>
 
-              {/* ==================================================
-                  PROJECT TYPE
-              ================================================== */}
-
+              {/* PROJECT TYPE */}
               <div className="mt-7 sm:mt-8">
-                <span
-                  className="
-                    mb-3
-                    block
-                    text-sm
-                    font-medium
-                    text-slate-500
-                  "
-                >
+                <span className="mb-3 block text-sm font-medium text-slate-500">
                   What are you looking for
                 </span>
 
-                <div
-                  className="
-                    flex
-                    flex-wrap
-                    gap-2
-                  "
-                >
+                <div className="flex flex-wrap gap-2">
                   {PROJECT_TYPES.map((type) => {
                     const active = form.type === type;
 
@@ -606,31 +540,12 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                             ...current,
                             type: type as ProjectType,
                           }));
-
                           setShowOther(false);
                           setOtherText("");
                         }}
-                        className={`
-                            rounded-full
-                            border
-                            px-3.5
-                            py-2
-                            text-xs
-                            font-medium
-                            transition-all
-                            duration-300
-
-                            sm:text-sm
-
-                            disabled:cursor-not-allowed
-                            disabled:opacity-50
-
-                            ${
-                              active && !showOther
-                                ? "border-[#15919B] bg-[#15919B]/10 text-[#0f6b72] shadow-[0_2px_6px_rgba(21,145,155,0.25)]"
-                                : "border-slate-200 bg-white text-slate-500 hover:border-slate-400 hover:text-slate-900"
-                            }
-                          `}
+                        className={`${chipBase} ${
+                          active && !showOther ? chipActive : chipIdle
+                        }`}
                       >
                         {type}
                       </button>
@@ -646,39 +561,16 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                     aria-controls="other-type"
                     onClick={() => {
                       setShowOther((current) => !current);
-
-                      setForm((current) => ({
-                        ...current,
-                        type: "",
-                      }));
+                      setForm((current) => ({ ...current, type: "" }));
                     }}
-                    className={`
-                      rounded-full
-                      border
-                      px-3.5
-                      py-2
-                      text-xs
-                      font-medium
-                      transition-all
-                      duration-300
-
-                      sm:text-sm
-
-                      disabled:cursor-not-allowed
-                      disabled:opacity-50
-
-                      ${
-                        showOther
-                          ? "border-[#15919B] bg-[#15919B]/10 text-[#0f6b72] shadow-[0_2px_6px_rgba(21,145,155,0.25)]"
-                          : "border-slate-200 bg-white text-slate-500 hover:border-slate-400 hover:text-slate-900"
-                      }
-                    `}
+                    className={`${chipBase} ${
+                      showOther ? chipActive : chipIdle
+                    }`}
                   >
                     Others
                   </button>
                 </div>
 
-                {/* OTHER INPUT */}
                 {showOther && (
                   <input
                     id="other-type"
@@ -695,20 +587,11 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                 )}
               </div>
 
-              {/* ==================================================
-                  MESSAGE
-              ================================================== */}
-
+              {/* MESSAGE */}
               <div className="mt-7 sm:mt-8">
                 <label
                   htmlFor="message"
-                  className="
-                    mb-2
-                    block
-                    text-sm
-                    font-medium
-                    text-slate-500
-                  "
+                  className="mb-2 block text-sm font-medium text-slate-500"
                 >
                   Message
                 </label>
@@ -721,105 +604,31 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                   value={form.message}
                   onChange={handleChange("message")}
                   placeholder="What are you working on?"
-                  className={`
-                    ${fieldClasses}
-                    min-h-[140px]
-                    resize-none
-                  `}
+                  className={`${fieldClasses} min-h-[140px] resize-none`}
                 />
               </div>
 
-              {/* ==================================================
-                  ERROR
-              ================================================== */}
-
+              {/* ERROR */}
               {status === "error" && (
                 <p
-                  className="
-                    mt-4
-                    break-words
-                    text-sm
-                    leading-relaxed
-                    text-red-600
-                  "
+                  className="mt-4 break-words text-sm leading-relaxed text-red-600"
                   role="alert"
                 >
                   {errorMsg}
                 </p>
               )}
 
-              {/* ==================================================
-                  SUBMIT
-              ================================================== */}
-
-              <div
-                className="
-                  mt-7
-
-                  sm:mt-9
-                "
-              >
+              {/* SUBMIT */}
+              <div className="mt-7 sm:mt-9">
                 <button
                   type="submit"
                   disabled={sending}
-                  className="
-                    group
-                    relative
-                    flex
-                    w-full
-                    items-center
-                    justify-center
-                    gap-2
-                    overflow-hidden
-                    rounded-full
-
-                    bg-gradient-to-r
-                    from-[#1E5470]
-                    to-[#2a7fa3]
-
-                    px-7
-                    py-3.5
-
-                    text-sm
-                    font-semibold
-                    text-white
-
-                    shadow-lg
-                    shadow-[#2a7fa3]/20
-
-                    transition-all
-                    duration-300
-
-                    hover:-translate-y-0.5
-                    hover:shadow-xl
-                    hover:shadow-[#2a7fa3]/40
-
-                    active:translate-y-0
-
-                    disabled:cursor-not-allowed
-                    disabled:opacity-60
-
-                    sm:w-auto
-                  "
+                  className="group relative flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#2a7fa3]/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#2a7fa3]/40 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:px-10"
                 >
                   <span
-                    className="
-                      absolute
-                      inset-0
-                      -translate-x-full
-                      skew-x-12
-                      bg-gradient-to-r
-                      from-transparent
-                      via-white/25
-                      to-transparent
-                      transition-transform
-                      duration-700
-                      ease-out
-
-                      group-hover:translate-x-full
-                    "
+                    aria-hidden="true"
+                    className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
                   />
-
                   <span className="relative">
                     {sending ? "Sending..." : "Submit"}
                   </span>
@@ -830,74 +639,24 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
             /* ====================================================
                SUCCESS STATE
             ==================================================== */
-
-            <div
-              className="
-                w-full
-                max-w-xl
-              "
-              role="status"
-            >
+            <div className="w-full max-w-xl" role="status">
               <h2
-                style={{
-                  fontFamily: "'Fraunces', Georgia, serif",
-                }}
-                className="
-                  text-3xl
-                  font-normal
-                  text-slate-900sm:text-4xl
-                "
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                className="text-3xl font-normal text-slate-900 sm:text-4xl"
               >
                 Message sent.
               </h2>
 
-              <p
-                className="
-                  mt-3
-                  max-w-md
-                  break-words
-                  text-sm
-                  leading-relaxed
-                  text-slate-500
-
-                  sm:text-base
-                "
-              >
-                Thanks, {form.name.split(" ")[0]}. I'll reply to {form.email}{" "}
-                within two business days.
+              <p className="mt-3 max-w-md break-words text-sm leading-relaxed text-slate-500 sm:text-base">
+                Thanks, {form.name.split(" ")[0]}. I&apos;ll reply to{" "}
+                {form.email} within two business days.
               </p>
 
-              <div
-                className="
-                  mt-6
-                  flex
-                  flex-col
-                  gap-3
-
-                  sm:flex-row
-                  sm:items-center
-                "
-              >
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="
-                    w-full
-                    rounded-full
-                    border
-                    border-[#15919B]
-                    px-5
-                    py-3
-                    text-sm
-                    font-medium
-                    text-[#0f6b72]
-
-                    transition-colors
-
-                    hover:bg-[#15919B]/10
-
-                    sm:w-auto
-                  "
+                  className="w-full cursor-pointer rounded-full border border-[#15919B] px-5 py-3 text-sm font-medium text-[#0f6b72] transition-colors hover:bg-[#15919B]/10 sm:w-auto"
                 >
                   Send another message
                 </button>
@@ -905,25 +664,7 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                 <button
                   type="button"
                   onClick={goHome}
-                  className="
-                    w-full
-                    rounded-full
-                    border
-                    border-slate-300
-                    bg-white
-                    px-6
-                    py-3
-                    text-sm
-                    font-semibold
-                    text-slate-600
-
-                    transition-colors
-
-                    hover:border-slate-400
-                    hover:text-slate-900
-
-                    sm:w-auto
-                  "
+                  className="w-full cursor-pointer rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 sm:w-auto"
                 >
                   Cancel
                 </button>
@@ -931,6 +672,36 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
             </div>
           )}
         </section>
+      </div>
+
+      {/* COPY MESSAGE (toast) */}
+      <div
+        role="status"
+        aria-live="polite"
+        className={`pointer-events-none fixed inset-x-4 bottom-[max(1.5rem,env(safe-area-inset-bottom))] z-50 flex justify-center transition-all duration-300 ease-out ${
+          toast.visible
+            ? "translate-y-0 opacity-100"
+            : "translate-y-4 opacity-0"
+        }`}
+      >
+        <div
+          className={`flex max-w-full items-center gap-2.5 rounded-full px-4 py-2.5 text-sm font-medium text-white shadow-lg ${
+            toast.ok ? "bg-[#10243f]" : "bg-red-600"
+          }`}
+        >
+          <span
+            className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
+              toast.ok ? "bg-emerald-500" : "bg-white/25"
+            }`}
+          >
+            {toast.ok ? (
+              <Check className="h-3 w-3" strokeWidth={3} />
+            ) : (
+              <X className="h-3 w-3" strokeWidth={3} />
+            )}
+          </span>
+          <span className="min-w-0 break-words">{toast.text}</span>
+        </div>
       </div>
     </main>
   );

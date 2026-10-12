@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Navbar from "./common/Header/Navbar";
 import Footer from "./common/Footer/Footer";
 
-import { LoaderLayout } from "./TestFile/PageLoader";
+import { LoaderLayout } from "./common/PageLoader";
 
 import Home from "./components/HomeComponents/Home";
 import About from "./components/AboutComponents/About";
@@ -21,8 +21,8 @@ import WorkWithMe from "./features/workwithme/WorkWithMe";
 
 import { useNavHeight } from "./hooks/useNavHeight";
 
-import NotFound from "./TestFile/NotFound";
-import UnderDevelopment from "./TestFile/UnderDevelopment";
+import NotFound from "./common/NotFound";
+// import UnderDevelopment from "./TestFile/UnderDevelopment";
 
 /* ========================================
    MAIN LAYOUT
@@ -44,15 +44,15 @@ const MainLayout = (): JSX.Element => (
    UNDER DEVELOPMENT LAYOUT
 ======================================== */
 
-const UnderDevelopmentLayout = (): JSX.Element => (
-  <>
-    <Navbar />
+// const UnderDevelopmentLayout = (): JSX.Element => (
+//   <>
+//     <Navbar />
 
-    <Outlet />
+//     <Outlet />
 
-    <Footer />
-  </>
-);
+//     <Footer />
+//   </>
+// );
 
 /* ========================================
    NOT FOUND LAYOUT
@@ -118,10 +118,10 @@ function App() {
             UNDER DEVELOPMENT PAGES
         ================================= */}
 
-        <Route element={<UnderDevelopmentLayout />}>
+        {/* <Route element={<UnderDevelopmentLayout />}>
           <Route path="/projects" element={<UnderDevelopment />} />
           <Route path="/articles" element={<UnderDevelopment />} />
-        </Route>
+        </Route> */}
 
         {/* =================================
             404 NOT FOUND

@@ -1,232 +1,269 @@
-import type { ReactNode, SVGProps } from "react";
+"use client";
 
-/* ---------- Icons (inline SVG, no extra dependencies) ---------- */
+import { useEffect, useRef, useState } from "react";
+import type { CSSProperties, ReactNode, SVGProps } from "react";
+import { ArrowRight, Mail } from "lucide-react";
+
+/* ---------- Your links (edit these) ---------- */
+const EMAIL = "ahadm3016@gmail.com";
+const GITHUB_URL = "https://github.com/"; // TODO: your profile
+const LINKEDIN_URL = "https://www.linkedin.com/"; // TODO: your profile
+const FACEBOOK_URL = "https://www.facebook.com/"; // TODO: your profile
+const INSTAGRAM_URL = "https://www.instagram.com/"; // TODO: your profile
+const X_URL = "https://x.com/"; // TODO: your profile
+
+/* ---------- Brand icons (inline SVG, no extra dependency) ---------- */
 type IconProps = SVGProps<SVGSVGElement>;
 
-const base = {
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.8,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-  viewBox: "0 0 24 24",
-};
-
-const ArrowRight = (p: IconProps) => (
-  <svg {...base} {...p}>
-    <path d="M5 12h14M13 6l6 6-6 6" />
+const GitHubIcon = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
   </svg>
 );
-const ReactIcon = (p: IconProps) => (
-  <svg {...base} {...p}>
-    <circle cx="12" cy="12" r="1.6" fill="currentColor" />
-    <ellipse cx="12" cy="12" rx="10" ry="4" />
-    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
-    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+const LinkedInIcon = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M4.5 9h3v10.5h-3V9Zm1.5-5a1.75 1.75 0 1 1 0 3.5A1.75 1.75 0 0 1 6 4Zm3.5 5h2.9v1.4h.05c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v6h-3v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8v5.4h-3V9Z" />
   </svg>
 );
-const NextIcon = (p: IconProps) => (
-  <svg {...base} {...p}>
-    <path d="M12 3 4 21M12 3l8 18M8 14h8" />
+const FacebookIcon = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z" />
   </svg>
 );
-const TsIcon = (p: IconProps) => (
-  <svg viewBox="0 0 24 24" {...p}>
-    <rect width="22" height="22" x="1" y="1" rx="2" fill="#3b82c4" />
-    <text
-      x="12"
-      y="19"
-      fontSize="10"
-      fontWeight="700"
-      fill="#fff"
-      textAnchor="middle"
-    >
-      TS
-    </text>
+const InstagramIcon = (p: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.8}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...p}
+  >
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
   </svg>
 );
-const BuildingIcon = (p: IconProps) => (
-  <svg {...base} {...p}>
-    <rect x="5" y="3" width="14" height="18" rx="1.5" />
-    <path d="M9 8h.01M13 8h.01M9 12h.01M13 12h.01M10 21v-4h4v4" />
+const XIcon = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
-const CodeIcon = (p: IconProps) => (
-  <svg {...base} {...p}>
-    <path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" />
-  </svg>
-);
-const DatabaseIcon = (p: IconProps) => (
-  <svg {...base} {...p}>
-    <ellipse cx="12" cy="5" rx="8" ry="3" />
-    <path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
-  </svg>
-);
-// const MailIcon = (p: IconProps) => (
-//   <svg {...base} {...p}>
-//     <rect x="3" y="5" width="18" height="14" rx="2.5" />
-//     <path d="m4 7 8 6 8-6" />
-//   </svg>
-// );
-// const LinkedInIcon = (p: IconProps) => (
-//   <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
-//     <path d="M4.5 9h3v10.5h-3V9Zm1.5-5a1.75 1.75 0 1 1 0 3.5A1.75 1.75 0 0 1 6 4Zm3.5 5h2.9v1.4h.05c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.8v6h-3v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8v5.4h-3V9Z" />
-//   </svg>
-// );
-// const GitHubIcon = (p: IconProps) => (
-//   <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
-//     <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
-//   </svg>
-// );
 
 /* ---------- Data ---------- */
-const leftChips = [
-  {
-    label: "React",
-    icon: <ReactIcon className="h-5 w-5 text-sky-400" />,
-    pos: "left-[15%] top-[11%]",
-  },
-  {
-    label: "Next.js",
-    icon: <NextIcon className="h-5 w-5 text-white" />,
-    pos: "left-[17%] top-[27%]",
-  },
-  {
-    label: "TypeScript",
-    icon: <TsIcon className="h-5 w-5" />,
-    pos: "left-[18%] top-[43%]",
-  },
-];
-const rightChips = [
-  {
-    label: "HMS / PMS",
-    icon: <BuildingIcon className="h-5 w-5" />,
-    pos: "right-[14%] top-[13%]",
-  },
-  {
-    label: "Frontend Dev",
-    icon: <CodeIcon className="h-5 w-5" />,
-    pos: "right-[15%] top-[29%]",
-  },
-  {
-    label: "Database",
-    icon: <DatabaseIcon className="h-5 w-5" />,
-    pos: "right-[15%] top-[44%]",
-  },
-];
-
-// const contacts = [
-//   {
-//     title: "Email",
-//     sub: "Let's connect",
-//     link: "ahadm3016@gmail.com",
-//     href: "mailto:ahadm3016@gmail.com",
-//     badge: "bg-lime-300 text-black",
-//     icon: <MailIcon className="h-5 w-5" />,
-//     linkClass: "text-white",
-//   },
-//   {
-//     title: "LinkedIn",
-//     sub: "Professional network",
-//     link: "Connect with me",
-//     href: "https://www.linkedin.com/",
-//     badge: "bg-[#0a66c2] text-white",
-//     icon: <LinkedInIcon className="h-5 w-5" />,
-//     linkClass: "text-sky-400",
-//   },
-//   {
-//     title: "GitHub",
-//     sub: "Open-source & projects",
-//     link: "View my work",
-//     href: "https://github.com/",
-//     badge: "bg-violet-500 text-white",
-//     icon: <GitHubIcon className="h-5 w-5" />,
-//     linkClass: "text-sky-400",
-//   },
-// ];
-
-/* ---------- Small pieces ---------- */
-const Chip = ({
-  label,
-  icon,
-  pos,
-}: {
+interface Social {
   label: string;
+  href: string;
   icon: ReactNode;
-  pos: string;
-}) => (
-  <div
-    className={`absolute hidden items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-white/90 shadow-lg shadow-black/40 backdrop-blur lg:flex ${pos}`}
-  >
-    {icon}
-    {label}
-  </div>
-);
+  color: string; // brand color used on hover
+  pos: string; // floating position (desktop only)
+}
 
-// const Divider = ({ children }: { children: ReactNode }) => (
-//   <div className="flex items-center justify-center gap-4 text-[11px] uppercase tracking-[0.3em] text-white/50">
-//     <span className="h-px w-8 bg-white/20 sm:w-12" />
-//     {children}
-//     <span className="h-px w-8 bg-white/20 sm:w-12" />
-//   </div>
-// );
+const iconCls = "h-[45%] w-[45%]";
+
+const socials: Social[] = [
+  {
+    label: "GitHub",
+    href: GITHUB_URL,
+    icon: <GitHubIcon className={iconCls} />,
+    color: "#333333",
+    pos: "left-[7%] top-[12%] xl:left-[14%]",
+  },
+  {
+    label: "LinkedIn",
+    href: LINKEDIN_URL,
+    icon: <LinkedInIcon className={iconCls} />,
+    color: "#0a66c2",
+    pos: "left-[9%] top-[28%] xl:left-[16%]",
+  },
+  {
+    label: "Facebook",
+    href: FACEBOOK_URL,
+    icon: <FacebookIcon className={iconCls} />,
+    color: "#1877f2",
+    pos: "left-[10%] top-[44%] xl:left-[17%]",
+  },
+  {
+    label: "Email",
+    href: `mailto:${EMAIL}`,
+    icon: <Mail className={iconCls} strokeWidth={1.8} />,
+    color: "#15919B",
+    pos: "right-[7%] top-[13%] xl:right-[13%]",
+  },
+  {
+    label: "Instagram",
+    href: INSTAGRAM_URL,
+    icon: <InstagramIcon className={iconCls} />,
+    color: "#d6249f",
+    pos: "right-[9%] top-[29%] xl:right-[15%]",
+  },
+  {
+    label: "X (Twitter)",
+    href: X_URL,
+    icon: <XIcon className="h-[40%] w-[40%]" />,
+    color: "#1f2937",
+    pos: "right-[10%] top-[45%] xl:right-[16%]",
+  },
+];
+
+/* ---------- Scroll reveal hook ---------- */
+const useInView = <T extends HTMLElement>(threshold = 0.2) => {
+  const ref = useRef<T | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect(); // animate only once
+        }
+      },
+      { threshold },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, inView };
+};
+
+const reveal = (inView: boolean) =>
+  `transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none ${
+    inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+  }`;
+
+/* ---------- Icon-only social button (no text, no shadow) ---------- */
+const SocialButton = ({ s, size }: { s: Social; size: string }) => {
+  const external = !s.href.startsWith("mailto:");
+  return (
+    <a
+      href={s.href}
+      aria-label={s.label}
+      title={s.label}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer" : undefined}
+      style={{ "--c": s.color } as CSSProperties}
+      className={`lt-social flex items-center justify-center rounded-full border border-black/10 bg-white/70 text-neutral-700 backdrop-blur dark:border-white/10 dark:bg-white/[0.05] dark:text-white/80 ${size}`}
+    >
+      {s.icon}
+    </a>
+  );
+};
 
 /* ---------- Component ---------- */
-export default function LetsTalk() {
+const LetsTalk = () => {
+  const { ref, inView } = useInView<HTMLElement>(0.25);
+
   return (
-    <section className="relative isolate overflow-hidden bg-[#050a08] px-5 py-16 text-white sm:px-8 sm:py-20 lg:py-24">
-      {/* Grid + glow background */}
+    <section
+      ref={ref}
+      className="isolate overflow-hidden px-5 py-16 text-neutral-900 relative bg-white transition-colors duration-300 dark:bg-[#050505] dark:text-white sm:px-6 sm:py-24 md:px-10 md:py-30"
+    >
+      {/* Custom CSS (plain CSS so hover works on every device) */}
+      <style>{`
+        @keyframes lt-float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .lt-float {
+          animation: lt-float var(--d, 6s) ease-in-out var(--delay, 0s) infinite;
+        }
+
+        .lt-social {
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation;
+          transition: transform 0.3s ease, background-color 0.3s ease,
+                      border-color 0.3s ease, color 0.3s ease;
+        }
+        .lt-social:hover,
+        .lt-social:focus-visible {
+          background-color: var(--c) !important;
+          border-color: var(--c) !important;
+          color: #fff !important;
+          transform: scale(1.18) rotate(-8deg);
+        }
+        .lt-social:focus-visible {
+          outline: 2px solid var(--c);
+          outline-offset: 3px;
+        }
+        .lt-social:active { transform: scale(0.92); }
+
+        @media (prefers-reduced-motion: reduce) {
+          .lt-float { animation: none; }
+          .lt-social, .lt-social:hover, .lt-social:focus-visible, .lt-social:active {
+            transition: none;
+            transform: none;
+          }
+        }
+      `}</style>
+
+      {/* Grid background (fades out toward the edges) */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 opacity-[0.07] [background-image:linear-gradient(#a3e635_1px,transparent_1px),linear-gradient(90deg,#a3e635_1px,transparent_1px)] [background-size:64px_64px]"
+        className="absolute inset-0 -z-10 opacity-[0.12] dark:opacity-[0.08] [background-image:linear-gradient(#2a7fa3_1px,transparent_1px),linear-gradient(90deg,#2a7fa3_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
       />
+
+      {/* Center glow (slow breathing) */}
       <div
         aria-hidden
-        className="absolute left-1/2 top-1/3 -z-10 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-lime-400/10 blur-[120px] sm:h-[560px] sm:w-[560px]"
+        className="absolute left-1/2 top-1/3 -z-10 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#2a7fa3]/25 blur-[120px] motion-safe:animate-pulse dark:bg-[#2a7fa3]/35 sm:h-[560px] sm:w-[560px]"
+        style={{ animationDuration: "6s" }}
       />
 
       {/* Orbit arcs + dots (desktop only) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-24 top-[8%] -z-10 hidden h-[420px] w-[280px] rounded-full border border-lime-400/25 lg:block"
-      />
-      <span
-        aria-hidden
-        className="absolute left-[11.5%] top-[18%] hidden h-1.5 w-1.5 rounded-full bg-lime-300 shadow-[0_0_10px_#bef264] lg:block"
+        className="pointer-events-none absolute -left-24 top-[8%] -z-10 hidden h-[420px] w-[280px] rounded-full border border-[#2a7fa3]/40 lg:block"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-28 top-[18%] -z-10 hidden h-[400px] w-[280px] rounded-full border border-lime-400/25 lg:block"
-      />
-      <span
-        aria-hidden
-        className="absolute right-[8.5%] top-[17%] hidden h-1.5 w-1.5 rounded-full bg-lime-300 shadow-[0_0_10px_#bef264] lg:block"
+        className="pointer-events-none absolute -right-28 top-[18%] -z-10 hidden h-[400px] w-[280px] rounded-full border border-[#2a7fa3]/40 lg:block"
       />
 
-      {/* Floating skill chips (desktop only) */}
-      {leftChips.map((c) => (
-        <Chip key={c.label} {...c} />
-      ))}
-      {rightChips.map((c) => (
-        <Chip key={c.label} {...c} />
+      {/* Floating social icons in the background (desktop only) */}
+      {socials.map((s, i) => (
+        <div
+          key={s.label}
+          className={`absolute z-10 hidden transition-all duration-700 ease-out motion-reduce:transition-none lg:block ${s.pos} ${
+            inView ? "scale-100 opacity-100" : "scale-75 opacity-0"
+          }`}
+          style={{ transitionDelay: inView ? `${200 + i * 120}ms` : "0ms" }}
+        >
+          <div
+            className="lt-float"
+            style={
+              {
+                "--d": `${5 + (i % 3)}s`,
+                "--delay": `${i * 0.5}s`,
+              } as CSSProperties
+            }
+          >
+            <SocialButton s={s} size="h-14 w-14" />
+          </div>
+        </div>
       ))}
 
       <div className="mx-auto max-w-5xl">
         {/* Heading */}
-        <div className="text-left sm:text-center">
-          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.35em] text-lime-300 sm:mb-6 sm:justify-center sm:text-sm">
-            <span className="h-px w-8 bg-lime-300/70 sm:w-14" />
-            Let&apos;s Talk
-            <span className="h-px w-8 bg-lime-300/70 sm:w-14" />
-          </div>
+        <div className={`text-left sm:text-center ${reveal(inView)}`}>
+          {/* Availability badge */}
 
-          <h2 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          <h2 className="text-3xl font-bold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
             Let&apos;s Build Something
             <br />
-            <span className="text-lime-300">Great Together.</span>
+            <span className="bg-gradient-to-r from-[#15919B] to-[#2a7fa3] bg-clip-text text-transparent dark:from-teal-300 dark:to-[#4aa3c7]">
+              Great Together.
+            </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/70 sm:text-base lg:text-lg">
+          <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-neutral-600 dark:text-white/70 sm:text-base lg:text-lg">
             Have a project, idea, or opportunity in mind?
             <br className="hidden sm:block" /> Let&apos;s turn it into something
             meaningful, modern &amp; scalable.
@@ -234,51 +271,51 @@ export default function LetsTalk() {
         </div>
 
         {/* CTA */}
-        <div className="mt-8 flex sm:justify-center">
+        <div
+          className={`mt-8 flex sm:justify-center ${reveal(inView)}`}
+          style={{ transitionDelay: inView ? "200ms" : "0ms" }}
+        >
           <a
-            href="mailto:ahadm3016@gmail.com"
-            className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-lime-300 px-9 py-3.5 text-base font-semibold text-black shadow-[0_0_40px_rgba(190,242,100,0.35)] transition hover:bg-lime-200 hover:shadow-[0_0_55px_rgba(190,242,100,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime-300 sm:w-auto sm:px-10 sm:py-4 sm:text-lg"
+            href={`mailto:${EMAIL}`}
+            className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-[#15919B] to-[#2a7fa3] px-9 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2a7fa3] motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-10 sm:py-4 sm:text-lg"
           >
-            Let&apos;s Talk
-            <ArrowRight className="h-5 w-5" />
+            {/* Shine sweep */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[300%]"
+            />
+            <span className="relative">Let&apos;s Talk</span>
+            <ArrowRight className="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5" />
           </a>
         </div>
 
-        {/* Connect cards */}
-        {/* <div className="mt-12 sm:mt-14">
-          <Divider>Or connect with me</Divider>
-
-          <div className="mx-auto mt-6 grid max-w-4xl gap-3 sm:grid-cols-3 sm:gap-4 lg:gap-5">
-            {contacts.map((c) => (
-              <a
-                key={c.title}
-                href={c.href}
-                target={c.href.startsWith("http") ? "_blank" : undefined}
-                rel="noreferrer"
-                className="group flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-lime-300/40 hover:bg-white/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime-300 sm:p-5"
+        {/* Social icons for mobile + tablet (desktop uses the floating ones) */}
+        <div className="mx-auto mt-10 grid max-w-sm grid-cols-6 gap-2.5 sm:max-w-md sm:gap-4 lg:hidden">
+          {socials.map((s, i) => (
+            <div
+              key={s.label}
+              className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
+                inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              }`}
+              style={{ transitionDelay: inView ? `${400 + i * 100}ms` : "0ms" }}
+            >
+              <div
+                className="lt-float"
+                style={
+                  {
+                    "--d": `${5 + (i % 3)}s`,
+                    "--delay": `${i * 0.4}s`,
+                  } as CSSProperties
+                }
               >
-                <div className="flex min-w-0 items-start gap-3.5">
-                  <span
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${c.badge}`}
-                  >
-                    {c.icon}
-                  </span>
-                  <div className="min-w-0 text-sm">
-                    <p className="font-semibold text-white">{c.title}</p>
-                    <p className="mt-0.5 truncate text-white/60">{c.sub}</p>
-                    <p
-                      className={`mt-1 truncate underline underline-offset-2 ${c.linkClass}`}
-                    >
-                      {c.link}
-                    </p>
-                  </div>
-                </div>
-                <ArrowRight className="h-5 w-5 shrink-0 text-white/80 transition group-hover:translate-x-0.5" />
-              </a>
-            ))}
-          </div>
-        </div> */}
+                <SocialButton s={s} size="aspect-square w-full" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default LetsTalk;
