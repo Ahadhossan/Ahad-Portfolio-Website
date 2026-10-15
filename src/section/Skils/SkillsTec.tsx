@@ -162,7 +162,7 @@ function SkillChip({ skill }: { skill: Skill }) {
 export default function Skills() {
   return (
     <main className="w-full bg-white transition-colors duration-300 dark:bg-[#050505]">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 sm:gap-12 md:gap-14 lg:gap-16 lg:px-8 lg:py-24 px-5 py-14 sm:px-6 sm:py-24 md:px-10 md:py-28">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 sm:gap-12 md:gap-14 lg:gap-16 px-5 py-20  sm:px-6 sm:py-24 md:px-10 md:py-30">
         {/* Header */}
         <header className="flex max-w-3xl flex-col gap-4 sm:gap-5">
           <span className="text-sm tracking-wider text-teal-600">

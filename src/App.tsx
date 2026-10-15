@@ -1,12 +1,9 @@
-import { useRef, type CSSProperties, type JSX } from "react";
-
+import { useRef, useState, type CSSProperties, type JSX } from "react";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-
 import { Toaster } from "react-hot-toast";
 
 import Navbar from "./common/Header/Navbar";
 import Footer from "./common/Footer/Footer";
-
 import { LoaderLayout } from "./common/PageLoader";
 
 import Home from "./components/HomeComponents/Home";
@@ -15,48 +12,39 @@ import Experience from "./components/ExperienceComponents/Experience";
 import Skills from "./components/SkillsComponents/Skills";
 import Contact from "./components/ContactComponents/contact";
 
-import WorkWithMeButton from "./features/workwithme/WorkWithMeButton";
 import HireMe from "./features/hireme/HireMe";
 import WorkWithMe from "./features/workwithme/WorkWithMe";
 
 import { useNavHeight } from "./hooks/useNavHeight";
 
 import NotFound from "./common/NotFound";
-// import UnderDevelopment from "./TestFile/UnderDevelopment";
+import ScrollProgress from "./common/ScrollProgress";
 
-/* ========================================
-   MAIN LAYOUT
-   Header + Footer + Floating Components
-======================================== */
+// ========================================
+// MAIN LAYOUT
+// ========================================
 
-const MainLayout = (): JSX.Element => (
-  <>
-    <WorkWithMeButton />
-    <Navbar />
+interface MainLayoutProps {
+  onHireMeModalChange: (isOpen: boolean) => void;
+}
 
-    <Outlet />
-    <HireMe />
-    <Footer />
-  </>
-);
+const MainLayout = ({ onHireMeModalChange }: MainLayoutProps): JSX.Element => {
+  return (
+    <>
+      <Navbar />
 
-/* ========================================
-   UNDER DEVELOPMENT LAYOUT
-======================================== */
+      <Outlet />
 
-// const UnderDevelopmentLayout = (): JSX.Element => (
-//   <>
-//     <Navbar />
+      <HireMe onModalChange={onHireMeModalChange} />
 
-//     <Outlet />
+      <Footer />
+    </>
+  );
+};
 
-//     <Footer />
-//   </>
-// );
-
-/* ========================================
-   NOT FOUND LAYOUT
-======================================== */
+// ========================================
+// NOT FOUND LAYOUT
+// ========================================
 
 interface NavStyle extends CSSProperties {
   "--nav-h": string;
@@ -64,7 +52,6 @@ interface NavStyle extends CSSProperties {
 
 const NotFoundLayout = (): JSX.Element => {
   const navRef = useRef<HTMLDivElement | null>(null);
-
   const nav = useNavHeight(navRef);
 
   const navStyle: NavStyle = {
@@ -85,26 +72,27 @@ const NotFoundLayout = (): JSX.Element => {
   );
 };
 
-/* ========================================
-   APP
-======================================== */
+// ========================================
+// APP
+// ========================================
 
-function App() {
+function App(): JSX.Element {
+  const [isHireMeOpen, setIsHireMeOpen] = useState(false);
+
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
 
+      {/* Hide scroll progress when Hire Me modal is open */}
+      <ScrollProgress isHidden={isHireMeOpen} />
+
       <Routes>
-        {/* Redirect /home to the homepage */}
+        {/* Redirect /home to / */}
         <Route path="/home" element={<Navigate to="/" replace />} />
 
-        {/* =================================
-            NORMAL PAGES
-            Header + Footer Enabled
-        ================================= */}
-
+        {/* Main website pages */}
         <Route element={<LoaderLayout />}>
-          <Route element={<MainLayout />}>
+          <Route element={<MainLayout onHireMeModalChange={setIsHireMeOpen} />}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/experience" element={<Experience />} />
@@ -114,19 +102,7 @@ function App() {
           </Route>
         </Route>
 
-        {/* =================================
-            UNDER DEVELOPMENT PAGES
-        ================================= */}
-
-        {/* <Route element={<UnderDevelopmentLayout />}>
-          <Route path="/projects" element={<UnderDevelopment />} />
-          <Route path="/articles" element={<UnderDevelopment />} />
-        </Route> */}
-
-        {/* =================================
-            404 NOT FOUND
-        ================================= */}
-
+        {/* 404 page */}
         <Route element={<NotFoundLayout />}>
           <Route path="*" element={<NotFound />} />
         </Route>

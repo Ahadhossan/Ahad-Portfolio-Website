@@ -71,10 +71,10 @@ const About = () => {
   return (
     <section
       id="about"
-      className="mx-auto mt-0 max-w-7xl border-t border-white/10 px-2 py-16 sm:px-4 sm:py-20 md:px-8 md:py-28"
+      className="mx-auto mt-0 max-w-7xl border-t border-white/10 px-5 py-20  sm:px-6 sm:py-24 md:px-10 md:py-30"
     >
       {/* Eyebrow */}
-      <div className="mb-6 flex items-center gap-3 md:mb-8">
+      <div className="mb-4 flex items-center gap-3 md:mb-6">
         <SectionEyebrow label="About Me" />
       </div>
 

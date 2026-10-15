@@ -6,20 +6,6 @@ import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 
 type SvgProps = SVGProps<SVGSVGElement>;
 
-/* ---------- Custom artwork (logo + gem) ---------- */
-const Logo = (p: SvgProps) => (
-  <svg viewBox="0 0 48 44" {...p}>
-    <defs>
-      <linearGradient id="logo-g" x1="0" y1="1" x2="1" y2="0">
-        <stop offset="0" stopColor="#0ea5c6" />
-        <stop offset="1" stopColor="#5eead4" />
-      </linearGradient>
-    </defs>
-    <path d="M22 2 4 42h11l7-18 5 12h10L22 2Z" fill="url(#logo-g)" />
-    <path d="M28 20l16 22H30l-6-9 4-13Z" fill="#0d9488" opacity=".85" />
-  </svg>
-);
-
 const Gem = (p: SvgProps) => (
   <svg viewBox="0 0 320 240" fill="none" {...p}>
     <defs>
@@ -123,7 +109,7 @@ const Footer = () => {
         />
       </svg>
 
-      <div className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20 ">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           {/* Brand */}
           <div>
@@ -131,7 +117,6 @@ const Footer = () => {
               href="#"
               className="inline-flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-400"
             >
-              <Logo className="h-9 w-10 sm:h-11 sm:w-12" />
               <span className="text-2xl font-bold tracking-[0.12em] text-white sm:text-3xl">
                 AHAD<span className="text-teal-400">.DEV</span>
               </span>

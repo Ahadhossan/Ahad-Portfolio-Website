@@ -236,7 +236,7 @@ const Competencies: React.FC = () => {
       id="competencies"
       className="relative bg-white transition-colors duration-300 dark:bg-[#050505]"
     >
-      <div className="mx-auto max-w-7xl  px-5 py-14 sm:px-6 sm:py-24 md:px-10 md:py-30 dark:border-slate-800 border-black/10 border-t">
+      <div className="mx-auto max-w-7xl px-5 py-20  sm:px-6 sm:py-24 md:px-10 md:py-30 dark:border-slate-800 border-black/10 border-t">
         {/* Eyebrow */}
         <div className="mb-5 flex items-center gap-3 sm:mb-6 md:mb-8">
           <div className="flex items-center justify-center gap-1.5">

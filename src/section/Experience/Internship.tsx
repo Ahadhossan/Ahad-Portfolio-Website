@@ -245,7 +245,7 @@ const Internship = () => {
     <section
       id="internship"
       aria-labelledby="internship-heading"
-      className="mx-auto max-w-7xl border-t border-[#42464e]/10 px-2 py-8 dark:border-white/10 sm:px-4 sm:py-12 md:px-8 md:py-16"
+      className="mx-auto max-w-7xl border-t border-[#42464e]/10  dark:border-white/10 px-5 py-20  sm:px-6 sm:py-24 md:px-10 md:py-30"
     >
       {/* Header */}
       <div

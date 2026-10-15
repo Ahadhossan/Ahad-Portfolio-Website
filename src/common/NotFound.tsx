@@ -416,7 +416,7 @@ const Content = ({ path, homeTo }: ContentProps) => {
   return (
     <section
       ref={sectionRef}
-      className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-8 px-4 py-8 sm:gap-12 sm:px-8 sm:py-12 md:grid-cols-2 lg:gap-16 lg:px-12 lg:py-16"
+      className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-8 sm:gap-12 md:grid-cols-2 lg:gap-16 px-5 py-20  sm:px-6 sm:py-24 md:px-10 md:py-30"
     >
       {/* Left content */}
       <div className="order-2 text-center md:order-1 md:text-start">

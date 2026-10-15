@@ -146,14 +146,16 @@ function ContactRow({
   };
 
   const valueClasses =
-    "block max-w-full break-words [overflow-wrap:anywhere] text-[15px] font-medium leading-snug tracking-[-0.015em] text-[#10243f] sm:text-base lg:text-[17px]";
+    "block max-w-full break-words [overflow-wrap:anywhere] text-[15px] font-medium leading-snug tracking-[-0.015em] text-[#10243f] transition-colors dark:text-slate-100 sm:text-base lg:text-[17px]";
 
   return (
     <div
-      className={`group relative flex w-full items-start gap-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_8px_25px_rgba(15,23,42,0.05)] transition-all duration-500 hover:-translate-y-1 hover:border-[#15919B]/30 hover:shadow-[0_18px_40px_rgba(15,23,42,0.09)] sm:items-center sm:gap-5 sm:p-5 lg:rounded-[26px] lg:p-6 ${className}`}
+      className={`group relative isolate flex w-full items-start gap-4 overflow-hidden rounded-2xl border border-[#0E1525]/15 bg-white p-4 shadow-[0_8px_25px_rgba(15,23,42,0.05)] transition-all duration-300 sm:items-center sm:gap-5 sm:p-5 lg:rounded-[26px] lg:p-6
+                  hover:-translate-y-1 hover:border-[#15919B] hover:shadow-[0_18px_40px_rgba(15,23,42,0.09)] dark:border-white/10 dark:bg-slate-900/70 dark:shadow-[0_8px_25px_rgba(0,0,0,0.2)] dark:hover:border-teal-400/70
+                  dark:hover:border-teal-400/70 cursor-pointer ${className}`}
     >
       {/* ICON */}
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#eefafa] to-[#e8f8f8] sm:h-12 sm:w-12">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#eefafa] to-[#e8f8f8] dark:from-teal-950/80 dark:to-slate-800 sm:h-12 sm:w-12">
         <Icon
           className="h-5 w-5 text-[#078b8c] transition-transform duration-500 group-hover:scale-110 sm:h-6 sm:w-6"
           strokeWidth={1.6}
@@ -200,7 +202,7 @@ function ContactRow({
           onClick={handleCopy}
           aria-label={copied ? "Copied to clipboard" : `Copy ${label}`}
           title={copied ? "Copied!" : "Copy"}
-          className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-colors duration-300 hover:border-[#15919B]/50 hover:text-[#078b8c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#15919B]"
+          className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-colors duration-300 hover:border-[#15919B]/50 hover:text-[#078b8c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#15919B] dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-teal-400/60 dark:hover:text-teal-300"
         >
           {copied ? (
             <Check className="h-4 w-4 text-emerald-500" strokeWidth={2.2} />
@@ -220,40 +222,34 @@ function ContactRow({
 const fieldClasses = `
   w-full
   rounded-xl
-  border
-  border-slate-200
+  border border-slate-200
   bg-white
-  px-4
-  py-3
-
-  text-sm
-  text-slate-900
-
+  px-4 py-3
+  text-sm text-slate-900
   placeholder:text-slate-400
-
   outline-none
-
   shadow-[0_1px_0_rgba(255,255,255,0.9),inset_0_2px_4px_rgba(15,23,42,0.06)]
-
-  transition-all
-  duration-300
-
+  transition-all duration-300
   focus:border-[#15919B]
-
   focus:shadow-[0_1px_0_rgba(255,255,255,0.9),inset_0_2px_4px_rgba(15,23,42,0.06),0_0_0_3px_rgba(21,145,155,0.15)]
-
+  dark:border-slate-700
+  dark:bg-slate-900
+  dark:text-slate-100
+  dark:placeholder:text-slate-500
+  dark:shadow-[inset_0_2px_5px_rgba(0,0,0,0.25)]
+  dark:focus:border-teal-400
+  dark:focus:shadow-[0_0_0_3px_rgba(45,212,191,0.15)]
   disabled:cursor-not-allowed
   disabled:opacity-50
-
   sm:text-base
 `;
 
 const chipBase =
   "cursor-pointer rounded-full border px-3.5 py-2 text-xs font-medium transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm";
 const chipActive =
-  "border-[#15919B] bg-[#15919B]/10 text-[#0f6b72] shadow-[0_2px_6px_rgba(21,145,155,0.25)]";
+  "border-[#15919B] bg-[#15919B]/10 text-[#0f6b72] shadow-[0_2px_6px_rgba(21,145,155,0.25)] dark:border-teal-400/70 dark:bg-teal-400/15 dark:text-teal-200";
 const chipIdle =
-  "border-slate-200 bg-white text-slate-500 hover:border-slate-400 hover:text-slate-900";
+  "border-slate-200 bg-white text-slate-500 hover:border-slate-400 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white";
 
 // ============================================================
 // CONTACT PAGE
@@ -412,23 +408,23 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
   // ==========================================================
 
   return (
-    <main className="mt-16 min-h-[calc(100vh-4rem)] w-full bg-[#FAFAFA] font-sans antialiased">
+    <main className="mt-16 min-h-[calc(100vh-4rem)] w-full bg-white dark:bg-[#050505]">
       {/* Mobile + tablet: stacked. Desktop (lg): 2 / 3 split. */}
       <div className="mx-auto grid min-h-[inherit] w-full max-w-7xl grid-cols-1 lg:grid-cols-5">
         {/* ====================================================
             LEFT SIDE
         ==================================================== */}
-        <section className="flex min-w-0 flex-col justify-between gap-10 border-b border-slate-200 px-4 py-10 sm:px-6 sm:py-12 lg:col-span-2 lg:gap-12 lg:border-b-0 lg:border-r lg:px-8 lg:py-14 xl:px-10">
+        <section className="flex min-w-0 flex-col justify-between gap-10 border-b border-slate-200 dark:border-slate-800 lg:col-span-2 lg:gap-12 lg:border-b-0 lg:border-r dark:lg:border-r-slate-800 px-4 py-12  sm:px-6 sm:py-16 md:px-8 md:py-20">
           {/* INTRO */}
           <div>
             <h1
               style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              className="max-w-md text-[34px] font-normal leading-tight tracking-tight text-black sm:text-[44px] lg:text-[52px] xl:text-[55px]"
+              className="max-w-md text-[34px] font-normal leading-tight tracking-tight text-[#0F2E33] dark:text-white sm:text-[44px] lg:text-[52px] xl:text-[55px]"
             >
               Say <span className="text-[#15919B]">hello</span>.
             </h1>
 
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-[#565151e3] sm:mt-5 sm:text-base lg:mt-6 lg:text-lg">
+            <p className="mt-2 max-w-md text-[16px] leading-relaxed text-gray-600 transition-colors duration-300 dark:text-slate-400 sm:mt-4 sm:text-base sm:text-[17px]">
               I take on a handful of design and development projects each
               quarter. Tell me what you&apos;re building and I&apos;ll get back
               to you within two days.
@@ -483,7 +479,7 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                 <div className="min-w-0">
                   <label
                     htmlFor="name"
-                    className="mb-2 block text-sm font-medium text-slate-500"
+                    className="mb-2 block text-sm font-medium text-slate-500 dark:text-slate-300"
                   >
                     Your name
                   </label>
@@ -502,7 +498,7 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                 <div className="min-w-0">
                   <label
                     htmlFor="email"
-                    className="mb-2 block text-sm font-medium text-slate-500"
+                    className="mb-2 block text-sm font-medium text-slate-500 dark:text-slate-300"
                   >
                     Email
                   </label>
@@ -521,7 +517,7 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
 
               {/* PROJECT TYPE */}
               <div className="mt-7 sm:mt-8">
-                <span className="mb-3 block text-sm font-medium text-slate-500">
+                <span className="mb-3 block text-sm font-medium text-slate-500 dark:text-slate-300">
                   What are you looking for
                 </span>
 
@@ -591,7 +587,7 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
               <div className="mt-7 sm:mt-8">
                 <label
                   htmlFor="message"
-                  className="mb-2 block text-sm font-medium text-slate-500"
+                  className="mb-2 block text-sm font-medium text-slate-500 dark:text-slate-300"
                 >
                   Message
                 </label>
@@ -642,7 +638,7 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
             <div className="w-full max-w-xl" role="status">
               <h2
                 style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                className="text-3xl font-normal text-slate-900 sm:text-4xl"
+                className="text-3xl font-normal text-slate-900 dark:text-white sm:text-4xl"
               >
                 Message sent.
               </h2>
@@ -656,7 +652,7 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="w-full cursor-pointer rounded-full border border-[#15919B] px-5 py-3 text-sm font-medium text-[#0f6b72] transition-colors hover:bg-[#15919B]/10 sm:w-auto"
+                  className="w-full cursor-pointer rounded-full border border-[#15919B] px-5 py-3 text-sm font-medium text-[#0f6b72] transition-colors hover:bg-[#15919B]/10 dark:text-teal-300 dark:hover:bg-teal-400/10 sm:w-auto"
                 >
                   Send another message
                 </button>
@@ -664,7 +660,7 @@ const Contact = ({ onBack }: { onBack?: () => void }) => {
                 <button
                   type="button"
                   onClick={goHome}
-                  className="w-full cursor-pointer rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 sm:w-auto"
+                  className="w-full cursor-pointer rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white sm:w-auto"
                 >
                   Cancel
                 </button>

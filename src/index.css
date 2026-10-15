@@ -161,3 +161,54 @@ body {
         animation: none;
     }
 }
+
+```css
+/* Global smooth scrolling */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* Custom scrollbar */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a7fa3;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #87c9e6;
+}
+
+
+/* Firefox */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2a7fa3 transparent;
+}
+
+
+/* Respect accessibility settings */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+```

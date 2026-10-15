@@ -424,7 +424,7 @@ export default function Education() {
       id="education"
       className="relative isolate overflow-hidden bg-white text-[#0E1525] transition-colors duration-300 dark:bg-[#050505] dark:text-slate-100"
     >
-      <div className="mx-auto max-w-7xl border-t border-[#0E1525]/10 px-5 py-20 transition-colors duration-300 dark:border-white/10 sm:px-6 sm:py-24 md:px-10 md:py-30">
+      <div className="mx-auto max-w-7xl border-t border-[#0E1525]/10 transition-colors duration-300 dark:border-white/10 px-5 py-20  sm:px-6 sm:py-24 md:px-10 md:py-30">
         {/* Heading + illustration */}
         <div className="mb-8 grid items-center gap-5 sm:mb-12 lg:mb-14 lg:grid-cols-2 lg:gap-10">
           <div className="space-y-3">

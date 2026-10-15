@@ -271,7 +271,7 @@ const Work = () => {
     <section
       id="work"
       aria-labelledby="work-heading"
-      className="mx-auto max-w-7xl border-t border-[#42464e]/10 px-5 py-20 dark:border-white/10 sm:px-6 sm:py-24 md:px-10 md:py-32"
+      className="mx-auto max-w-7xl border-t border-[#42464e]/10 dark:border-white/10 px-5 py-20  sm:px-6 sm:py-24 md:px-10 md:py-30"
     >
       {/* Eyebrow */}
       <div className="mb-4 flex items-center gap-3 md:mb-6">
