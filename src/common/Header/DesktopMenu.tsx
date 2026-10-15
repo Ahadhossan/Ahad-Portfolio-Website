@@ -114,7 +114,7 @@ export default function DesktopMenu({ menu }: Props) {
           ${
             isTopActive
               ? "bg-green-400/15 text-green-700 dark:bg-green-400/15 dark:text-green-300"
-              : "text-[#1E5470] hover:bg-white/80 dark:text-slate-200 dark:hover:bg-white/[0.08]"
+              : "text-[#1E5470] hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-white/[0.08]"
           }
           after:absolute after:bottom-0 after:left-1/2
           after:h-[2px] after:w-0 after:-translate-x-1/2
@@ -148,8 +148,8 @@ export default function DesktopMenu({ menu }: Props) {
             className="
               absolute left-0 z-50 mt-3
               w-max min-w-[400px] max-w-[60vw]
-              rounded-2xl border border-white/60
-              bg-white/85 p-4
+              rounded-2xl border border-white
+              bg-white p-4
               shadow-[0_10px_40px_rgba(0,0,0,0.10)]
               backdrop-blur-xl
               transition-colors duration-300
@@ -180,7 +180,7 @@ export default function DesktopMenu({ menu }: Props) {
                             ${
                               isSubActive
                                 ? "bg-green-400/15 text-green-700 dark:bg-green-400/15 dark:text-green-300"
-                                : "text-[#1E5470] hover:bg-white/80 dark:text-slate-200 dark:hover:bg-white/[0.08]"
+                                : "text-[#1E5470] hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-white/[0.08]"
                             }
                           `}
                         >

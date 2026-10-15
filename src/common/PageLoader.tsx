@@ -51,6 +51,12 @@ const css = `
   mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 75%);
 }
+.pl-grid-dark {
+  background-image: radial-gradient(rgba(129,140,248,.16) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 75%);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .pl-fade { animation: none; }
@@ -99,10 +105,10 @@ const SkipButton = ({ onClick }: { onClick: () => void }) => {
         type="button"
         onClick={onClick}
         aria-label="Skip intro (or press the Esc key)"
-        className="group inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white/70 py-2 pl-5 pr-2 text-sm font-semibold text-slate-600 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-indigo-300 hover:text-indigo-600 hover:shadow-lg hover:shadow-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:translate-y-0"
+        className="group inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white/70 py-2 pl-5 pr-2 text-sm font-semibold text-slate-600 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-indigo-300 hover:text-[#2a7fa3] hover:shadow-lg hover:shadow-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2a7fa3] active:translate-y-0 dark:border-slate-800 dark:bg-white/5 dark:text-[#2a7fa3]/70 dark:shadow-none dark:hover:border-[#2a7fa3]/60 dark:hover:text-indigo-300 dark:hover:shadow-indigo-500/10 dark:focus-visible:outline-[#2a7fa3]"
       >
         Skip
-        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-white transition duration-300 group-hover:bg-indigo-600">
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-white transition duration-300 group-hover:bg-[#2a7fa3] dark:bg-slate-100 dark:text-slate-900 dark:group-hover:bg-[#2a7fa3]">
           <ChevronsRight
             size={15}
             className="transition-transform duration-300 group-hover:translate-x-0.5"
@@ -111,9 +117,9 @@ const SkipButton = ({ onClick }: { onClick: () => void }) => {
       </button>
 
       {/* Explains the keyboard shortcut (hidden on phones, they have no Esc key) */}
-      <p className="hidden items-center gap-1.5 text-xs text-slate-400 sm:flex">
+      <p className="hidden items-center gap-1.5 text-xs text-slate-400 sm:flex dark:text-slate-500">
         Press
-        <kbd className="rounded-md border border-slate-200 bg-white px-1.5 py-0.5 font-mono text-[11px] font-medium text-slate-500 shadow-sm">
+        <kbd className="rounded-md border border-slate-200 bg-white px-1.5 py-0.5 font-mono text-[11px] font-medium text-slate-500 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:shadow-none">
           Esc
         </kbd>
         on your keyboard to skip
@@ -196,18 +202,22 @@ export const PageLoader = ({
   const current = script[idx];
 
   return (
-    <main className="relative flex min-h-screen flex-col overflow-hidden bg-gradient-to-b from-white via-white to-indigo-50/60 text-slate-900">
+    <main className="relative flex min-h-screen flex-col overflow-hidden bg-gradient-to-b from-white via-white to-indigo-50/60 text-slate-900 transition-colors duration-300 dark:bg-[#050505] dark:bg-none dark:text-slate-100">
       <style>{css}</style>
 
-      <div className="pl-grid pointer-events-none absolute inset-0" />
-      <div className="pl-drift pointer-events-none absolute -right-32 top-10 h-[26rem] w-[26rem] rounded-full bg-indigo-200/50 blur-3xl" />
+      {/* Dot grid: light version / dark version */}
+      <div className="pl-grid pointer-events-none absolute inset-0 dark:hidden" />
+      <div className="pl-grid-dark pointer-events-none absolute inset-0 hidden dark:block" />
+
+      {/* Glow blobs */}
+      <div className="pl-drift pointer-events-none absolute -right-32 top-10 h-[26rem] w-[26rem] rounded-full bg-indigo-200/50 blur-3xl dark:bg-indigo-500/15" />
       <div
-        className="pl-drift pointer-events-none absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-blue-200/40 blur-3xl"
+        className="pl-drift pointer-events-none absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-blue-200/40 blur-3xl dark:bg-cyan-500/10"
         style={{ animationDelay: "-6s" }}
       />
 
       <section className="pl-fade relative z-10 mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center px-5 py-12">
-        <div className="relative w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-950/95 shadow-2xl shadow-indigo-300/40 backdrop-blur">
+        <div className="relative w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-950/95 shadow-2xl shadow-indigo-300/40 backdrop-blur dark:border-slate-800 dark:bg-black dark:shadow-indigo-500/10 dark:ring-1 dark:ring-white/5">
           <div className="pl-scan pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-transparent via-indigo-400/10 to-transparent" />
 
           <div className="flex items-center gap-2 border-b border-slate-800 px-4 py-3">
@@ -243,7 +253,7 @@ export const PageLoader = ({
               <span>{progress}%</span>
             </div>
             <div
-              className="h-2 overflow-hidden rounded-full bg-slate-800"
+              className="h-2 overflow-hidden rounded-full bg-slate-800 dark:bg-slate-900"
               role="progressbar"
               aria-valuenow={progress}
               aria-valuemin={0}

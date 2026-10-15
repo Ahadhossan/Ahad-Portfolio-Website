@@ -148,10 +148,10 @@ const Footer = () => {
               <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
             </div>
 
-            <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400 sm:text-[15px]">
+            {/* <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400 sm:text-[15px]">
               Building modern web experiences with clean code, creative design
               and a focus on real user needs.
-            </p>
+            </p> */}
 
             <ul className="mt-6 flex flex-wrap gap-3">
               {socials.map((s) => (

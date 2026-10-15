@@ -110,3 +110,54 @@ body {
         transition: none;
     }
 }
+
+@keyframes theme-icon {
+    from {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.animate-theme-icon {
+    animation: theme-icon 0.35s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-theme-icon {
+        animation: none;
+    }
+}
+
+
+/* Not found css */
+
+.nf-bang {
+    transform-origin: center bottom;
+    animation: nf-bang 1.8s ease-in-out infinite;
+}
+
+@keyframes nf-bang {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-4px) rotate(12deg);
+    }
+    50% {
+        transform: translateY(0) rotate(-8deg);
+    }
+    75% {
+        transform: translateY(-2px) rotate(5deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nf-bang {
+        animation: none;
+    }
+}

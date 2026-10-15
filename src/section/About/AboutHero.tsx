@@ -2,6 +2,7 @@ import { useRef } from "react";
 import AboutImage from "../../assets/About.jpeg";
 import SectionEyebrow from "../../common/SectionEyebrow";
 import { ArrowUpRight } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 
 const MAX_TILT = 14; // degrees: 8 = subtle, 20 = dramatic
 
@@ -83,12 +84,10 @@ const About = () => {
           <h2 className=" text-[28px] font-semibold leading-tight text-[#0F2E33] transition-colors duration-300 dark:text-white sm:text-[34px] lg:text-[40px]">
             Passion fuels purpose.
           </h2>
-
           <div className="mt-4 mb-0 flex items-start justify-start gap-1.5">
             <i className="block h-[3px] w-[220px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081]" />
             <b className="h-1.5 w-1.5 rounded-full bg-[#2a7fa3]" />
           </div>
-
           <p className="mt-4 sm:mt-6 sm:text-base max-w-md text-[16px] leading-relaxed text-gray-600 transition-colors duration-300 dark:text-slate-400 sm:text-[17px]">
             Hi, I'm{" "}
             <span className="text-[#194356] dark:text-[#94c6db]">
@@ -101,7 +100,6 @@ const About = () => {
             implementation, state management, software troubleshooting, product
             support, and cross-functional collaboration.
           </p>
-
           <p className="mt-4 sm:mt-6 sm:text-base max-w-md text-[16px] leading-relaxed text-gray-600 transition-colors duration-300 dark:text-slate-400 sm:text-[17px]">
             Currently working as a
             <span className="text-[#194356] dark:text-[#94c6db]">
@@ -112,7 +110,6 @@ const About = () => {
             client training, and contributing to product quality and user
             experience improvements.
           </p>
-
           <p className="mt-4 sm:mt-6 sm:text-base max-w-md text-[16px] leading-relaxed text-gray-600 transition-colors duration-300 dark:text-slate-400 sm:text-[17px]">
             Previously worked as a Junior Web Developer at Imranslab, developing
             responsive web applications and collaborating with remote teams
@@ -120,58 +117,72 @@ const About = () => {
             understanding of the software development lifecycle, Agile
             practices, Git-based workflows, and production deployment.
           </p>
-
           {/* CTA */}
-          <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10 md:items-baseline">
+          <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10">
+            {/* GitHub Profile */}
             <a
-              href="contact"
-              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden
-                rounded-full bg-gradient-to-r from-[#1E5470] to-[#2a7fa3] px-7 py-4
-                text-sm font-semibold text-white shadow-lg shadow-[#2a7fa3]/20
-                transition-all duration-300
-                hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#2a7fa3]/40
-                active:translate-y-0
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2a7fa3] focus-visible:ring-offset-2"
+              href="https://github.com/Ahadhossan"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit my GitHub profile"
+              className="group relative inline-flex items-center justify-center gap-3
+      overflow-hidden rounded-full border border-slate-300 bg-white px-5 py-3.5
+      text-sm font-semibold text-slate-800 shadow-sm
+      transition-all duration-300
+      hover:-translate-y-0.5 hover:border-[#2a7fa3]
+      hover:bg-slate-50 hover:shadow-lg hover:shadow-[#2a7fa3]/10
+      active:translate-y-0
+      focus-visible:outline-none focus-visible:ring-2
+      focus-visible:ring-[#2a7fa3] focus-visible:ring-offset-2
+      dark:border-slate-700 dark:bg-slate-900 dark:text-white
+      dark:hover:border-[#2a7fa3] dark:hover:bg-slate-800
+      dark:focus-visible:ring-offset-slate-950 sm:w-auto sm:py-4"
             >
-              {/* Shine sweep */}
-              <span
+              <FaGithub
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 -translate-x-full skew-x-12
-                  bg-gradient-to-r from-transparent via-white/25 to-transparent
-                  transition-transform duration-700 ease-out group-hover:translate-x-full"
+                className="h-5 w-5 transition-transform duration-300
+        group-hover:rotate-[-8deg] group-hover:scale-110"
               />
-              <span className="relative">Let's Connect</span>
+
+              <span>GitHub Profile</span>
+
               <ArrowUpRight
                 aria-hidden="true"
-                className="relative h-4 w-4 shrink-0 transition-transform duration-300
-                  group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                strokeWidth={2}
+                className="h-4 w-4 text-slate-400 transition-all duration-300
+        group-hover:-translate-y-0.5 group-hover:translate-x-0.5
+        group-hover:text-[#2a7fa3]"
               />
             </a>
 
+            {/* View Projects */}
             <a
-              href="projects"
-              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden
-                rounded-full border border-[#2a7fa3] bg-white px-7 py-4 text-sm font-semibold text-black
-                transition-all duration-300
-                hover:-translate-y-0.5 hover:text-white
-                active:translate-y-0
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2a7fa3] focus-visible:ring-offset-2"
+              href="/projects"
+              className="group relative inline-flex items-center justify-center gap-3
+      overflow-hidden rounded-full bg-gradient-to-r from-[#1E5470] to-[#2a7fa3]
+      px-5 py-3.5 text-sm font-semibold text-white
+      shadow-lg shadow-[#2a7fa3]/20
+      transition-all duration-300
+      hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#2a7fa3]/35
+      active:translate-y-0
+      focus-visible:outline-none focus-visible:ring-2
+      focus-visible:ring-[#2a7fa3] focus-visible:ring-offset-2
+      dark:focus-visible:ring-offset-slate-950 sm:w-auto sm:py-4"
             >
-              {/* Fill layer (fades in on hover) */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 bg-[#2a7fa3] opacity-0
-                  transition-opacity duration-300 group-hover:opacity-100"
-              />
-              {/* Shine sweep */}
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 -translate-x-full skew-x-12
-                  bg-gradient-to-r from-transparent via-white/25 to-transparent
-                  transition-transform duration-700 ease-out group-hover:translate-x-full"
+        bg-gradient-to-r from-transparent via-white/20 to-transparent
+        transition-transform duration-700 ease-out
+        group-hover:translate-x-full"
               />
-              <span className="relative">View Work</span>
+
+              <span className="relative">View Projects</span>
+
+              <ArrowUpRight
+                aria-hidden="true"
+                className="relative h-4 w-4 transition-transform duration-300
+        group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
             </a>
           </div>
         </div>
