@@ -78,7 +78,7 @@ export default function CareerTarget() {
         overflow-hidden bg-white py-12 text-slate-950
         transition-colors duration-500
         dark:bg-[#050812] dark:text-white
-        sm:py-16 md:py-20 mx-auto max-w-7xl border-t border-[#0E1525]/10 px-5 py-20 transition-colors duration-300 dark:border-white/10 sm:px-6 sm:py-24 md:px-10 md:py-30"
+        sm:py-16 md:py-20 "
     >
       {/* Background glow */}
       <div
