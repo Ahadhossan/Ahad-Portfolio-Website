@@ -162,7 +162,7 @@ body {
     }
 }
 
-```css
+
 /* Global smooth scrolling */
 
 html {
@@ -210,5 +210,3 @@ body {
         scroll-behavior: auto;
     }
 }
-
-```
