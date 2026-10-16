@@ -1,3 +1,4 @@
+
 const careerTargets = [
   "Frontend Developer",
   "React.js Developer",
@@ -13,7 +14,6 @@ const careerTargets = [
 const firstRow = careerTargets.slice(0, 4);
 const secondRow = careerTargets.slice(4);
 
-// Must match the translateX(-25%) in the keyframes below (1 / COPIES).
 const COPIES = 4;
 
 type MarqueeRowProps = {
@@ -27,8 +27,9 @@ function MarqueeRow({
   reverse = false,
   duration = 36,
 }: MarqueeRowProps) {
-  // Repeat content for a seamless marquee loop.
-  const repeatedItems = Array.from({ length: COPIES }).flatMap(() => items);
+  const repeatedItems = Array.from({ length: COPIES }).flatMap(
+    () => items,
+  );
 
   return (
     <div className="career-marquee w-full overflow-hidden">
@@ -42,25 +43,18 @@ function MarqueeRow({
         {repeatedItems.map((career, index) => (
           <div
             key={`${career}-${index}`}
-            // Only the first copy is exposed to screen readers.
             aria-hidden={index >= items.length ? true : undefined}
-            className="career-item group flex shrink-0 items-center
-              gap-6 px-5 py-3 sm:gap-8 sm:px-7 lg:gap-10 lg:px-9"
+            className="career-item group flex shrink-0 items-center gap-6 px-5 py-3 sm:gap-8 sm:px-7 lg:gap-10 lg:px-9"
           >
             <span
-              className="career-outline inline-block whitespace-nowrap
-                text-[clamp(1.25rem,3.1vw,3.4rem)]
-                font-black uppercase leading-none
-                tracking-[-0.045em] transition-transform duration-500
-                ease-out group-hover:scale-[1.04]"
+              className="career-outline inline-block whitespace-nowrap text-[clamp(1.25rem,3.1vw,3.4rem)] font-black uppercase leading-none tracking-[-0.045em] transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             >
               {career}
             </span>
 
             <span
               aria-hidden="true"
-              className="career-diamond h-3 w-3 shrink-0
-                rotate-45 sm:h-4 sm:w-4"
+              className="career-diamond h-3 w-3 shrink-0 rotate-45 sm:h-4 sm:w-4"
             />
           </div>
         ))}
@@ -74,64 +68,39 @@ export default function CareerTarget() {
     <section
       id="career-target"
       aria-labelledby="career-target-heading"
-      className="career-target-section relative isolate
-        overflow-hidden bg-white py-12 text-slate-950
-        transition-colors duration-500
-        dark:bg-[#050812] dark:text-white
-        sm:py-16 md:py-20 "
+      className="career-target-section relative isolate overflow-hidden bg-white py-12 text-slate-950 transition-colors duration-500 dark:bg-[#050812] dark:text-white sm:py-16 md:py-20"
     >
       {/* Background glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 -top-32
-          -z-10 h-80 w-80 rounded-full bg-blue-400/10
-          blur-[100px] dark:bg-blue-600/20"
+        className="pointer-events-none absolute -left-32 -top-32 -z-10 h-80 w-80 rounded-full bg-blue-400/10 blur-[100px] dark:bg-blue-600/20"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32
-          bottom-0 -z-10 h-80 w-80 rounded-full
-          bg-purple-400/10 blur-[100px]
-          dark:bg-purple-700/20"
+        className="pointer-events-none absolute -right-32 bottom-0 -z-10 h-80 w-80 rounded-full bg-purple-400/10 blur-[100px] dark:bg-purple-700/20"
       />
 
       {/* Section heading */}
-      <div
-        className="relative z-10 mx-auto mb-12 max-w-4xl
-        px-5 text-center sm:mb-16"
-      >
+      <div className="relative z-10 mx-auto mb-12 max-w-4xl px-5 text-center sm:mb-16">
         <h2
           id="career-target-heading"
-          className="text-4xl font-black tracking-tight
-            text-slate-950 dark:text-white
-            sm:text-5xl md:text-6xl"
+          className="text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl md:text-6xl"
         >
           My Career{" "}
-          <span
-            className="bg-gradient-to-r from-sky-500
-              via-blue-600 to-purple-600 bg-clip-text
-              text-transparent dark:from-cyan-400
-              dark:via-blue-500 dark:to-purple-500"
-          >
+          <span className="bg-gradient-to-r from-sky-500 via-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500">
             Target
           </span>
         </h2>
 
-        {/* Centered underline (was left-aligned before) */}
+        {/* Centered underline */}
         <div
           className="mx-auto mt-4 flex w-fit items-center gap-1.5"
           aria-hidden="true"
         >
-          <span
-            className="block h-[3px] w-[120px] rounded-sm
-              bg-gradient-to-r from-[#8fc4dc] to-[#487081]
-              dark:from-teal-300 dark:to-cyan-500"
-          />
-          <span
-            className="block h-1.5 w-1.5 rounded-full
-              bg-[#2a7fa3] dark:bg-teal-300"
-          />
+          <span className="block h-[3px] w-[120px] rounded-sm bg-gradient-to-r from-[#8fc4dc] to-[#487081] dark:from-teal-300 dark:to-cyan-500" />
+
+          <span className="block h-1.5 w-1.5 rounded-full bg-[#2a7fa3] dark:bg-teal-300" />
         </div>
       </div>
 
@@ -143,10 +112,7 @@ export default function CareerTarget() {
 
       <div
         aria-hidden="true"
-        className="mx-auto mt-12 h-px max-w-6xl
-          bg-gradient-to-r from-transparent
-          via-slate-300 to-transparent
-          dark:via-white/10 sm:mt-16"
+        className="mx-auto mt-12 h-px max-w-6xl bg-gradient-to-r from-transparent via-slate-300 to-transparent dark:via-white/10 sm:mt-16"
       />
 
       <style>{`
@@ -169,7 +135,9 @@ export default function CareerTarget() {
 
         .career-marquee-track {
           width: max-content;
-          animation: career-scroll linear infinite;
+          animation-name: career-scroll;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
           will-change: transform;
         }
 
@@ -177,6 +145,7 @@ export default function CareerTarget() {
           from {
             transform: translate3d(0, 0, 0);
           }
+
           to {
             transform: translate3d(-25%, 0, 0);
           }
@@ -191,9 +160,7 @@ export default function CareerTarget() {
           -webkit-text-stroke-color: #52677f;
         }
 
-        /* Light mode hover: animated blue-purple gradient.
-           Uses filter (not text-shadow): text-shadow bleeds through
-           transparent background-clip:text glyphs. */
+        /* Light mode gradient hover */
         .career-item:hover .career-outline {
           background: linear-gradient(
             90deg,
@@ -202,7 +169,6 @@ export default function CareerTarget() {
             #9333ea,
             #0284c7
           );
-          /* 200% size + 200% end position = exactly one tile => seamless loop */
           background-size: 200% auto;
           background-clip: text;
           -webkit-background-clip: text;
@@ -213,7 +179,7 @@ export default function CareerTarget() {
           filter: drop-shadow(0 0 10px rgb(99 102 241 / 25%));
         }
 
-        /* Dark mode hover: brighter neon gradient and glow */
+        /* Dark mode neon hover */
         .dark .career-item:hover .career-outline {
           background: linear-gradient(
             90deg,
@@ -253,6 +219,7 @@ export default function CareerTarget() {
           from {
             background-position: 0% center;
           }
+
           to {
             background-position: 200% center;
           }
@@ -262,6 +229,7 @@ export default function CareerTarget() {
           from {
             transform: rotate(45deg) scale(1);
           }
+
           to {
             transform: rotate(225deg) scale(1.2);
           }
@@ -273,7 +241,6 @@ export default function CareerTarget() {
             mask-image: none;
           }
 
-          /* Static, centered, wrapped list: show only the first copy */
           .career-marquee-track {
             animation: none !important;
             transform: none !important;
